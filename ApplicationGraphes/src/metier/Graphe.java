@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Graphe{
 
+        /**la liste des sommet d'un graphe **/
 	private ArrayList<Sommet> lesSommets;
 	private ArrayList<Arrete> lesArretes;
 	
