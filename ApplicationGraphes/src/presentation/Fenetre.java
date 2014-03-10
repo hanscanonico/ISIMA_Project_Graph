@@ -27,7 +27,7 @@ public class Fenetre extends JFrame {
 	    
 	    JMenuItem mntmNewMenuItem = new JMenuItem("Quitter");
 	    mnNewMenu.add(mntmNewMenuItem);
-	    JPanel pan = new JPanel();
+	    JPanel pan = new MonPanel();
 	    
 	    pan.setForeground(Color.BLACK);
 	    
