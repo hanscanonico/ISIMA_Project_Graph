@@ -12,6 +12,14 @@ public class Graphe{
 	{
 		lesSommets.add(s);
 	}
+
+    public ArrayList<Sommet> getLesSommets() {
+        return lesSommets;
+    }
+
+    public ArrayList<Arrete> getLesArretes() {
+        return lesArretes;
+    }
 	
 	public void ajouterSommets(ArrayList<Sommet> sommets)
 	{

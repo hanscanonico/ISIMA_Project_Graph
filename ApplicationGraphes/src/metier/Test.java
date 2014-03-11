@@ -18,7 +18,7 @@ public class Test {
 		g.ajouterArrete(ab);
 		g.ajouterArrete(ac);
 		g.ajouterArrete(bc);
-		Fenetre fen = new Fenetre();
+		Fenetre fen = new Fenetre(g);
 		System.out.println(g);
 	}
 	
