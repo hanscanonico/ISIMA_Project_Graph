@@ -5,19 +5,25 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import javax.swing.JPanel;
 import metier.Graphe;
 import metier.Sommet;
 
 public class MonPanel extends JPanel {
-    
+
     private Graphe graphe;
+    private Set icoArr;
+    private Set icoSomm;
 
-
-    public MonPanel(Graphe graphe) {
+    public MonPanel(Graphe graphe, Set icoArr, Set icoSomm) {
+        super();
         this.graphe = graphe;
+        this.icoArr = icoArr;
+        this.icoSomm = icoSomm;
     }
 
     public void paintComponent(Graphics g) {
@@ -31,20 +37,35 @@ public class MonPanel extends JPanel {
         g2.setColor(Color.red);
 
         // g.drawOval(50, 50, 50, 50);
-        for (Iterator it =  graphe.getLesSommets().iterator(); it.hasNext();) {
-            Sommet som =  (Sommet) it.next();
-            tracerSommet(g2, som.getMonIcone());
+
+        tracerSommets(g2);
+        tracerArretes(g2);
+
+
+    }
+
+    private void tracerSommets(Graphics2D g2) {
+
+        for (Iterator it = icoSomm.iterator(); it.hasNext();) {
+            IconeSommet som = (IconeSommet) it.next();
+            g2.setColor(Color.red);
+            g2.drawOval((int) som.getPos()[1], (int) som.getPos()[0], 40, 40);
+            g2.drawChars(som.getMonSommet().getNom().toCharArray(), 0, 1, (int) som.getPos()[1], (int)som.getPos()[0]);
             
         }
 
-
     }
 
-    private void tracerSommet(Graphics2D g2,IconeSommet ico) {
-        g2.setColor(Color.red);
-        g2.drawOval(ico.getOrigineY(), ico.getOrigineX(), 40, 40);
-        System.out.println(ico.getOrigineY() +"-"+ ico.getOrigineX());
+    private void tracerArretes(Graphics2D g2) {
+
+        for (Iterator it = icoArr.iterator(); it.hasNext();) {
+            IconeArrete arr = (IconeArrete) it.next();
+            g2.setColor(Color.red);
+            g2.drawLine((int) arr.getSom1().getPos()[1] + 20, (int) arr.getSom1().getPos()[0] + 20, (int) arr.getSom2().getPos()[1] + 20, (int) arr.getSom2().getPos()[0] + 20);
+            System.out.println(arr.getSom1().getPos()[1] + "-" + arr.getSom1().getPos()[0]);
+            System.out.println(arr.getSom2().getPos()[1] + "-" + arr.getSom2().getPos()[0]);
+            System.out.println();
+        }
+
     }
-    
-  
 }

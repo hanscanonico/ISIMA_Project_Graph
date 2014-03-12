@@ -6,7 +6,6 @@ public class Arrete {
 
     private Sommet sommet1;
     private Sommet sommet2;
-    private IconeArrete monIcone;
 
     public Sommet getSommet1() {
         return sommet1;

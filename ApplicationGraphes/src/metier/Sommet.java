@@ -6,15 +6,11 @@ public class Sommet {
 
     private String nom;
     private int valeur;
-    private IconeSommet monIcone;
 
     public String getNom() {
         return nom;
     }
 
-    public IconeSommet getMonIcone() {
-        return monIcone;
-    }
 
     public void setNom(String nom) {
         this.nom = nom;
@@ -23,7 +19,7 @@ public class Sommet {
     public Sommet(String nom, int val) {
         setNom(nom);
         setValeur(val);
-        this.monIcone=new IconeSommet();
+       
     }
 
     @Override
