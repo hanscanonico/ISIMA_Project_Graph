@@ -80,21 +80,22 @@ public class VueCentre extends javax.swing.JPanel {
     }
 
     private void tracerArretes(Graphics2D g2) {
-        int decal = IconeSommet.taille / 2;
+        
         for (IconeArrete icoA : icoArr) {
             IconeArrete arr = icoA;
             g2.setColor(Color.BLUE);
-            g2.drawLine(arr.getSom1().getOrigineX()+decal ,arr.getSom1().getOrigineY()+decal  ,arr.getSom2().getOrigineX()+decal  ,arr.getSom2().getOrigineY()+decal  );
+            g2.drawLine(arr.getSom1().getCentreX() ,arr.getSom1().getCentreY()  ,arr.getSom2().getCentreX()  ,arr.getSom2().getCentreY()  );
 
         }
 
     }
 
     private void adaptationDesPositions() {
+        int t = IconeSommet.taille*2;
         for (IconeSommet icoS : icoSomm) {
             IconeSommet som = icoS;
-            som.setOrigineX((int)(som.getPos()[0]*getWidth()));
-            som.setOrigineY((int)(som.getPos()[1]*getHeight()));
+            som.setOrigineX(t+(int)(som.getPos()[0]*(getWidth()-t*2)));
+            som.setOrigineY(t+(int)(som.getPos()[1]*(getHeight()-t*2)));
         }
     }
 

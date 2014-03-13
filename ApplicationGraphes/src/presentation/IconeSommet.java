@@ -80,7 +80,7 @@ public class IconeSommet {
      * @return
      */
     public int getCentreY() {
-        return origineY - 20;
+        return origineY +taille/2;
     }
 
     /**
@@ -88,7 +88,7 @@ public class IconeSommet {
      * @return
      */
     public int getCentreX() {
-        return origineX - 20;
+        return origineX +taille/2;
     }
 
     /**
