@@ -29,20 +29,14 @@ public class Fenetre extends JFrame implements IConstantes{
      */
     public Fenetre(Graphe g) {
         
-     
         setTitle("Logiciel de graphe");
         setSize(LARGEUR_FENETRE_PRINCIPALE, LONGUEUR_FENETRE_PRINCIPALE);
-        setLocation(400, 180);
+        setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    
-            
-       
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
-
         JMenu mnNewMenu = new JMenu("Fichier");
         menuBar.add(mnNewMenu);
-
         JMenuItem mntmNewMenuItem = new JMenuItem("Quitter");
         mnNewMenu.add(mntmNewMenuItem);
         getContentPane().add(new VueGraphe(g));

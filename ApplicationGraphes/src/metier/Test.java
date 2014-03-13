@@ -14,6 +14,17 @@ public class Test {
      * @param arg
      */
     public static void main(String[] arg) {
+                try {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
         Graphe g = new Graphe();
         Sommet a = new Sommet("A", 1);
         Sommet b = new Sommet("B", 2);
@@ -31,17 +42,7 @@ public class Test {
         g.ajouterArrete(bc);
         Fenetre fen = new Fenetre(g);
 
-        try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (Exception e) {
-            // If Nimbus is not available, you can set the GUI to another look and feel.
-        }
-        System.out.println(g);
+
 
     }
 }
