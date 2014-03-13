@@ -47,7 +47,10 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     public VueGraphe(Graphe g) {
         setLayout(new BorderLayout());
         this.g = g;
-
+        
+        generationDesIcones();
+        randomPosition();
+        
         JPanel vueCentre = new VueCentre(g, icoArr, icoSomm);
         JPanel vueGauche = new VueGauche();
         JPanel vueBas = new VueBas(ctrl);
@@ -62,7 +65,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
 
         /*
         
-         generationDesIcones();
+        
          calculPosition();
          calculPosition2();
          for (IconeSommet icoS : icoSomm) {
@@ -78,13 +81,13 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
 
     }
 
-    private void calculPosition() {
-        int temp;
+    private void randomPosition() {
+        double temp;
         for (IconeSommet ico : icoSomm) {
             IconeSommet som = ico;
-            temp = (int) (Math.random() * (LARGEUR_FENETRE_PRINCIPALE - 100));
+            temp = (Math.random() );
             som.getPos()[0] = temp;
-            temp = (int) (Math.random() * (LONGUEUR_FENETRE_PRINCIPALE - 100));
+            temp =  (Math.random() );
             som.getPos()[1] = temp;
 
         }

@@ -12,7 +12,7 @@ import metier.Sommet;
  * @author Amine
  */
 public class IconeSommet {
-
+    public static int taille = 20;
     private int origineX;
     private int origineY;
     private Sommet monSommet;

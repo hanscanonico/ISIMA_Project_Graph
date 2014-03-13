@@ -59,8 +59,9 @@ public class VueCentre extends javax.swing.JPanel {
 
         // g.drawOval(50, 50, 50, 50);
 
-        tracerSommets(g2);
+        adaptationDesPositions();
         tracerArretes(g2);
+        tracerSommets(g2);
 
 
     }
@@ -69,25 +70,32 @@ public class VueCentre extends javax.swing.JPanel {
 
         for (IconeSommet icoS : icoSomm) {
             IconeSommet som = icoS;
-            g2.setColor(Color.red);
-            g2.drawOval((int) som.getPos()[1], (int) som.getPos()[0], 40, 40);
-            g2.drawChars(som.getMonSommet().getNom().toCharArray(), 0, 1, (int) som.getPos()[1], (int) som.getPos()[0]);
+            g2.setColor(Color.ORANGE);
+            g2.fillOval(som.getOrigineX(), som.getOrigineY(), IconeSommet.taille, IconeSommet.taille);
+            g2.setColor(Color.BLACK);
+            g2.drawChars(som.getMonSommet().getNom().toCharArray(), 0, 1, som.getOrigineX(), som.getOrigineY());
 
         }
 
     }
 
     private void tracerArretes(Graphics2D g2) {
-
+        int decal = IconeSommet.taille / 2;
         for (IconeArrete icoA : icoArr) {
             IconeArrete arr = icoA;
-            g2.setColor(Color.red);
-            g2.drawLine((int) arr.getPos()[1] + 20, (int) arr.getSom1().getPos()[0] + 20, (int) arr.getSom2().getPos()[1] + 20, (int) arr.getSom2().getPos()[0] + 20);
-            System.out.println(arr.getSom1().getPos()[1] + "-" + arr.getSom1().getPos()[0]);
-            System.out.println(arr.getSom2().getPos()[1] + "-" + arr.getSom2().getPos()[0]);
-            System.out.println();
+            g2.setColor(Color.BLUE);
+            g2.drawLine(arr.getSom1().getOrigineX()+decal ,arr.getSom1().getOrigineY()+decal  ,arr.getSom2().getOrigineX()+decal  ,arr.getSom2().getOrigineY()+decal  );
+
         }
 
+    }
+
+    private void adaptationDesPositions() {
+        for (IconeSommet icoS : icoSomm) {
+            IconeSommet som = icoS;
+            som.setOrigineX((int)(som.getPos()[0]*getWidth()));
+            som.setOrigineY((int)(som.getPos()[1]*getHeight()));
+        }
     }
 
     /**
