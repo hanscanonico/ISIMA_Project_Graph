@@ -24,9 +24,7 @@ public class VueGauche extends javax.swing.JPanel {
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(100,600));
         setBorder(BorderFactory.createLineBorder(Color.black, 1));
-        
-        setBackground(Color.white);
-        setVisible(true);
+
     }
 
     /**

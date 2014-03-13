@@ -8,28 +8,50 @@ package presentation;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.LayoutManager;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import metier.IConstantes;
 
 /**
  *
  * @author Hans
  */
-public class VueBas extends javax.swing.JPanel {
+public class VueBas extends JPanel implements IConstantes{
 
     /**
      * Creates new form VueBas
      */
-    public VueBas() {
-  
-          setLayout(new BorderLayout());
+    public VueBas(Controleur ctrl) {
+        setLayout(new BorderLayout());
         setBorder(BorderFactory.createLineBorder(Color.black, 1));
-        
-        setBackground(Color.white);
+        JPanel center=new JPanel();
+        center.setPreferredSize(new Dimension(500,getHeight()));
+        center.add(nouveauBoutton(ctrl, "sommet", MODE_SOMMET),BorderLayout.WEST);
+        center.add(nouveauBoutton(ctrl, "arrete", MODE_ARRETE),BorderLayout.CENTER);
+        center.add(nouveauBoutton(ctrl, "fleche", MODE_FLECHE),BorderLayout.EAST);
+        add(center,BorderLayout.CENTER);
         setPreferredSize(new Dimension(1100, 50));
-        setVisible(true);
     }
 
+    
+    private JButton nouveauBoutton(Controleur ctrl,String nom,String actionCommand)
+    {
+        JButton jb=new JButton(nom);
+     
+        jb.setPreferredSize(new Dimension(150, 50));
+        jb.setActionCommand(actionCommand);
+        jb.addActionListener(ctrl);
+        return jb; 
+    }
+    
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

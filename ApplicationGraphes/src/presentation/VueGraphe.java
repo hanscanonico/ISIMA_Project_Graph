@@ -6,11 +6,16 @@
 
 package presentation;
 
+import coucheApplicative.Modele;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Set;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -26,15 +31,16 @@ import metier.Sommet;
  *
  * @author Hans
  */
-public class VueGraphe extends JPanel implements IConstantes{
+public class VueGraphe extends JPanel implements IConstantes, Observer{
 
-      private metier.Graphe g;
+    private metier.Graphe g;
     private Set<IconeArrete> icoArr = new HashSet();
     private Set<IconeSommet> icoSomm = new HashSet();
     private Map<Sommet,IconeSommet> icoSom = new HashMap<>();
     
-    
-    
+    private Modele mdl;
+    private Controleur ctrl;
+    private VueBas vueBas;
     /**
      *
      * @param g
@@ -42,6 +48,20 @@ public class VueGraphe extends JPanel implements IConstantes{
     public VueGraphe(Graphe g) {
         setLayout(new BorderLayout());
         this.g = g;
+        
+        JPanel vueCentre = new VueCentre(g, icoArr, icoSomm);
+        JPanel vueGauche=new VueGauche();
+        JPanel vueBas=new VueBas(ctrl);
+        
+        mdl=new Modele();
+        mdl.addObserver(this);
+        ctrl=new Controleur(mdl);
+        
+        add(vueCentre,BorderLayout.CENTER);
+        add(vueGauche,BorderLayout.WEST);
+        add(panneauBas(),BorderLayout.SOUTH);
+        
+        /*
         
         generationDesIcones();
         calculPosition();
@@ -52,14 +72,8 @@ public class VueGraphe extends JPanel implements IConstantes{
         }
 
         calculPosition();
-        JPanel vueCentre = new VueCentre(g, icoArr, icoSomm);
-        JPanel vueGauche=new VueGauche();
-        JPanel vueBas=new VueBas();
-        
-        add(vueCentre,BorderLayout.CENTER);
-        add(vueGauche,BorderLayout.WEST);
-        add(vueBas,BorderLayout.SOUTH);
-
+       
+*/
 
         this.setVisible(true);
 
@@ -163,4 +177,34 @@ public class VueGraphe extends JPanel implements IConstantes{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable objetObserve, Object uneInformation) {
+       if(objetObserve instanceof Modele)
+       {
+           if(uneInformation.toString().equals(MODE_SOMMET))
+           {
+               Cursor curseur = new Cursor(Cursor.TEXT_CURSOR);
+               this.setCursor(curseur);
+              
+           }
+           else if(uneInformation.toString().equals(MODE_ARRETE))
+           {
+               Cursor curseur = new Cursor(Cursor.CROSSHAIR_CURSOR);
+               this.setCursor(curseur);
+              
+           }
+           else if(uneInformation.toString().equals(MODE_FLECHE))
+           {
+               Cursor curseur = new Cursor(Cursor.MOVE_CURSOR);
+               this.setCursor(curseur);
+              
+           }
+       }
+    }
+
+    private Component panneauBas() {
+       vueBas=new VueBas(ctrl);
+       return vueBas;
+    }
 }
