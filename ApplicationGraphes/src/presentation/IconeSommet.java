@@ -19,54 +19,107 @@ public class IconeSommet {
     private double[] pos = new double[2];
     private double[] disp = {0,0};
 
+    /**
+     *
+     * @return
+     */
     public double[] getPos() {
         return pos;
     }
 
+    /**
+     *
+     * @return
+     */
     public Sommet getMonSommet() {
         return monSommet;
     }
 
+    /**
+     *
+     * @param pos
+     */
     public void setPos(double[] pos) {
         this.pos = pos;
     }
 
+    /**
+     *
+     * @return
+     */
     public double[] getDisp() {
         return disp;
     }
 
+    /**
+     *
+     * @param disp
+     */
     public void setDisp(double[] disp) {
         this.disp = disp;
     }
 
+    /**
+     *
+     * @param monSommet
+     */
     public IconeSommet(Sommet monSommet) {
         this.monSommet = monSommet;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getOrigineX() {
         return origineX;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getCentreY() {
         return origineY - 20;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getCentreX() {
         return origineX - 20;
     }
 
+    /**
+     *
+     * @param origineX
+     */
     public void setOrigineX(int origineX) {
         this.origineX = origineX;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getOrigineY() {
         return origineY;
     }
 
+    /**
+     *
+     * @param origineY
+     */
     public void setOrigineY(int origineY) {
         this.origineY = origineY;
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -82,6 +135,10 @@ public class IconeSommet {
         return this.monSommet == aux.monSommet;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 7;

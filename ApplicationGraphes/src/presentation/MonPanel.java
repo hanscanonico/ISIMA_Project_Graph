@@ -13,12 +13,22 @@ import javax.swing.JPanel;
 import metier.Graphe;
 import metier.Sommet;
 
+/**
+ *
+ * @author Hans
+ */
 public class MonPanel extends JPanel {
 
     private Graphe graphe;
-    private Set icoArr;
-    private Set icoSomm;
+    private Set<IconeArrete> icoArr;
+    private Set<IconeSommet> icoSomm;
 
+    /**
+     *
+     * @param graphe
+     * @param icoArr
+     * @param icoSomm
+     */
     public MonPanel(Graphe graphe, Set icoArr, Set icoSomm) {
         super();
         this.graphe = graphe;
@@ -26,6 +36,10 @@ public class MonPanel extends JPanel {
         this.icoSomm = icoSomm;
     }
 
+    /**
+     *
+     * @param g
+     */
     public void paintComponent(Graphics g) {
 
         Graphics2D g2 = (Graphics2D) g;
@@ -46,8 +60,8 @@ public class MonPanel extends JPanel {
 
     private void tracerSommets(Graphics2D g2) {
 
-        for (Iterator it = icoSomm.iterator(); it.hasNext();) {
-            IconeSommet som = (IconeSommet) it.next();
+        for (IconeSommet icoS : icoSomm) {
+            IconeSommet som = icoS;
             g2.setColor(Color.red);
             g2.drawOval((int) som.getPos()[1], (int) som.getPos()[0], 40, 40);
             g2.drawChars(som.getMonSommet().getNom().toCharArray(), 0, 1, (int) som.getPos()[1], (int)som.getPos()[0]);
@@ -58,8 +72,8 @@ public class MonPanel extends JPanel {
 
     private void tracerArretes(Graphics2D g2) {
 
-        for (Iterator it = icoArr.iterator(); it.hasNext();) {
-            IconeArrete arr = (IconeArrete) it.next();
+        for (IconeArrete icoA : icoArr) {
+            IconeArrete arr = icoA;
             g2.setColor(Color.red);
             g2.drawLine((int) arr.getSom1().getPos()[1] + 20, (int) arr.getSom1().getPos()[0] + 20, (int) arr.getSom2().getPos()[1] + 20, (int) arr.getSom2().getPos()[0] + 20);
             System.out.println(arr.getSom1().getPos()[1] + "-" + arr.getSom1().getPos()[0]);

@@ -3,8 +3,16 @@ package metier;
 import javax.swing.UIManager;
 import presentation.Fenetre;
 
+/**
+ *
+ * @author Hans
+ */
 public class Test {
 
+    /**
+     *
+     * @param arg
+     */
     public static void main(String[] arg) {
         Graphe g = new Graphe();
         Sommet a = new Sommet("A", 1);
