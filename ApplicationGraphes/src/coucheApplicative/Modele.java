@@ -17,6 +17,11 @@ public class Modele extends Observable implements IConstantes {
 
     Graphe g;
 
+    public Modele()
+    {
+        g=new Graphe();
+    }
+    
     public void modeSommet() {
         informer(MODE_SOMMET);
     }

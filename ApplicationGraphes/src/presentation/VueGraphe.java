@@ -10,16 +10,21 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Shape;
+import java.awt.Toolkit;
+import java.awt.geom.Ellipse2D;
+import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Set;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import metier.Arrete;
 import metier.Graphe;
@@ -36,6 +41,8 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     private Set<IconeArrete> icoArr = new HashSet();
     private Set<IconeSommet> icoSomm = new HashSet();
     private Map<Sommet, IconeSommet> icoSom = new HashMap<>();
+    
+    private int mode;
     private Modele mdl;
     private Controleur ctrl;
     private VueBas vueBas;
@@ -182,16 +189,14 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     public void update(Observable objetObserve, Object uneInformation) {
         if (objetObserve instanceof Modele) {
             if (uneInformation.toString().equals(MODE_SOMMET)) {
-                Cursor curseur = new Cursor(Cursor.TEXT_CURSOR);
-                this.setCursor(curseur);
-
+               modeSommet();
             } else if (uneInformation.toString().equals(MODE_ARRETE)) {
-                Cursor curseur = new Cursor(Cursor.CROSSHAIR_CURSOR);
-                this.setCursor(curseur);
+                modeArrete();
+               
 
             } else if (uneInformation.toString().equals(MODE_FLECHE)) {
-                Cursor curseur = new Cursor(Cursor.DEFAULT_CURSOR);
-                this.setCursor(curseur);
+                modeFleche();
+               
 
             }
         }
@@ -200,5 +205,30 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     private Component panneauBas() {
         vueBas = new VueBas(ctrl);
         return vueBas;
+    }
+
+    private void modeSommet() {
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Dimension dim = toolkit.getBestCursorSize(48, 48);
+        BufferedImage newImage = new BufferedImage(48,48, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = newImage.createGraphics();
+        Shape circle = new Ellipse2D.Double(0, 0, dim.width - 1, dim.height - 1);
+        g.setColor(Color.ORANGE);
+        g.fill(circle);
+        int centerX = (dim.width - 1) /2;
+        int centerY = (dim.height - 1) / 2;
+        g.dispose();
+        Cursor customCursor = toolkit.createCustomCursor(newImage, new Point(centerX, centerY), "Cursor");
+        this.setCursor(customCursor);    
+    }
+
+    private void modeArrete() {
+        Cursor curseur = new Cursor(Cursor.CROSSHAIR_CURSOR);
+        this.setCursor(curseur);
+    }
+
+    private void modeFleche() {
+        Cursor curseur = new Cursor(Cursor.DEFAULT_CURSOR);
+        this.setCursor(curseur);   
     }
 }
