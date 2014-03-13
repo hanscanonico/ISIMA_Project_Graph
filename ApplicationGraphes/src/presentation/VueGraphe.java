@@ -187,7 +187,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                 this.setCursor(curseur);
 
             } else if (uneInformation.toString().equals(MODE_FLECHE)) {
-                Cursor curseur = new Cursor(Cursor.MOVE_CURSOR);
+                Cursor curseur = new Cursor(Cursor.DEFAULT_CURSOR);
                 this.setCursor(curseur);
 
             }
