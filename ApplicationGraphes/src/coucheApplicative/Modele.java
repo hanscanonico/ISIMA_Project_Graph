@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package coucheApplicative;
 
 import java.util.Observable;
@@ -14,26 +13,24 @@ import metier.IConstantes;
  *
  * @author Hans
  */
-public class Modele extends Observable implements IConstantes{
+public class Modele extends Observable implements IConstantes {
+
     Graphe g;
 
     public void modeSommet() {
-       informer(MODE_SOMMET);
+        informer(MODE_SOMMET);
     }
-    
+
     public void modeArrete() {
-        informer(MODE_ARRETE);    
+        informer(MODE_ARRETE);
     }
 
     public void modeFleche() {
-        informer(MODE_FLECHE);    
+        informer(MODE_FLECHE);
     }
-    
-    public void informer(String changement)
-    {
+
+    public void informer(String changement) {
         setChanged();
         notifyObservers(changement);
     }
-
-
 }

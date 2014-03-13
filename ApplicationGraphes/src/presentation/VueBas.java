@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package presentation;
 
 import java.awt.BorderLayout;
@@ -20,7 +19,7 @@ import metier.IConstantes;
  *
  * @author Hans
  */
-public class VueBas extends JPanel implements IConstantes{
+public class VueBas extends JPanel implements IConstantes {
 
     /**
      * Creates new form VueBas
@@ -28,30 +27,24 @@ public class VueBas extends JPanel implements IConstantes{
     public VueBas(Controleur ctrl) {
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createLineBorder(Color.black, 1));
-        JPanel center=new JPanel();
-        center.setPreferredSize(new Dimension(500,getHeight()));
-        center.add(nouveauBoutton(ctrl, "sommet", MODE_SOMMET),BorderLayout.WEST);
-        center.add(nouveauBoutton(ctrl, "arrete", MODE_ARRETE),BorderLayout.CENTER);
-        center.add(nouveauBoutton(ctrl, "fleche", MODE_FLECHE),BorderLayout.EAST);
-        add(center,BorderLayout.CENTER);
+        JPanel center = new JPanel();
+        center.setPreferredSize(new Dimension(500, getHeight()));
+        center.add(nouveauBoutton(ctrl, "sommet", MODE_SOMMET), BorderLayout.WEST);
+        center.add(nouveauBoutton(ctrl, "arrete", MODE_ARRETE), BorderLayout.CENTER);
+        center.add(nouveauBoutton(ctrl, "fleche", MODE_FLECHE), BorderLayout.EAST);
+        add(center, BorderLayout.CENTER);
         setPreferredSize(new Dimension(1100, 50));
     }
 
-    
-    private JButton nouveauBoutton(Controleur ctrl,String nom,String actionCommand)
-    {
-        JButton jb=new JButton(nom);
-     
+    private JButton nouveauBoutton(Controleur ctrl, String nom, String actionCommand) {
+        JButton jb = new JButton(nom);
+
         jb.setPreferredSize(new Dimension(150, 50));
         jb.setActionCommand(actionCommand);
         jb.addActionListener(ctrl);
-        return jb; 
+        return jb;
     }
-    
-    
-    
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,8 +67,6 @@ public class VueBas extends JPanel implements IConstantes{
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

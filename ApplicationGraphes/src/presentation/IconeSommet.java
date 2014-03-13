@@ -17,7 +17,7 @@ public class IconeSommet {
     private int origineY;
     private Sommet monSommet;
     private double[] pos = new double[2];
-    private double[] disp = {0,0};
+    private double[] disp = {0, 0};
 
     /**
      *

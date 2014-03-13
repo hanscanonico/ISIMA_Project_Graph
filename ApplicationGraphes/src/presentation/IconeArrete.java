@@ -13,10 +13,10 @@ import metier.Sommet;
  */
 public class IconeArrete {
 
- private IconeSommet som1;
- private IconeSommet som2;
- private double[] pos = new double[2];
- private double[] disp = new double[2];
+    private IconeSommet som1;
+    private IconeSommet som2;
+    private double[] pos = new double[2];
+    private double[] disp = new double[2];
 
     /**
      *
@@ -91,8 +91,4 @@ public class IconeArrete {
     public void setDisp(double[] disp) {
         this.disp = disp;
     }
-
-
-    
-    
 }

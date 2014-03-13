@@ -21,14 +21,14 @@ import metier.Sommet;
  *
  * @author Hans
  */
-public class Fenetre extends JFrame implements IConstantes{
+public class Fenetre extends JFrame implements IConstantes {
 
     /**
      *
      * @param g
      */
     public Fenetre(Graphe g) {
-        
+
         setTitle("Logiciel de graphe");
         setSize(LARGEUR_FENETRE_PRINCIPALE, LONGUEUR_FENETRE_PRINCIPALE);
         setLocationRelativeTo(null);
@@ -44,9 +44,4 @@ public class Fenetre extends JFrame implements IConstantes{
         this.setVisible(true);
 
     }
-
-
-    
-
-    
 }

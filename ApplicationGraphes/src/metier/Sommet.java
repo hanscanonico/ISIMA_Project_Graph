@@ -35,7 +35,7 @@ public class Sommet {
     public Sommet(String nom, int val) {
         setNom(nom);
         setValeur(val);
-       
+
     }
 
     /**

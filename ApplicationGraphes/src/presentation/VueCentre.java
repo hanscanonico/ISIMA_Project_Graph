@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package presentation;
 
 import java.awt.BorderLayout;
@@ -21,7 +20,7 @@ import metier.Graphe;
  */
 public class VueCentre extends javax.swing.JPanel {
 
-      private Graphe graphe;
+    private Graphe graphe;
     private Set<IconeArrete> icoArr;
     private Set<IconeSommet> icoSomm;
 
@@ -32,16 +31,16 @@ public class VueCentre extends javax.swing.JPanel {
      * @param icoSomm
      */
     public VueCentre(Graphe graphe, Set icoArr, Set icoSomm) {
-      
+
         setLayout(new BorderLayout());
         this.graphe = graphe;
         this.icoArr = icoArr;
         this.icoSomm = icoSomm;
-         setBorder(BorderFactory.createLineBorder(Color.black, 1));
-        
+        setBorder(BorderFactory.createLineBorder(Color.black, 1));
+
         setBackground(Color.white);
-       
-       
+
+
     }
 
     /**
@@ -72,8 +71,8 @@ public class VueCentre extends javax.swing.JPanel {
             IconeSommet som = icoS;
             g2.setColor(Color.red);
             g2.drawOval((int) som.getPos()[1], (int) som.getPos()[0], 40, 40);
-            g2.drawChars(som.getMonSommet().getNom().toCharArray(), 0, 1, (int) som.getPos()[1], (int)som.getPos()[0]);
-            
+            g2.drawChars(som.getMonSommet().getNom().toCharArray(), 0, 1, (int) som.getPos()[1], (int) som.getPos()[0]);
+
         }
 
     }
@@ -111,8 +110,6 @@ public class VueCentre extends javax.swing.JPanel {
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

@@ -14,7 +14,7 @@ public class Test {
      * @param arg
      */
     public static void main(String[] arg) {
-                try {
+        try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     UIManager.setLookAndFeel(info.getClassName());
@@ -24,7 +24,7 @@ public class Test {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         Graphe g = new Graphe();
         Sommet a = new Sommet("A", 1);
         Sommet b = new Sommet("B", 2);

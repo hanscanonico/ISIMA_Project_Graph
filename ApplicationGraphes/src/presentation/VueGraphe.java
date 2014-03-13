@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package presentation;
 
 import coucheApplicative.Modele;
@@ -31,16 +30,16 @@ import metier.Sommet;
  *
  * @author Hans
  */
-public class VueGraphe extends JPanel implements IConstantes, Observer{
+public class VueGraphe extends JPanel implements IConstantes, Observer {
 
     private metier.Graphe g;
     private Set<IconeArrete> icoArr = new HashSet();
     private Set<IconeSommet> icoSomm = new HashSet();
-    private Map<Sommet,IconeSommet> icoSom = new HashMap<>();
-    
+    private Map<Sommet, IconeSommet> icoSom = new HashMap<>();
     private Modele mdl;
     private Controleur ctrl;
     private VueBas vueBas;
+
     /**
      *
      * @param g
@@ -48,45 +47,44 @@ public class VueGraphe extends JPanel implements IConstantes, Observer{
     public VueGraphe(Graphe g) {
         setLayout(new BorderLayout());
         this.g = g;
-        
+
         JPanel vueCentre = new VueCentre(g, icoArr, icoSomm);
-        JPanel vueGauche=new VueGauche();
-        JPanel vueBas=new VueBas(ctrl);
-        
-        mdl=new Modele();
+        JPanel vueGauche = new VueGauche();
+        JPanel vueBas = new VueBas(ctrl);
+
+        mdl = new Modele();
         mdl.addObserver(this);
-        ctrl=new Controleur(mdl);
-        
-        add(vueCentre,BorderLayout.CENTER);
-        add(vueGauche,BorderLayout.WEST);
-        add(panneauBas(),BorderLayout.SOUTH);
-        
+        ctrl = new Controleur(mdl);
+
+        add(vueCentre, BorderLayout.CENTER);
+        add(vueGauche, BorderLayout.WEST);
+        add(panneauBas(), BorderLayout.SOUTH);
+
         /*
         
-        generationDesIcones();
-        calculPosition();
-        calculPosition2();
-        for (IconeSommet icoS : icoSomm) {
-            IconeSommet object = icoS;
-            System.out.println(object.getDisp()[0]);
-        }
+         generationDesIcones();
+         calculPosition();
+         calculPosition2();
+         for (IconeSommet icoS : icoSomm) {
+         IconeSommet object = icoS;
+         System.out.println(object.getDisp()[0]);
+         }
 
-        calculPosition();
+         calculPosition();
        
-*/
+         */
 
         this.setVisible(true);
 
     }
 
-
     private void calculPosition() {
         int temp;
-        for (IconeSommet ico: icoSomm) {
+        for (IconeSommet ico : icoSomm) {
             IconeSommet som = ico;
-            temp = (int) (Math.random() * (LARGEUR_FENETRE_PRINCIPALE-100));
+            temp = (int) (Math.random() * (LARGEUR_FENETRE_PRINCIPALE - 100));
             som.getPos()[0] = temp;
-            temp = (int) (Math.random() * (LONGUEUR_FENETRE_PRINCIPALE-100));
+            temp = (int) (Math.random() * (LONGUEUR_FENETRE_PRINCIPALE - 100));
             som.getPos()[1] = temp;
 
         }
@@ -109,7 +107,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer{
         for (Arrete a : g.getLesArretes()) {
             arr = a;
             newIcosom1 = icoSom.get(arr.getSommet1());
-            newIcosom2 =  icoSom.get((arr.getSommet2()));
+            newIcosom2 = icoSom.get((arr.getSommet2()));
 
             newIcoArr = new IconeArrete(newIcosom1, newIcosom2);
             this.icoArr.add(newIcoArr);
@@ -119,7 +117,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer{
     }
 
     private void calculPosition2() {
-        double area = getHeight()*getWidth();
+        double area = getHeight() * getWidth();
         double k = Math.sqrt(area / icoSomm.size());
         double[] delta = new double[2];
         double[] temp = new double[2];
@@ -151,6 +149,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer{
         return temp;
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -174,37 +173,29 @@ public class VueGraphe extends JPanel implements IConstantes, Observer{
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
     @Override
     public void update(Observable objetObserve, Object uneInformation) {
-       if(objetObserve instanceof Modele)
-       {
-           if(uneInformation.toString().equals(MODE_SOMMET))
-           {
-               Cursor curseur = new Cursor(Cursor.TEXT_CURSOR);
-               this.setCursor(curseur);
-              
-           }
-           else if(uneInformation.toString().equals(MODE_ARRETE))
-           {
-               Cursor curseur = new Cursor(Cursor.CROSSHAIR_CURSOR);
-               this.setCursor(curseur);
-              
-           }
-           else if(uneInformation.toString().equals(MODE_FLECHE))
-           {
-               Cursor curseur = new Cursor(Cursor.MOVE_CURSOR);
-               this.setCursor(curseur);
-              
-           }
-       }
+        if (objetObserve instanceof Modele) {
+            if (uneInformation.toString().equals(MODE_SOMMET)) {
+                Cursor curseur = new Cursor(Cursor.TEXT_CURSOR);
+                this.setCursor(curseur);
+
+            } else if (uneInformation.toString().equals(MODE_ARRETE)) {
+                Cursor curseur = new Cursor(Cursor.CROSSHAIR_CURSOR);
+                this.setCursor(curseur);
+
+            } else if (uneInformation.toString().equals(MODE_FLECHE)) {
+                Cursor curseur = new Cursor(Cursor.MOVE_CURSOR);
+                this.setCursor(curseur);
+
+            }
+        }
     }
 
     private Component panneauBas() {
-       vueBas=new VueBas(ctrl);
-       return vueBas;
+        vueBas = new VueBas(ctrl);
+        return vueBas;
     }
 }

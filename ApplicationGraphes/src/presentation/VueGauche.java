@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package presentation;
 
 import java.awt.BorderLayout;
@@ -22,7 +21,7 @@ public class VueGauche extends javax.swing.JPanel {
      */
     public VueGauche() {
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(100,600));
+        setPreferredSize(new Dimension(100, 600));
         setBorder(BorderFactory.createLineBorder(Color.black, 1));
 
     }
@@ -47,8 +46,6 @@ public class VueGauche extends javax.swing.JPanel {
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
