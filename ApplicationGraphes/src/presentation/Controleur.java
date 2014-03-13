@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package presentation;
 
 import coucheApplicative.Modele;
@@ -15,34 +14,25 @@ import metier.IConstantes;
  *
  * @author Hans
  */
-public class Controleur implements ActionListener,IConstantes{
-    
+public class Controleur implements ActionListener, IConstantes {
+
     private Modele mdl;
-    
-    public Controleur(Modele mdl)
-    {
-        
-        this.mdl=mdl;
+
+    public Controleur(Modele mdl) {
+
+        this.mdl = mdl;
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-      
-       String commande=ae.getActionCommand();
-       if(commande.equals(MODE_SOMMET))
-       {
-           mdl.modeSommet();
-       }
-       else if(commande.equals(MODE_ARRETE))
-       {
+
+        String commande = ae.getActionCommand();
+        if (commande.equals(MODE_SOMMET)) {
+            mdl.modeSommet();
+        } else if (commande.equals(MODE_ARRETE)) {
             mdl.modeArrete();
-       }
-       else if(commande.equals(MODE_FLECHE))
-       {
+        } else if (commande.equals(MODE_FLECHE)) {
             mdl.modeFleche();
-       }
+        }
     }
-
-
 }
-
