@@ -8,6 +8,7 @@ import presentation.*;
  */
 public class Arrete {
 
+    
     private Sommet sommet1;
     private Sommet sommet2;
 

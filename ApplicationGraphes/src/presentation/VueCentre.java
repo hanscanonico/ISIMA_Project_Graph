@@ -43,6 +43,10 @@ public class VueCentre extends javax.swing.JPanel {
         setBackground(Color.white);
     }
 
+    /**
+     *
+     * @param ctrl
+     */
     public VueCentre(Controleur ctrl) {
 
         setLayout(new BorderLayout());
@@ -50,7 +54,6 @@ public class VueCentre extends javax.swing.JPanel {
         addMouseListener(ctrl);
         setBorder(BorderFactory.createLineBorder(Color.black, 1));
         setBackground(Color.white);
-
 
     }
 
@@ -69,11 +72,9 @@ public class VueCentre extends javax.swing.JPanel {
         g2.setColor(Color.red);
 
         // g.drawOval(50, 50, 50, 50);
-
         adaptationDesPositions();
         tracerArretes(g2);
         tracerSommets(g2);
-
 
     }
 
@@ -84,7 +85,7 @@ public class VueCentre extends javax.swing.JPanel {
             g2.setColor(Color.ORANGE);
             g2.fillOval(som.getOrigineX(), som.getOrigineY(), t, t);
             g2.setColor(Color.BLUE);
-            g2.drawChars(som.getMonSommet().getNom().toCharArray(), 0, 1, som.getOrigineX()+t/3, som.getOrigineY()+t/2);
+            g2.drawChars(som.getMonSommet().getNom().toCharArray(), 0, 1, som.getOrigineX() + t / 3, som.getOrigineY() + t / 2);
 
         }
 
@@ -101,14 +102,16 @@ public class VueCentre extends javax.swing.JPanel {
 
     }
 
+    /**
+     *
+     */
     public void adaptationDesPositions() {
-        int x,y, t = IconeSommet.taille * 2;
+        int x, y, t = IconeSommet.taille * 2;
         for (IconeSommet icoS : icoSomm) {
             IconeSommet som = icoS;
-                
-                som.setOrigineX((int) (som.getPos()[0] * (getWidth())));
-                som.setOrigineY((int) (som.getPos()[1] * (getHeight())));
-            
+
+            som.setOrigineX((int) (som.getPos()[0] * (getWidth())));
+            som.setOrigineY((int) (som.getPos()[1] * (getHeight())));
 
         }
     }
@@ -143,7 +146,6 @@ public class VueCentre extends javax.swing.JPanel {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(Color.ORANGE);
         g2.fillOval(x, y, IconeSommet.taille, IconeSommet.taille);
-
 
     }
 }

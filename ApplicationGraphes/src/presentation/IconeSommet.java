@@ -12,6 +12,10 @@ import metier.Sommet;
  * @author Amine
  */
 public class IconeSommet {
+
+    /**
+     *
+     */
     public static int taille = 20;
     private int origineX;
     private int origineY;
@@ -80,7 +84,7 @@ public class IconeSommet {
      * @return
      */
     public int getCentreY() {
-        return origineY +taille/2;
+        return origineY + taille / 2;
     }
 
     /**
@@ -88,7 +92,7 @@ public class IconeSommet {
      * @return
      */
     public int getCentreX() {
-        return origineX +taille/2;
+        return origineX + taille / 2;
     }
 
     /**

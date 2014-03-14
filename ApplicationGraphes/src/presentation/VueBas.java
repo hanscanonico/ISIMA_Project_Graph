@@ -23,6 +23,8 @@ public class VueBas extends JPanel implements IConstantes {
 
     /**
      * Creates new form VueBas
+     *
+     * @param ctrl
      */
     public VueBas(Controleur ctrl) {
         setLayout(new BorderLayout());

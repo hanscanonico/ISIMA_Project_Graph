@@ -20,11 +20,20 @@ public class Controleur implements MouseListener, ActionListener, IConstantes {
 
     private Modele mdl;
     private String mode=MODE_FLECHE;
+
+    /**
+     *
+     * @param mdl
+     */
     public Controleur(Modele mdl) {
 
         this.mdl = mdl;
     }
 
+    /**
+     *
+     * @param ae
+     */
     @Override
     public void actionPerformed(ActionEvent ae) {
 
@@ -41,6 +50,10 @@ public class Controleur implements MouseListener, ActionListener, IConstantes {
         }
     }
 
+    /**
+     *
+     * @param me
+     */
     @Override
     public void mouseClicked(MouseEvent me) {
         if(mode.equals(MODE_SOMMET))
@@ -49,21 +62,37 @@ public class Controleur implements MouseListener, ActionListener, IConstantes {
         }
     }
 
+    /**
+     *
+     * @param me
+     */
     @Override
     public void mousePressed(MouseEvent me) {
      
     }
 
+    /**
+     *
+     * @param me
+     */
     @Override
     public void mouseReleased(MouseEvent me) {
     
     }
 
+    /**
+     *
+     * @param me
+     */
     @Override
     public void mouseEntered(MouseEvent me) {
    
     }
 
+    /**
+     *
+     * @param me
+     */
     @Override
     public void mouseExited(MouseEvent me) {
    

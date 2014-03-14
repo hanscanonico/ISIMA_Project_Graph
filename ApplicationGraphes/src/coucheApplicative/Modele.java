@@ -15,32 +15,52 @@ import metier.Sommet;
  * @author Hans
  */
 public class Modele extends Observable implements IConstantes {
-
+//  Le graphe
     Graphe g;
 
+    /**
+     * Constructeur par défault
+     */
     public Modele()
     {
         g=new Graphe();
     }
     
+     /**
+     * informe la vue de passer en mode sommet
+     */
     public void modeSommet() {
         informer(MODE_SOMMET);
     }
 
+    /**
+     *
+     */
     public void modeArrete() {
         informer(MODE_ARRETE);
     }
 
+    /**
+     *
+     */
     public void modeFleche() {
         informer(MODE_FLECHE);
     }
 
+    /**
+     *
+     * @param changement
+     */
     public void informer(String changement) {
         setChanged();
         notifyObservers(changement);
-        notifyObservers(g);
     }
 
+    /**
+     *
+     * @param x
+     * @param y
+     */
     public void addSommet(int x,int y) {
         
         g.ajouterSommet(new Sommet(null,0));

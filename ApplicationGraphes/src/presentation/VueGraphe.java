@@ -41,7 +41,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     private Set<IconeArrete> icoArr = new HashSet();
     private Set<IconeSommet> icoSomm = new HashSet();
     private Map<Sommet, IconeSommet> icoSom = new HashMap<>();
-    private int mode;
+
     private Modele mdl;
     private Controleur ctrl;
     private VueBas vueBas;
@@ -49,30 +49,28 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
 
     /**
      *
-     * @param g
+     * @param g un graphe
      */
     public VueGraphe(Graphe g) {
-        setLayout(new BorderLayout());
+        this();
         this.g = g;
-
         generationDesIcones();
         randomPosition();
+    }
 
-
+    /**
+     *
+     */
+    public VueGraphe() {
+        setLayout(new BorderLayout());
         JPanel vueGauche = new VueGauche();
-
-
         mdl = new Modele();
         mdl.addObserver(this);
         ctrl = new Controleur(mdl);
-
         add(panneauCentre(), BorderLayout.CENTER);
         add(vueGauche, BorderLayout.WEST);
         add(panneauBas(), BorderLayout.SOUTH);
-
         /*
-        
-        
          calculPosition();
          calculPosition2();
          for (IconeSommet icoS : icoSomm) {
@@ -83,11 +81,12 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
          calculPosition();
        
          */
-
         this.setVisible(true);
-
     }
 
+     /**
+     *
+     */
     private void randomPosition() {
         double temp;
         for (IconeSommet ico : icoSomm) {
@@ -101,6 +100,9 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
 
     }
 
+     /**
+     *
+     */
     private void generationDesIcones() {
         Arrete arr;
         Sommet som;
@@ -123,9 +125,11 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
             this.icoArr.add(newIcoArr);
         }
 
-
     }
-
+    
+    /**
+     *
+     */
     private void calculPosition2() {
         double area = getHeight() * getWidth();
         double k = Math.sqrt(area / icoSomm.size());
@@ -186,6 +190,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
     @Override
+    
     public void update(Observable objetObserve, Object uneInformation) {
         if (objetObserve instanceof Modele) {
             String tabInfos[] = uneInformation.toString().split(SEPARATEUR);
@@ -226,20 +231,15 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
         Dimension dim = toolkit.getBestCursorSize(48, 48);
         BufferedImage newImage = new BufferedImage(48, 48, BufferedImage.TYPE_INT_ARGB);
 
-
         Shape circle = new Ellipse2D.Double(0, 0, dim.width - 1, dim.height - 1);
 
         int centerX = (dim.width - 30) / 2;
         int centerY = (dim.height - 30) / 2;
 
-
-
         Graphics2D g = newImage.createGraphics();
-
 
         g.setColor(Color.ORANGE);
         g.fill(circle);
-
 
         Cursor customCursor = toolkit.createCustomCursor(newImage, new Point(centerX, centerY), "Cursor");
         this.setCursor(customCursor);
@@ -249,12 +249,10 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     private void modeArrete() {
         Cursor curseur = new Cursor(Cursor.CROSSHAIR_CURSOR);
         this.setCursor(curseur);
-        this.mode = 2;
     }
 
     private void modeFleche() {
         Cursor curseur = new Cursor(Cursor.DEFAULT_CURSOR);
         this.setCursor(curseur);
-        this.mode = 0;
     }
 }
