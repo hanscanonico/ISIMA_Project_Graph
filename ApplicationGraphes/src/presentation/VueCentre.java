@@ -31,30 +31,29 @@ public class VueCentre extends javax.swing.JPanel {
      * @param icoSomm
      * @param ctrl
      */
-    public VueCentre(Graphe graphe, Set icoArr, Set icoSomm,Controleur ctrl) {
-      
+    public VueCentre(Graphe graphe, Set icoArr, Set icoSomm, Controleur ctrl) {
+
         this.graphe = graphe;
         this.icoArr = icoArr;
         this.icoSomm = icoSomm;
-         setLayout(new BorderLayout());
-      
+        setLayout(new BorderLayout());
+
         addMouseListener(ctrl);
         setBorder(BorderFactory.createLineBorder(Color.black, 1));
         setBackground(Color.white);
     }
 
-    
-     public VueCentre(Controleur ctrl) {
+    public VueCentre(Controleur ctrl) {
 
         setLayout(new BorderLayout());
-      
+
         addMouseListener(ctrl);
         setBorder(BorderFactory.createLineBorder(Color.black, 1));
         setBackground(Color.white);
 
 
     }
-    
+
     /**
      *
      * @param g
@@ -78,38 +77,39 @@ public class VueCentre extends javax.swing.JPanel {
 
     }
 
-    
-    
     private void tracerSommets(Graphics2D g2) {
-
+        int t = IconeSommet.taille;
         for (IconeSommet icoS : icoSomm) {
             IconeSommet som = icoS;
             g2.setColor(Color.ORANGE);
-            g2.fillOval(som.getOrigineX(), som.getOrigineY(), IconeSommet.taille, IconeSommet.taille);
-            g2.setColor(Color.BLACK);
-            g2.drawChars(som.getMonSommet().getNom().toCharArray(), 0, 1, som.getOrigineX(), som.getOrigineY());
+            g2.fillOval(som.getOrigineX(), som.getOrigineY(), t, t);
+            g2.setColor(Color.BLUE);
+            g2.drawChars(som.getMonSommet().getNom().toCharArray(), 0, 1, som.getOrigineX()+t/3, som.getOrigineY()+t/2);
 
         }
 
     }
 
     private void tracerArretes(Graphics2D g2) {
-        
+
         for (IconeArrete icoA : icoArr) {
             IconeArrete arr = icoA;
             g2.setColor(Color.BLUE);
-            g2.drawLine(arr.getSom1().getCentreX() ,arr.getSom1().getCentreY()  ,arr.getSom2().getCentreX()  ,arr.getSom2().getCentreY()  );
+            g2.drawLine(arr.getSom1().getCentreX(), arr.getSom1().getCentreY(), arr.getSom2().getCentreX(), arr.getSom2().getCentreY());
 
         }
 
     }
 
-    private void adaptationDesPositions() {
-        int t = IconeSommet.taille*2;
+    public void adaptationDesPositions() {
+        int x,y, t = IconeSommet.taille * 2;
         for (IconeSommet icoS : icoSomm) {
             IconeSommet som = icoS;
-            som.setOrigineX(t+(int)(som.getPos()[0]*(getWidth()-t*2)));
-            som.setOrigineY(t+(int)(som.getPos()[1]*(getHeight()-t*2)));
+                
+                som.setOrigineX((int) (som.getPos()[0] * (getWidth())));
+                som.setOrigineY((int) (som.getPos()[1] * (getHeight())));
+            
+
         }
     }
 
@@ -136,14 +136,14 @@ public class VueCentre extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 
-    void ajouterSommet(int x,int y) {
-        
-      Graphics2D g2=(Graphics2D) getGraphics();
+    void ajouterSommet(int x, int y) {
+
+        Graphics2D g2 = (Graphics2D) getGraphics();
         // on active l'antialiasing
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(Color.ORANGE);
         g2.fillOval(x, y, IconeSommet.taille, IconeSommet.taille);
-      
-    
+
+
     }
 }

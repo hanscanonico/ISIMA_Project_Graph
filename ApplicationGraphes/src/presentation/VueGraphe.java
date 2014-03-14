@@ -41,12 +41,12 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     private Set<IconeArrete> icoArr = new HashSet();
     private Set<IconeSommet> icoSomm = new HashSet();
     private Map<Sommet, IconeSommet> icoSom = new HashMap<>();
-    
     private int mode;
     private Modele mdl;
     private Controleur ctrl;
     private VueBas vueBas;
     private VueCentre vueCentre;
+
     /**
      *
      * @param g
@@ -54,13 +54,13 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     public VueGraphe(Graphe g) {
         setLayout(new BorderLayout());
         this.g = g;
-        
+
         generationDesIcones();
         randomPosition();
-        
-        
+
+
         JPanel vueGauche = new VueGauche();
-        
+
 
         mdl = new Modele();
         mdl.addObserver(this);
@@ -92,9 +92,9 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
         double temp;
         for (IconeSommet ico : icoSomm) {
             IconeSommet som = ico;
-            temp = (Math.random() );
+            temp = (Math.random());
             som.getPos()[0] = temp;
-            temp =  (Math.random() );
+            temp = (Math.random());
             som.getPos()[1] = temp;
 
         }
@@ -188,24 +188,24 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     @Override
     public void update(Observable objetObserve, Object uneInformation) {
         if (objetObserve instanceof Modele) {
-            String tabInfos[]=uneInformation.toString().split(SEPARATEUR);
-            
-            if (tabInfos[0].equals(MODE_SOMMET)) 
-            {
-               modeSommet();
-            } 
-            else if (tabInfos[0].equals(MODE_ARRETE))
-            {
+            String tabInfos[] = uneInformation.toString().split(SEPARATEUR);
+
+            if (tabInfos[0].equals(MODE_SOMMET)) {
+                modeSommet();
+            } else if (tabInfos[0].equals(MODE_ARRETE)) {
                 modeArrete();
-            } 
-            else if (tabInfos[0].equals(MODE_FLECHE)) 
-            {
+            } else if (tabInfos[0].equals(MODE_FLECHE)) {
                 modeFleche();
-            }
-            else if (tabInfos[0].equals(AJOUTER_SOMMET)) {
-               int x=Integer.parseInt(tabInfos[1]);
-               int y=Integer.parseInt(tabInfos[2]);
-               vueCentre.ajouterSommet(x,y);            
+            } else if (tabInfos[0].equals(AJOUTER_SOMMET)) {
+                int t = IconeSommet.taille * 2;
+                double x = Double.parseDouble(tabInfos[1]);
+                double y = Double.parseDouble(tabInfos[2]);
+                Sommet nouv = new Sommet(" ", 0);
+                g.ajouterSommet(nouv);
+                generationDesIcones();
+                this.icoSom.get(nouv).getPos()[0] = (x / vueCentre.getWidth());
+                this.icoSom.get(nouv).getPos()[1] = (y / vueCentre.getHeight());
+                vueCentre.repaint();
             }
         }
     }
@@ -216,45 +216,45 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     }
 
     private Component panneauCentre() {
-        vueCentre = new VueCentre(g, icoArr, icoSomm,ctrl);
+        vueCentre = new VueCentre(g, icoArr, icoSomm, ctrl);
         return vueCentre;
     }
-    
+
     private void modeSommet() {
-        
+
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dim = toolkit.getBestCursorSize(48, 48);
-        BufferedImage newImage = new BufferedImage(48,48, BufferedImage.TYPE_INT_ARGB);
-        
-        
+        BufferedImage newImage = new BufferedImage(48, 48, BufferedImage.TYPE_INT_ARGB);
+
+
         Shape circle = new Ellipse2D.Double(0, 0, dim.width - 1, dim.height - 1);
-        
-        int centerX = (dim.width - 30) /2;
+
+        int centerX = (dim.width - 30) / 2;
         int centerY = (dim.height - 30) / 2;
-        
-        
-        
-       Graphics2D g = newImage.createGraphics();
-        
-        
+
+
+
+        Graphics2D g = newImage.createGraphics();
+
+
         g.setColor(Color.ORANGE);
         g.fill(circle);
-     
-        
+
+
         Cursor customCursor = toolkit.createCustomCursor(newImage, new Point(centerX, centerY), "Cursor");
-        this.setCursor(customCursor);   
+        this.setCursor(customCursor);
 
     }
 
     private void modeArrete() {
         Cursor curseur = new Cursor(Cursor.CROSSHAIR_CURSOR);
         this.setCursor(curseur);
-        this.mode=2;
+        this.mode = 2;
     }
 
     private void modeFleche() {
         Cursor curseur = new Cursor(Cursor.DEFAULT_CURSOR);
         this.setCursor(curseur);
-        this.mode=0;
+        this.mode = 0;
     }
 }
