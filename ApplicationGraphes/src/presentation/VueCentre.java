@@ -139,7 +139,11 @@ public class VueCentre extends javax.swing.JPanel {
     void ajouterSommet(int x,int y) {
         
       Graphics2D g2=(Graphics2D) getGraphics();
-      g2.setColor(Color.ORANGE);
-      g2.fillOval(x, y, IconeSommet.taille, IconeSommet.taille);
+        // on active l'antialiasing
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setColor(Color.ORANGE);
+        g2.fillOval(x, y, IconeSommet.taille, IconeSommet.taille);
+      
+    
     }
 }

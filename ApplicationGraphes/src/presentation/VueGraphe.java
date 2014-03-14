@@ -6,14 +6,15 @@
 package presentation;
 
 import coucheApplicative.Modele;
+import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.Toolkit;
 import java.awt.geom.Ellipse2D;
@@ -24,7 +25,6 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Set;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import metier.Arrete;
 import metier.Graphe;
@@ -221,21 +221,29 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     }
     
     private void modeSommet() {
+        
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dim = toolkit.getBestCursorSize(48, 48);
         BufferedImage newImage = new BufferedImage(48,48, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g = newImage.createGraphics();
+        
+        
         Shape circle = new Ellipse2D.Double(0, 0, dim.width - 1, dim.height - 1);
-        g.setColor(Color.ORANGE);
-        g.fill(circle);
+        
         int centerX = (dim.width - 30) /2;
         int centerY = (dim.height - 30) / 2;
         
-        g.dispose();
+        
+        
+       Graphics2D g = newImage.createGraphics();
+        
+        
+        g.setColor(Color.ORANGE);
+        g.fill(circle);
+     
+        
         Cursor customCursor = toolkit.createCustomCursor(newImage, new Point(centerX, centerY), "Cursor");
         this.setCursor(customCursor);   
-        this.mode=1;
- 
+
     }
 
     private void modeArrete() {
