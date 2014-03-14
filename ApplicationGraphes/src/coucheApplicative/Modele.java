@@ -8,6 +8,7 @@ package coucheApplicative;
 import java.util.Observable;
 import metier.Graphe;
 import metier.IConstantes;
+import metier.Sommet;
 
 /**
  *
@@ -37,5 +38,12 @@ public class Modele extends Observable implements IConstantes {
     public void informer(String changement) {
         setChanged();
         notifyObservers(changement);
+        notifyObservers(g);
+    }
+
+    public void addSommet(int x,int y) {
+        
+        g.ajouterSommet(new Sommet(null,0));
+        informer(AJOUTER_SOMMET+SEPARATEUR+x+SEPARATEUR+y);
     }
 }

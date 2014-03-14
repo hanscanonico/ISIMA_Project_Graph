@@ -29,20 +29,32 @@ public class VueCentre extends javax.swing.JPanel {
      * @param graphe
      * @param icoArr
      * @param icoSomm
+     * @param ctrl
      */
-    public VueCentre(Graphe graphe, Set icoArr, Set icoSomm) {
-
-        setLayout(new BorderLayout());
+    public VueCentre(Graphe graphe, Set icoArr, Set icoSomm,Controleur ctrl) {
+      
         this.graphe = graphe;
         this.icoArr = icoArr;
         this.icoSomm = icoSomm;
+         setLayout(new BorderLayout());
+      
+        addMouseListener(ctrl);
         setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        setBackground(Color.white);
+    }
 
+    
+     public VueCentre(Controleur ctrl) {
+
+        setLayout(new BorderLayout());
+      
+        addMouseListener(ctrl);
+        setBorder(BorderFactory.createLineBorder(Color.black, 1));
         setBackground(Color.white);
 
 
     }
-
+    
     /**
      *
      * @param g
@@ -66,6 +78,8 @@ public class VueCentre extends javax.swing.JPanel {
 
     }
 
+    
+    
     private void tracerSommets(Graphics2D g2) {
 
         for (IconeSommet icoS : icoSomm) {
@@ -121,4 +135,11 @@ public class VueCentre extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+
+    void ajouterSommet(int x,int y) {
+        
+      Graphics2D g2=(Graphics2D) getGraphics();
+      g2.setColor(Color.ORANGE);
+      g2.fillOval(x, y, IconeSommet.taille, IconeSommet.taille);
+    }
 }

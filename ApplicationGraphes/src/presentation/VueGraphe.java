@@ -46,7 +46,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     private Modele mdl;
     private Controleur ctrl;
     private VueBas vueBas;
-
+    private VueCentre vueCentre;
     /**
      *
      * @param g
@@ -58,15 +58,15 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
         generationDesIcones();
         randomPosition();
         
-        JPanel vueCentre = new VueCentre(g, icoArr, icoSomm);
+        
         JPanel vueGauche = new VueGauche();
-        JPanel vueBas = new VueBas(ctrl);
+        
 
         mdl = new Modele();
         mdl.addObserver(this);
         ctrl = new Controleur(mdl);
 
-        add(vueCentre, BorderLayout.CENTER);
+        add(panneauCentre(), BorderLayout.CENTER);
         add(vueGauche, BorderLayout.WEST);
         add(panneauBas(), BorderLayout.SOUTH);
 
@@ -188,16 +188,24 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     @Override
     public void update(Observable objetObserve, Object uneInformation) {
         if (objetObserve instanceof Modele) {
-            if (uneInformation.toString().equals(MODE_SOMMET)) {
+            String tabInfos[]=uneInformation.toString().split(SEPARATEUR);
+            
+            if (tabInfos[0].equals(MODE_SOMMET)) 
+            {
                modeSommet();
-            } else if (uneInformation.toString().equals(MODE_ARRETE)) {
+            } 
+            else if (tabInfos[0].equals(MODE_ARRETE))
+            {
                 modeArrete();
-               
-
-            } else if (uneInformation.toString().equals(MODE_FLECHE)) {
+            } 
+            else if (tabInfos[0].equals(MODE_FLECHE)) 
+            {
                 modeFleche();
-               
-
+            }
+            else if (tabInfos[0].equals(AJOUTER_SOMMET)) {
+               int x=Integer.parseInt(tabInfos[1]);
+               int y=Integer.parseInt(tabInfos[2]);
+               vueCentre.ajouterSommet(x,y);            
             }
         }
     }
@@ -207,6 +215,11 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
         return vueBas;
     }
 
+    private Component panneauCentre() {
+        vueCentre = new VueCentre(g, icoArr, icoSomm,ctrl);
+        return vueCentre;
+    }
+    
     private void modeSommet() {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dim = toolkit.getBestCursorSize(48, 48);
@@ -215,20 +228,25 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
         Shape circle = new Ellipse2D.Double(0, 0, dim.width - 1, dim.height - 1);
         g.setColor(Color.ORANGE);
         g.fill(circle);
-        int centerX = (dim.width - 1) /2;
-        int centerY = (dim.height - 1) / 2;
+        int centerX = (dim.width - 30) /2;
+        int centerY = (dim.height - 30) / 2;
+        
         g.dispose();
         Cursor customCursor = toolkit.createCustomCursor(newImage, new Point(centerX, centerY), "Cursor");
-        this.setCursor(customCursor);    
+        this.setCursor(customCursor);   
+        this.mode=1;
+ 
     }
 
     private void modeArrete() {
         Cursor curseur = new Cursor(Cursor.CROSSHAIR_CURSOR);
         this.setCursor(curseur);
+        this.mode=2;
     }
 
     private void modeFleche() {
         Cursor curseur = new Cursor(Cursor.DEFAULT_CURSOR);
-        this.setCursor(curseur);   
+        this.setCursor(curseur);
+        this.mode=0;
     }
 }

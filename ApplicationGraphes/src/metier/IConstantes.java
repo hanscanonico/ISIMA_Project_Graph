@@ -16,4 +16,6 @@ public interface IConstantes {
     final static String MODE_SOMMET = "mode_sommet";
     final static String MODE_ARRETE = "mode_arrete";
     final static String MODE_FLECHE = "mode_fleche";
+    final static String AJOUTER_SOMMET = "ajouter sommet";
+    final static String SEPARATEUR = ";";
 }
