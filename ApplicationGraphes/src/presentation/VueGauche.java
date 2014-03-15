@@ -9,23 +9,41 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import metier.IConstantes;
 
 /**
  *
  * @author Hans
  */
-public class VueGauche extends javax.swing.JPanel {
+public class VueGauche extends JPanel implements IConstantes{
 
     /**
      * Constructeur
      */
-    public VueGauche() {
+    public VueGauche(Controleur ctrl) {
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(100, 600));
         setBorder(BorderFactory.createLineBorder(Color.black, 1));
-
+        add(nouveauBoutton(ctrl,"générer",GENERER),BorderLayout.NORTH);
     }
 
+    
+    
+    
+     /**
+     * Permet de créer un nouveau boutton
+     * @param ctrl
+     */
+    private JButton nouveauBoutton(Controleur ctrl, String nom, String actionCommand) {
+        JButton jb = new JButton(nom);
+        jb.setPreferredSize(new Dimension(150, 50));
+        jb.setActionCommand(actionCommand);
+        jb.addActionListener(ctrl);
+        return jb;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

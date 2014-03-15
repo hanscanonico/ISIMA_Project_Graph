@@ -52,8 +52,14 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
 //  la vueBas
     private VueBas vueBas;
 //  la vueCentre
+    private VueGauche vueGauche;
+//  la vueGauche
     private VueCentre vueCentre;
-
+// Map de icoesSommets avec pour clés les noms des sommets
+    private Map<String,IconeSommet> lesSommets;
+    
+    
+    
     /**
      * Constructeur
      * @param g un graphe
@@ -61,21 +67,20 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     public VueGraphe(Graphe g) {
         this();
         this.g = g;
-        generationDesIcones();
-        randomPosition();
+       
     }
 
     /**
      * Constructeur
      */
     public VueGraphe() {
+        lesSommets=new HashMap();
         setLayout(new BorderLayout());
-        JPanel vueGauche = new VueGauche();
         mdl = new Modele();
         mdl.addObserver(this);
         ctrl = new Controleur(mdl);
         add(panneauCentre(), BorderLayout.CENTER);
-        add(vueGauche, BorderLayout.WEST);
+        add(panneauGauche(), BorderLayout.WEST);
         add(panneauBas(), BorderLayout.SOUTH);
         /*
          calculPosition();
@@ -223,12 +228,24 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                 int t = IconeSommet.taille * 2;
                 double x = Double.parseDouble(tabInfos[1]);
                 double y = Double.parseDouble(tabInfos[2]);
-                Sommet nouv = new Sommet(" ", 0);
-                g.ajouterSommet(nouv);
-                generationDesIcones();
+                String nomSommet=tabInfos[3];
+                
+                
+              /*  Sommet nouv = new Sommet(" ", 0);
+                g.ajouterSommet(nouv);*/
+                
+                IconeSommet icoS=new IconeSommet(null);
+                lesSommets.put(nomSommet, icoS);
+                vueCentre.ajouterSommet(x, y,nomSommet);
+                
+                /*
                 this.icoSom.get(nouv).getPos()[0] = (x / vueCentre.getWidth());
                 this.icoSom.get(nouv).getPos()[1] = (y / vueCentre.getHeight());
-                vueCentre.repaint();
+                vueCentre.repaint();*/
+            } else if (tabInfos[0].equals(GENERER)) {
+                generationDesIcones();
+                randomPosition();
+                this.repaint();
             }
         }
     }
@@ -241,6 +258,12 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
         return vueBas;
     }
 
+    private Component panneauGauche() {
+      vueGauche = new VueGauche(ctrl);
+      return vueGauche;
+    }
+    
+    
     /**
      * Crée le panneau du centre 
      */
@@ -289,4 +312,6 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
         Cursor curseur = new Cursor(Cursor.DEFAULT_CURSOR);
         this.setCursor(curseur);
     }
+
+    
 }

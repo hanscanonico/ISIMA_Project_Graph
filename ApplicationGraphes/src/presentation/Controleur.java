@@ -48,6 +48,8 @@ public class Controleur implements MouseListener, ActionListener, IConstantes {
         } else if (commande.equals(MODE_FLECHE)) {
             mdl.modeFleche();
             this.mode=MODE_FLECHE;
+        }else if (commande.equals(GENERER)) {
+            mdl.generer();
         }
     }
 

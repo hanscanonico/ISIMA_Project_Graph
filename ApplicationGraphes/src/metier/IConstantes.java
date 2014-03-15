@@ -45,4 +45,9 @@ public interface IConstantes {
      * Constante separateur
      */
     final static String SEPARATEUR = ";";
+    
+    /**
+     * Constante generer
+     */
+    final static String GENERER = "generer";
 }

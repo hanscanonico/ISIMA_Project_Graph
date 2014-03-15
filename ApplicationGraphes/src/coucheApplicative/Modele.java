@@ -5,6 +5,8 @@
  */
 package coucheApplicative;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 import metier.Graphe;
 import metier.IConstantes;
@@ -16,13 +18,17 @@ import metier.Sommet;
  */
 public class Modele extends Observable implements IConstantes {
 //  Le graphe
-    Graphe g;
-
+    private Graphe g;
+// Map de sommets avec pour clés leur nom
+    private Map<String,Sommet> lesSommets;
+    
+    
     /**
      * Constructeur par défault
      */
     public Modele()
     {
+        lesSommets=new HashMap();
         g=new Graphe();
     }
     
@@ -62,8 +68,20 @@ public class Modele extends Observable implements IConstantes {
      * @param y la coordonnée y du curseur
      */
     public void addSommet(int x,int y) {
-        
-        g.ajouterSommet(new Sommet(null,0));
-        informer(AJOUTER_SOMMET+SEPARATEUR+x+SEPARATEUR+y);
+        Sommet s=new Sommet();
+        lesSommets.put(s.getNom(), s);
+        informer(AJOUTER_SOMMET+SEPARATEUR+x+SEPARATEUR+y+SEPARATEUR+s.getNom());
     }
+    
+    
+    
+     /**
+     * génère des sommets
+     */
+    public void generer()
+    {
+        informer(GENERER);
+    }
+    
+    
 }

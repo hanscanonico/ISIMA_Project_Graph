@@ -13,6 +13,13 @@ public class Sommet {
     private int valeur;
 
     /**
+     * Constructeur
+     */
+    public Sommet() {
+        this("Z",0);
+    }
+
+    /**
      * getter de nom
      * @return le nom du sommet
      */
@@ -39,6 +46,17 @@ public class Sommet {
 
     }
 
+    /**
+     *
+     * @param nom le nom du sommet
+     * @param val la valeur du sommet
+     */
+    public Sommet(String nom) {
+        this(nom,0);
+
+    }
+    
+    
     /**
      *
      * @return

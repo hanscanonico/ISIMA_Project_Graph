@@ -154,13 +154,17 @@ public class VueCentre extends javax.swing.JPanel {
      * @param x coordonée x 
      *        y coordonnée y
      */
-    void ajouterSommet(int x, int y) {
-
+    void ajouterSommet(double x, double y,String nomSommet) {
+       
         Graphics2D g2 = (Graphics2D) getGraphics();
+        int t = IconeSommet.taille;
         // on active l'antialiasing
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(Color.ORANGE);
-        g2.fillOval(x, y, IconeSommet.taille, IconeSommet.taille);
-
+        g2.fillOval((int)x, (int)y, IconeSommet.taille, IconeSommet.taille);
+        g2.setColor(Color.BLUE);
+        g2.drawChars(nomSommet.toCharArray(), 0, 1, (int)x + t / 3, (int)y + t / 2);
     }
+
+ 
 }
