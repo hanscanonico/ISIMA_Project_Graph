@@ -13,114 +13,117 @@ import metier.Sommet;
  */
 public class IconeSommet {
 
-    /**
-     *
-     */
+//  la taille d'un iconeSommet
     public static int taille = 20;
+//  l'origineX d'un iconeSommet
     private int origineX;
+//  l'origineY d'un iconeSommet
     private int origineY;
+//  Le sommet
     private Sommet monSommet;
+//  la pos
     private double[] pos = new double[2];
+//  la disp
     private double[] disp = {0, 0};
 
     /**
-     *
-     * @return
+     * getter de pos
+     * @return la pos
      */
     public double[] getPos() {
         return pos;
     }
 
     /**
-     *
-     * @return
+     * getter de monSommet
+     * @return le sommet
      */
     public Sommet getMonSommet() {
         return monSommet;
     }
 
     /**
-     *
-     * @param pos
+     * setter de pos
+     * @param pos la pos
      */
     public void setPos(double[] pos) {
         this.pos = pos;
     }
 
     /**
-     *
-     * @return
+     * getter de disp
+     * @return la disp
      */
     public double[] getDisp() {
         return disp;
     }
 
     /**
-     *
-     * @param disp
+     * setter de disp
+     * @param disp la disp
      */
     public void setDisp(double[] disp) {
         this.disp = disp;
     }
 
     /**
-     *
-     * @param monSommet
+     * Constructeur
+     * @param monSommet le sommet
      */
     public IconeSommet(Sommet monSommet) {
         this.monSommet = monSommet;
     }
 
     /**
-     *
-     * @return
+     * getter de OrigineX
+     * @return l'origineX
      */
     public int getOrigineX() {
         return origineX;
     }
 
     /**
-     *
-     * @return
+     * Donne le centreY
+     * @return le CentreY
      */
     public int getCentreY() {
         return origineY + taille / 2;
     }
 
     /**
-     *
-     * @return
+     * Donne le centreX
+     * @return le centreX
      */
     public int getCentreX() {
         return origineX + taille / 2;
     }
 
     /**
-     *
-     * @param origineX
+     * setter de OrigineX
+     * @param origineX l'origineX
      */
     public void setOrigineX(int origineX) {
         this.origineX = origineX;
     }
 
     /**
-     *
-     * @return
+     * getter de origineY
+     * @return l'origineY
      */
     public int getOrigineY() {
         return origineY;
     }
 
     /**
-     *
-     * @param origineY
+     * setter de OrigineY
+     * @param origineY l'origineY
      */
     public void setOrigineY(int origineY) {
         this.origineY = origineY;
     }
 
     /**
-     *
+     * Compare 2 iconeSommets
      * @param obj
      * @return
      */
@@ -140,8 +143,8 @@ public class IconeSommet {
     }
 
     /**
-     *
-     * @return
+     * retourne un hashCode
+     * @return un hashCode
      */
     @Override
     public int hashCode() {

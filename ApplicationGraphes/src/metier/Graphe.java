@@ -8,71 +8,71 @@ import java.util.ArrayList;
  */
 public class Graphe {
 
-    /**
-     * la liste des sommet d'un graphe *
-     */
+    
+//    la liste des sommet d'un graphe
     private ArrayList<Sommet> lesSommets;
+//    la liste des arrêtes d'un graphe
     private ArrayList<Arrete> lesArretes;
 
     /**
-     *
-     * @param s
+     * permet d'ajouter un sommet
+     * @param s le sommet à ajouter
      */
     public void ajouterSommet(Sommet s) {
         lesSommets.add(s);
     }
 
     /**
-     *
-     * @return
+     * getter de lesSommets
+     * @return la liste des sommets
      */
     public ArrayList<Sommet> getLesSommets() {
         return lesSommets;
     }
 
     /**
-     *
-     * @return
+     * getter de lesArretes
+     * @return la liste des arrêtes
      */
     public ArrayList<Arrete> getLesArretes() {
         return lesArretes;
     }
 
     /**
-     *
-     * @param sommets
+     * permet d'ajouter des sommets
+     * @param sommets la liste des sommets
      */
     public void ajouterSommets(ArrayList<Sommet> sommets) {
         lesSommets.addAll(sommets);
     }
 
     /**
-     *
-     * @param s
+     * permet de suppriemr un sommet
+     * @param s le sommet à supprimer
      */
     public void supprimerSommet(Sommet s) {
         lesSommets.remove(s);
     }
 
     /**
-     *
-     * @param a
+     * permet d'ajouter une arrête
+     * @param a l'arrête à ajouter
      */
     public void ajouterArrete(Arrete a) {
         lesArretes.add(a);
     }
 
     /**
-     *
-     * @param arretes
+     * permet d'ajouter des arrêtes
+     * @param arretes les arrêtes à ajouter
      */
     public void ajouterArretes(ArrayList<Arrete> arretes) {
         lesArretes.addAll(arretes);
     }
 
     /**
-     *
-     * @param a
+     * permet de supprimer une arrête
+     * @param a l'arrête à supprimer
      */
     public void supprimerArrete(Arrete a) {
         lesArretes.remove(a);
@@ -80,7 +80,7 @@ public class Graphe {
     }
 
     /**
-     *
+     * Constructeur par défault
      */
     public Graphe() {
         lesSommets = new ArrayList<Sommet>();

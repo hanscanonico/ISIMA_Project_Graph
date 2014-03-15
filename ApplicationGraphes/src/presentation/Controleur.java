@@ -17,22 +17,23 @@ import metier.IConstantes;
  * @author Hans
  */
 public class Controleur implements MouseListener, ActionListener, IConstantes {
-
+//  le modele
     private Modele mdl;
+//  le mode
     private String mode=MODE_FLECHE;
 
     /**
-     *
-     * @param mdl
+     * Constructeur
+     * @param mdl le modele
      */
-    public Controleur(Modele mdl) {
+    public Controleur(Modele mdl){
 
         this.mdl = mdl;
     }
 
     /**
-     *
-     * @param ae
+     * evenements boutons
+     * @param ae l'évènement
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -51,29 +52,29 @@ public class Controleur implements MouseListener, ActionListener, IConstantes {
     }
 
     /**
-     *
-     * @param me
+     * evenement clique de souris
+     * @param me l'évènement
      */
     @Override
     public void mouseClicked(MouseEvent me) {
-        if(mode.equals(MODE_SOMMET))
+        
+    }
+
+    /**
+     * évènement appui sur la souri 
+     * @param me l'évènement
+     */
+    @Override
+    public void mousePressed(MouseEvent me) {
+     if(mode.equals(MODE_SOMMET))
         {
             mdl.addSommet(me.getX(),me.getY());
         }
     }
 
     /**
-     *
-     * @param me
-     */
-    @Override
-    public void mousePressed(MouseEvent me) {
-     
-    }
-
-    /**
-     *
-     * @param me
+     * évènement souris relachée
+     * @param me évènement souris relachée
      */
     @Override
     public void mouseReleased(MouseEvent me) {
@@ -81,8 +82,8 @@ public class Controleur implements MouseListener, ActionListener, IConstantes {
     }
 
     /**
-     *
-     * @param me
+     * évènement souris arrive sur une zone
+     * @param me l'évènement
      */
     @Override
     public void mouseEntered(MouseEvent me) {
@@ -90,8 +91,8 @@ public class Controleur implements MouseListener, ActionListener, IConstantes {
     }
 
     /**
-     *
-     * @param me
+     * évènement souris sort d'une zone
+     * @param me l'évènement
      */
     @Override
     public void mouseExited(MouseEvent me) {

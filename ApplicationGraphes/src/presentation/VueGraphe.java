@@ -37,18 +37,25 @@ import metier.Sommet;
  */
 public class VueGraphe extends JPanel implements IConstantes, Observer {
 
+//  Le graphe  
     private metier.Graphe g;
+//  liste de iconesArretes  
     private Set<IconeArrete> icoArr = new HashSet();
+//  liste de iconesSommets
     private Set<IconeSommet> icoSomm = new HashSet();
+//  map de sommets et d'iconesSommets
     private Map<Sommet, IconeSommet> icoSom = new HashMap<>();
-
+//  le modele
     private Modele mdl;
+//  le controleur
     private Controleur ctrl;
+//  la vueBas
     private VueBas vueBas;
+//  la vueCentre
     private VueCentre vueCentre;
 
     /**
-     *
+     * Constructeur
      * @param g un graphe
      */
     public VueGraphe(Graphe g) {
@@ -59,7 +66,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     }
 
     /**
-     *
+     * Constructeur
      */
     public VueGraphe() {
         setLayout(new BorderLayout());
@@ -85,7 +92,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     }
 
      /**
-     *
+     * Place des sommets à des positions randoms
      */
     private void randomPosition() {
         double temp;
@@ -101,7 +108,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     }
 
      /**
-     *
+     * Génère des icones
      */
     private void generationDesIcones() {
         Arrete arr;
@@ -128,7 +135,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     }
     
     /**
-     *
+     * Calcul position
      */
     private void calculPosition2() {
         double area = getHeight() * getWidth();
@@ -149,6 +156,9 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
         }
     }
 
+    /**
+     * fonction A
+     */
     private double fonctionA(double z, double k) {
         double temp;
         temp = z * z / k;
@@ -156,6 +166,9 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
 
     }
 
+    /**
+     * fonction R
+     */
     private double fonctionR(double z, double k) {
         double temp;
         temp = k * k / z;
@@ -191,6 +204,11 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     // End of variables declaration//GEN-END:variables
     @Override
     
+    /**
+     * Calcul position
+     * @param objetObserve l'objet observé
+     * @param uneInformation l'information
+     */
     public void update(Observable objetObserve, Object uneInformation) {
         if (objetObserve instanceof Modele) {
             String tabInfos[] = uneInformation.toString().split(SEPARATEUR);
@@ -215,16 +233,25 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
         }
     }
 
+     /**
+     * Crée le panneau du bas 
+     */
     private Component panneauBas() {
         vueBas = new VueBas(ctrl);
         return vueBas;
     }
 
+    /**
+     * Crée le panneau du centre 
+     */
     private Component panneauCentre() {
         vueCentre = new VueCentre(g, icoArr, icoSomm, ctrl);
         return vueCentre;
     }
 
+    /**
+     * Permet de passer en mode sommet
+     */
     private void modeSommet() {
 
         Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -246,11 +273,18 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
 
     }
 
+    /**
+     * Permet de passer en mode arrete
+     */
     private void modeArrete() {
         Cursor curseur = new Cursor(Cursor.CROSSHAIR_CURSOR);
         this.setCursor(curseur);
     }
 
+    
+    /**
+     * Permet de passer en mode par défault
+     */
     private void modeFleche() {
         Cursor curseur = new Cursor(Cursor.DEFAULT_CURSOR);
         this.setCursor(curseur);

@@ -17,7 +17,7 @@ import javax.swing.BorderFactory;
 public class VueGauche extends javax.swing.JPanel {
 
     /**
-     * Creates new form VueGauche
+     * Constructeur
      */
     public VueGauche() {
         setLayout(new BorderLayout());

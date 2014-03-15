@@ -34,22 +34,22 @@ public class Modele extends Observable implements IConstantes {
     }
 
     /**
-     *
+     * informe la vue de passer en mode arrête
      */
     public void modeArrete() {
         informer(MODE_ARRETE);
     }
 
     /**
-     *
+     * informe la vue de passer en mode par default
      */
     public void modeFleche() {
         informer(MODE_FLECHE);
     }
 
     /**
-     *
-     * @param changement
+     * informe la vue d'un changement
+     * @param changement le changement
      */
     public void informer(String changement) {
         setChanged();
@@ -58,8 +58,8 @@ public class Modele extends Observable implements IConstantes {
 
     /**
      *
-     * @param x
-     * @param y
+     * @param x la coordonnée x du curseur
+     * @param y la coordonnée y du curseur
      */
     public void addSommet(int x,int y) {
         

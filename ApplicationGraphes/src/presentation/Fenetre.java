@@ -24,8 +24,8 @@ import metier.Sommet;
 public class Fenetre extends JFrame implements IConstantes {
 
     /**
-     *
-     * @param g
+     * Constructeur
+     * @param g le graphe
      */
     public Fenetre(Graphe g) {
 

@@ -7,21 +7,22 @@ import presentation.*;
  * @author Hans
  */
 public class Sommet {
-
+// le nom du sommet
     private String nom;
+// la valeur du sommet
     private int valeur;
 
     /**
-     *
-     * @return
+     * getter de nom
+     * @return le nom du sommet
      */
     public String getNom() {
         return nom;
     }
 
     /**
-     *
-     * @param nom
+     * setter de nom
+     * @param nom le nom du sommet
      */
     public void setNom(String nom) {
         this.nom = nom;
@@ -29,8 +30,8 @@ public class Sommet {
 
     /**
      *
-     * @param nom
-     * @param val
+     * @param nom le nom du sommet
+     * @param val la valeur du sommet
      */
     public Sommet(String nom, int val) {
         setNom(nom);

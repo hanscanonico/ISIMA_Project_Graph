@@ -19,17 +19,19 @@ import metier.Graphe;
  * @author Hans
  */
 public class VueCentre extends javax.swing.JPanel {
-
+//  Le graphe
     private Graphe graphe;
+//  Liste d'iconeArretes
     private Set<IconeArrete> icoArr;
+//  Liste d'iconeSommets
     private Set<IconeSommet> icoSomm;
 
     /**
-     *
-     * @param graphe
-     * @param icoArr
-     * @param icoSomm
-     * @param ctrl
+     * Constructeur
+     * @param graphe le graphe
+     * @param icoArr une iconeArrete
+     * @param icoSomm une iconeSommet
+     * @param ctrl le controleur
      */
     public VueCentre(Graphe graphe, Set icoArr, Set icoSomm, Controleur ctrl) {
 
@@ -44,8 +46,8 @@ public class VueCentre extends javax.swing.JPanel {
     }
 
     /**
-     *
-     * @param ctrl
+     * Constructeur
+     * @param ctrl le cotnroleur
      */
     public VueCentre(Controleur ctrl) {
 
@@ -58,8 +60,8 @@ public class VueCentre extends javax.swing.JPanel {
     }
 
     /**
-     *
-     * @param g
+     * Trace des composants
+     * @param g Ce qui permet de tracer
      */
     public void paintComponent(Graphics g) {
 
@@ -78,6 +80,10 @@ public class VueCentre extends javax.swing.JPanel {
 
     }
 
+     /**
+     * Trace des sommets
+     * @param g2 Ce qui permet de tracer
+     */
     private void tracerSommets(Graphics2D g2) {
         int t = IconeSommet.taille;
         for (IconeSommet icoS : icoSomm) {
@@ -91,6 +97,10 @@ public class VueCentre extends javax.swing.JPanel {
 
     }
 
+    /**
+     * Trace des arrêtes
+     * @param g2 Ce qui permet de tracer
+     */
     private void tracerArretes(Graphics2D g2) {
 
         for (IconeArrete icoA : icoArr) {
@@ -103,7 +113,7 @@ public class VueCentre extends javax.swing.JPanel {
     }
 
     /**
-     *
+     * Permet d'adapter les positions
      */
     public void adaptationDesPositions() {
         int x, y, t = IconeSommet.taille * 2;
@@ -139,6 +149,11 @@ public class VueCentre extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Permet d'ajouter un sommet
+     * @param x coordonée x 
+     *        y coordonnée y
+     */
     void ajouterSommet(int x, int y) {
 
         Graphics2D g2 = (Graphics2D) getGraphics();

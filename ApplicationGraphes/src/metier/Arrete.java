@@ -8,46 +8,47 @@ import presentation.*;
  */
 public class Arrete {
 
-    
+//  le premier sommet de l'arrête  
     private Sommet sommet1;
+//  le deuxieme sommet de l'arrête
     private Sommet sommet2;
 
     /**
-     *
-     * @return
+     * getter de sommet1
+     * @return le sommet1
      */
     public Sommet getSommet1() {
         return sommet1;
     }
 
     /**
-     *
-     * @param sommet1
+     * setter de sommet1
+     * @param sommet1 un sommet
      */
     public void setSommet1(Sommet sommet1) {
         this.sommet1 = sommet1;
     }
 
     /**
-     *
-     * @return
+     * getter de sommet2
+     * @return le sommet2
      */
     public Sommet getSommet2() {
         return sommet2;
     }
 
     /**
-     *
-     * @param sommet2
+     * setter de sommet2
+     * @param sommet2 un sommet
      */
     public void setSommet2(Sommet sommet2) {
         this.sommet2 = sommet2;
     }
 
     /**
-     *
-     * @param sommet1
-     * @param sommet2
+     * Constructeur
+     * @param sommet1 le sommet1
+     * @param sommet2 le sommet2
      */
     public Arrete(Sommet sommet1, Sommet sommet2) {
         setSommet1(sommet1);
@@ -55,8 +56,8 @@ public class Arrete {
     }
 
     /**
-     *
-     * @return
+     * toString de arrête
+     * @return la description du sommet
      */
     @Override
     public String toString() {
