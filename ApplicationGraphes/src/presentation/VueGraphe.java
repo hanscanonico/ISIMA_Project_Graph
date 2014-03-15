@@ -263,8 +263,8 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                 this.icoSom.get(nouv).getPos()[1] = (y / vueCentre.getHeight());
                 vueCentre.repaint();*/
             } else if (tabInfos[0].equals(GENERER)) {
-                
                 genererGraphe();
+                
             }
         }
     }
@@ -276,9 +276,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     {
         generationDesIcones();
         randomPosition();
-        vueCentre.adaptationDesPositions(lesSommets);
-        vueCentre.tracerSommets(lesSommets);
-        vueCentre.tracerArretes(lesArretes);   
+        vueCentre.repaint();
     }
     
      /**
@@ -299,7 +297,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
      * Crée le panneau du centre 
      */
     private Component panneauCentre() {
-        vueCentre = new VueCentre(ctrl);
+        vueCentre = new VueCentre(ctrl,lesSommets,lesArretes);
         return vueCentre;
     }
 
