@@ -10,6 +10,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 import javax.swing.BorderFactory;
 import metier.Graphe;
@@ -19,31 +23,7 @@ import metier.Graphe;
  * @author Hans
  */
 public class VueCentre extends javax.swing.JPanel {
-//  Le graphe
-    private Graphe graphe;
-//  Liste d'iconeArretes
-    private Set<IconeArrete> icoArr;
-//  Liste d'iconeSommets
-    private Set<IconeSommet> icoSomm;
 
-    /**
-     * Constructeur
-     * @param graphe le graphe
-     * @param icoArr une iconeArrete
-     * @param icoSomm une iconeSommet
-     * @param ctrl le controleur
-     */
-    public VueCentre(Graphe graphe, Set icoArr, Set icoSomm, Controleur ctrl) {
-
-        this.graphe = graphe;
-        this.icoArr = icoArr;
-        this.icoSomm = icoSomm;
-        setLayout(new BorderLayout());
-
-        addMouseListener(ctrl);
-        setBorder(BorderFactory.createLineBorder(Color.black, 1));
-        setBackground(Color.white);
-    }
 
     /**
      * Constructeur
@@ -56,14 +36,14 @@ public class VueCentre extends javax.swing.JPanel {
         addMouseListener(ctrl);
         setBorder(BorderFactory.createLineBorder(Color.black, 1));
         setBackground(Color.white);
-
+        
     }
 
     /**
      * Trace des composants
      * @param g Ce qui permet de tracer
      */
-    public void paintComponent(Graphics g) {
+  /*  public void paintComponent(Graphics g) {
 
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -78,48 +58,51 @@ public class VueCentre extends javax.swing.JPanel {
         tracerArretes(g2);
         tracerSommets(g2);
 
-    }
+    }*/
 
      /**
      * Trace des sommets
-     * @param g2 Ce qui permet de tracer
+     * @param lesSommets
      */
-    private void tracerSommets(Graphics2D g2) {
+    public void tracerSommets(Map<String,IconeSommet> lesSommets) {
+        
         int t = IconeSommet.taille;
-        for (IconeSommet icoS : icoSomm) {
-            IconeSommet som = icoS;
+        
+        Graphics2D g2 = (Graphics2D) getGraphics();
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+        for (Map.Entry<String, IconeSommet> entry : lesSommets.entrySet()) {
+            String nomSommet = entry.getKey();
+            IconeSommet som = entry.getValue();
+           // System.out.println(nomSommet+"position : "+som.getCentreX()+"  "+som.getCentreY() );
             g2.setColor(Color.ORANGE);
             g2.fillOval(som.getOrigineX(), som.getOrigineY(), t, t);
             g2.setColor(Color.BLUE);
-            g2.drawChars(som.getMonSommet().getNom().toCharArray(), 0, 1, som.getOrigineX() + t / 3, som.getOrigineY() + t / 2);
-
+            g2.drawChars(nomSommet.toCharArray(), 0, 1, som.getOrigineX() + t / 3, som.getOrigineY() + t / 2);
         }
 
     }
 
     /**
      * Trace des arrêtes
-     * @param g2 Ce qui permet de tracer
+     * @param lesArretes
      */
-    private void tracerArretes(Graphics2D g2) {
-
-        for (IconeArrete icoA : icoArr) {
-            IconeArrete arr = icoA;
+    public void tracerArretes(Map<String,IconeArrete> lesArretes) {
+        Graphics2D g2 = (Graphics2D) getGraphics();
+        for (IconeArrete arr : lesArretes.values()){
             g2.setColor(Color.BLUE);
             g2.drawLine(arr.getSom1().getCentreX(), arr.getSom1().getCentreY(), arr.getSom2().getCentreX(), arr.getSom2().getCentreY());
-
         }
-
     }
 
     /**
      * Permet d'adapter les positions
+     * @param lesSommets
      */
-    public void adaptationDesPositions() {
+    public void adaptationDesPositions(Map<String,IconeSommet> lesSommets) {
         int x, y, t = IconeSommet.taille * 2;
-        for (IconeSommet icoS : icoSomm) {
+        for (IconeSommet icoS : lesSommets.values()) {
             IconeSommet som = icoS;
-
             som.setOrigineX((int) (som.getPos()[0] * (getWidth())));
             som.setOrigineY((int) (som.getPos()[1] * (getHeight())));
 

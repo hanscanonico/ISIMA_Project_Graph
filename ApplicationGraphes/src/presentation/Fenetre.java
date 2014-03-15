@@ -27,7 +27,7 @@ public class Fenetre extends JFrame implements IConstantes {
      * Constructeur
      * @param g le graphe
      */
-    public Fenetre(Graphe g) {
+    public Fenetre() {
 
         setTitle("Logiciel de graphe");
         setSize(LARGEUR_FENETRE_PRINCIPALE, LONGUEUR_FENETRE_PRINCIPALE);
@@ -39,7 +39,7 @@ public class Fenetre extends JFrame implements IConstantes {
         menuBar.add(mnNewMenu);
         JMenuItem mntmNewMenuItem = new JMenuItem("Quitter");
         mnNewMenu.add(mntmNewMenuItem);
-        getContentPane().add(new VueGraphe(g));
+        getContentPane().add(new VueGraphe());
 
         this.setVisible(true);
 

@@ -19,8 +19,7 @@ public class IconeSommet {
     private int origineX;
 //  l'origineY d'un iconeSommet
     private int origineY;
-//  Le sommet
-    private Sommet monSommet;
+
 //  la pos
     private double[] pos = new double[2];
 //  la disp
@@ -34,14 +33,7 @@ public class IconeSommet {
         return pos;
     }
 
-    /**
-     * getter de monSommet
-     * @return le sommet
-     */
-    public Sommet getMonSommet() {
-        return monSommet;
-    }
-
+  
     /**
      * setter de pos
      * @param pos la pos
@@ -70,8 +62,7 @@ public class IconeSommet {
      * Constructeur
      * @param monSommet le sommet
      */
-    public IconeSommet(Sommet monSommet) {
-        this.monSommet = monSommet;
+    public IconeSommet() {
     }
 
     /**
@@ -129,17 +120,17 @@ public class IconeSommet {
      */
     @Override
     public boolean equals(Object obj) {
+        boolean equal=true;
         if (obj == null) {
-            return false;
+            equal=false;
         }
         if (obj == this) {
-            return true;
+            equal=true;
         }
         if (!(obj instanceof IconeSommet)) {
-            return false;
+            equal=false;
         }
-        IconeSommet aux = (IconeSommet) obj;
-        return this.monSommet == aux.monSommet;
+        return equal;
     }
 
     /**
@@ -149,7 +140,7 @@ public class IconeSommet {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.monSommet);
+        hash = 79 * hash;
         return hash;
     }
 }
