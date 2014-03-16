@@ -255,9 +255,10 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                 g.ajouterSommet(nouv);*/
                 
                 IconeSommet icoS=new IconeSommet();
+                icoS.setPos(new double[]{x/vueCentre.getWidth(),y/vueCentre.getHeight()});
                 lesSommets.put(nomSommet, icoS);
-                vueCentre.ajouterSommet(x, y,nomSommet);
-                
+                //vueCentre.ajouterSommet(x, y,nomSommet);
+                vueCentre.repaint();
                 /*
                 this.icoSom.get(nouv).getPos()[0] = (x / vueCentre.getWidth());
                 this.icoSom.get(nouv).getPos()[1] = (y / vueCentre.getHeight());
@@ -283,7 +284,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
      * Crée le panneau du bas 
      */
     private Component panneauBas() {
-        vueBas = new VueBas(ctrl);
+        vueBas = new VueBas (ctrl);
         return vueBas;
     }
 
