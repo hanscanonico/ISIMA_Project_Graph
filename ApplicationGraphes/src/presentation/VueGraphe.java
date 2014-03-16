@@ -250,19 +250,13 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                 double y = Double.parseDouble(tabInfos[2]);
                 String nomSommet=tabInfos[3];
                 
-                
-              /*  Sommet nouv = new Sommet(" ", 0);
-                g.ajouterSommet(nouv);*/
-                
+             
                 IconeSommet icoS=new IconeSommet();
                 icoS.setPos(new double[]{x/vueCentre.getWidth(),y/vueCentre.getHeight()});
                 lesSommets.put(nomSommet, icoS);
-                //vueCentre.ajouterSommet(x, y,nomSommet);
+             
                 vueCentre.repaint();
-                /*
-                this.icoSom.get(nouv).getPos()[0] = (x / vueCentre.getWidth());
-                this.icoSom.get(nouv).getPos()[1] = (y / vueCentre.getHeight());
-                vueCentre.repaint();*/
+           
             } else if (tabInfos[0].equals(GENERER)) {
                 genererGraphe();
                 
