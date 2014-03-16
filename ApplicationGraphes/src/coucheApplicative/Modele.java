@@ -26,6 +26,8 @@ public class Modele extends Observable implements IConstantes {
 // Map de iconeArrete avec pour clé la concatéantion du nom des 2 sommets de chaque extrémité
     private Map<String,Arrete> lesArretes;
     
+    public static int i=0;
+    
     /**
      * Constructeur par défault
      */
@@ -72,7 +74,8 @@ public class Modele extends Observable implements IConstantes {
      * @param y la coordonnée y du curseur
      */
     public void addSommet(int x,int y) {
-        Sommet s=new Sommet();
+        Sommet s=new Sommet(Integer.toString(i));
+        i++;
         lesSommets.put(s.getNom(), s);
         informer(AJOUTER_SOMMET+SEPARATEUR+x+SEPARATEUR+y+SEPARATEUR+s.getNom());
     }

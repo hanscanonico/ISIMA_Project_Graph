@@ -109,7 +109,8 @@ public class VueCentre extends javax.swing.JPanel {
             g2.setColor(Color.ORANGE);
             g2.fillOval(som.getOrigineX(), som.getOrigineY(), t, t);
             g2.setColor(Color.BLUE);
-            g2.drawChars(nomSommet.toCharArray(), 0, 1, som.getOrigineX() + t / 3, som.getOrigineY() + t / 2);
+           // g2.drawChars(nomSommet.toCharArray(), 0, 1, som.getOrigineX() + t / 3, som.getOrigineY() + t / 2);
+            g2.drawString(nomSommet, som.getOrigineX() + t / 3, som.getOrigineY() + t / 2);
         }
 
     }
