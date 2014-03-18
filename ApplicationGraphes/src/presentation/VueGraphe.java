@@ -6,7 +6,6 @@
 package presentation;
 
 import coucheApplicative.Modele;
-import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -14,22 +13,16 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.Toolkit;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Set;
 import javax.swing.JPanel;
-import metier.Arrete;
-import metier.Graphe;
 import metier.IConstantes;
-import metier.Sommet;
 
 /**
  *
@@ -122,17 +115,17 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
             newIcoArr = new IconeArrete(newIcosom1, newIcosom2);
             this.icoArr.add(newIcoArr);
         }*/
-        
+        /*
                 lesSommets.clear();
-                IconeSommet a = new IconeSommet();
+                IconeSommet a = new IconeSommet(ctrl,);
                 lesSommets.put("A", a);
-                IconeSommet b = new IconeSommet();
+                IconeSommet b = new IconeSommet(ctrl);
                 lesSommets.put("B", b);
-                IconeSommet c = new IconeSommet();
+                IconeSommet c = new IconeSommet(ctrl);
                 lesSommets.put("C", c);
-                IconeSommet d = new IconeSommet();
+                IconeSommet d = new IconeSommet(ctrl);
                 lesSommets.put("D", d);
-                IconeSommet e = new IconeSommet();
+                IconeSommet e = new IconeSommet(ctrl);
                 lesSommets.put("E", e);
 
                 
@@ -156,6 +149,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                 lesArretes.put("CE",ce);
                 IconeArrete de=new IconeArrete(d, e);
                 lesArretes.put("DE", de);
+        */
     }
     
     /**
@@ -251,11 +245,9 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                 String nomSommet=tabInfos[3];
                 
              
-                IconeSommet icoS=new IconeSommet();
-                icoS.setPos(new double[]{x/vueCentre.getWidth(),y/vueCentre.getHeight()});
-                lesSommets.put(nomSommet, icoS);
-             
-                vueCentre.repaint();
+               
+                vueCentre.ajouterSommet(nomSommet,x,y,ctrl);
+               
            
             } else if (tabInfos[0].equals(GENERER)) {
                 genererGraphe();
@@ -271,7 +263,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     {
         generationDesIcones();
         randomPosition();
-        vueCentre.repaint();
+      // vueCentre.repaint();
     }
     
      /**

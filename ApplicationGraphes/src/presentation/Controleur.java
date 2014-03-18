@@ -70,6 +70,7 @@ public class Controleur implements MouseListener, ActionListener, IConstantes {
     public void mousePressed(MouseEvent me) {
      if(mode.equals(MODE_SOMMET))
         {
+          
             mdl.addSommet(me.getX(),me.getY());
         }
     }

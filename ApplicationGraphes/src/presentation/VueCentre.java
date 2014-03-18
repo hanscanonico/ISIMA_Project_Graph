@@ -9,6 +9,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.util.Collection;
 import java.util.HashMap;
@@ -16,6 +18,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import javax.swing.BorderFactory;
+import javax.swing.Spring;
+import javax.swing.SpringLayout;
 import metier.Graphe;
 
 /**
@@ -32,23 +36,23 @@ public class VueCentre extends javax.swing.JPanel {
     
     
     
-    
-    public void paintComponent(Graphics g) {
-
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
-
-        g2.setColor(Color.WHITE);
-        g2.fillRect(0, 0, this.getWidth(), this.getHeight());
-        g2.setColor(Color.red);
-
-        // g.drawOval(50, 50, 50, 50);
-        adaptationDesPositions(lesSommets);
-        tracerArretes(lesArretes,g2);
-        tracerSommets(lesSommets,g2);
-
-    }
+//    
+//    public void paintComponent(Graphics g) {
+//
+//        Graphics2D g2 = (Graphics2D) g;
+//        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+//                RenderingHints.VALUE_ANTIALIAS_ON);
+//
+//        g2.setColor(Color.WHITE);
+//        g2.fillRect(0, 0, this.getWidth(), this.getHeight());
+//        g2.setColor(Color.red);
+//
+//        // g.drawOval(50, 50, 50, 50);
+//       // adaptationDesPositions(lesSommets);
+//       /* tracerArretes(lesArretes,g2);
+//        tracerSommets(lesSommets,g2);*/
+//
+//    }
     
     
     
@@ -62,10 +66,15 @@ public class VueCentre extends javax.swing.JPanel {
     public VueCentre(Controleur ctrl,Map<String,IconeSommet> lesSommets,Map<String,IconeArrete> lesArretes) {
         
         setBackground(Color.white);
-        setLayout(new BorderLayout());
-
+        
+        
         addMouseListener(ctrl);
         setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        
+        
+        
+        
+        
         
         this.lesSommets=lesSommets;
         this.lesArretes=lesArretes;
@@ -105,12 +114,14 @@ public class VueCentre extends javax.swing.JPanel {
         for (Map.Entry<String, IconeSommet> entry : lesSommets.entrySet()) {
             String nomSommet = entry.getKey();
             IconeSommet som = entry.getValue();
+            
+           
            // System.out.println(nomSommet+"position : "+som.getCentreX()+"  "+som.getCentreY() );
-            g2.setColor(Color.ORANGE);
+         /*   g2.setColor(Color.ORANGE);
             g2.fillOval(som.getOrigineX(), som.getOrigineY(), t, t);
             g2.setColor(Color.BLUE);
            // g2.drawChars(nomSommet.toCharArray(), 0, 1, som.getOrigineX() + t / 3, som.getOrigineY() + t / 2);
-            g2.drawString(nomSommet, som.getOrigineX() + t / 3, som.getOrigineY() + t / 2);
+            g2.drawString(nomSommet, som.getOrigineX() + t / 3, som.getOrigineY() + t / 2);*/
         }
 
     }
@@ -118,6 +129,7 @@ public class VueCentre extends javax.swing.JPanel {
     /**
      * Trace des arrêtes
      * @param lesArretes
+     * @param g2
      */
     public void tracerArretes(Map<String,IconeArrete> lesArretes,Graphics2D g2) {
        
@@ -169,16 +181,27 @@ public class VueCentre extends javax.swing.JPanel {
      * @param x coordonée x 
      *        y coordonnée y
      */
-    void ajouterSommet(double x, double y,String nomSommet) {
-       
-        Graphics2D g2 = (Graphics2D) getGraphics();
-        int t = IconeSommet.taille;
-        // on active l'antialiasing
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(Color.ORANGE);
-        g2.fillOval((int)x, (int)y, IconeSommet.taille, IconeSommet.taille);
-        g2.setColor(Color.BLUE);
-        g2.drawChars(nomSommet.toCharArray(), 0, 1, (int)x + t / 3, (int)y + t / 2);
+    void ajouterSommet(String nomSommet,double x, double y,Controleur ctrl) {
+        double[] pos=new double[]{x/getWidth(),y/getHeight()};
+        IconeSommet icoS=new IconeSommet(ctrl,pos);
+        lesSommets.put(nomSommet, icoS);
+        icoS.setLocation(new Point((int)x,(int)y));
+        
+        icoS.setBounds(new Rectangle((int)x,(int)y,50,50));
+        
+        SpringLayout sp=new SpringLayout();
+        
+        
+        
+        SpringLayout.Constraints labelCons =
+        sp.getConstraints(icoS);
+        labelCons.setX(Spring.constant((int)x));
+        labelCons.setY(Spring.constant((int)y));
+        icoS.setX()
+        add(icoS);
+        this.revalidate();
+      //  icoS.revalidate();
+        
     }
 
  

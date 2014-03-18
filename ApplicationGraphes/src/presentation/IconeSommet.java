@@ -4,14 +4,22 @@
  */
 package presentation;
 
-import java.util.Objects;
-import metier.Sommet;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Amine
  */
-public class IconeSommet {
+public class IconeSommet extends javax.swing.JPanel{
 
 //  la taille d'un iconeSommet
     public static int taille = 20;
@@ -25,6 +33,9 @@ public class IconeSommet {
 //  la disp
     private double[] disp = {0, 0};
 
+    private JTextField textField;
+    
+    
     /**
      * getter de pos
      * @return la pos
@@ -62,9 +73,40 @@ public class IconeSommet {
      * Constructeur
      * @param monSommet le sommet
      */
-    public IconeSommet() {
+    public IconeSommet(Controleur ctrl,double[] pos) {
+        setLayout(new BorderLayout());
+        setPos(pos);
+        System.out.println("iconeSommet constructeur");
+        setBackground(Color.yellow);
+        setMinimumSize(new Dimension(50, 50));
+        setPreferredSize(new Dimension(50, 50));
+        JPanel conteneurTextFiel=new JPanel();
+        conteneurTextFiel.setPreferredSize(new Dimension(10, 10));
+        
+        textField=new JTextField("");
+        textField.setSize(new Dimension(1,1));
+        textField.setPreferredSize(new Dimension(1,1));
+        textField.setBackground(Color.ORANGE);
+        conteneurTextFiel.add(textField);
+        add(conteneurTextFiel);
+        textField.addActionListener(ctrl);
+        setVisible(true);
     }
 
+    @Override
+    public void paintComponent(Graphics g) {
+        System.out.println("testPaint");
+        Graphics2D g2 = (Graphics2D) g;
+        int t = IconeSommet.taille;
+        // on active l'antialiasing
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setColor(Color.ORANGE);
+        g2.fillOval(origineX, origineY, IconeSommet.taille, IconeSommet.taille);
+
+    }
+
+    
+    
     /**
      * getter de OrigineX
      * @return l'origineX
