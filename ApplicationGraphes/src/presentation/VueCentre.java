@@ -197,7 +197,7 @@ public class VueCentre extends javax.swing.JPanel {
         sp.getConstraints(icoS);
         labelCons.setX(Spring.constant((int)x));
         labelCons.setY(Spring.constant((int)y));
-        icoS.setX()
+        //icoS.setX();
         add(icoS);
         this.revalidate();
       //  icoS.revalidate();
