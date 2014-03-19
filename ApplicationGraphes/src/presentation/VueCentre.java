@@ -70,6 +70,7 @@ public class VueCentre extends javax.swing.JPanel {
         
         addMouseListener(ctrl);
         setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        setLayout(null);
         
         
         
@@ -200,6 +201,7 @@ public class VueCentre extends javax.swing.JPanel {
         //icoS.setX();
         add(icoS);
         this.revalidate();
+        repaint();
       //  icoS.revalidate();
         
     }

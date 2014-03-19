@@ -243,9 +243,6 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                 double x = Double.parseDouble(tabInfos[1]);
                 double y = Double.parseDouble(tabInfos[2]);
                 String nomSommet=tabInfos[3];
-                
-             
-               
                 vueCentre.ajouterSommet(nomSommet,x,y,ctrl);
                
            
