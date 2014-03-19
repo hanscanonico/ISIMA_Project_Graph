@@ -19,7 +19,7 @@ import javax.swing.JTextField;
  *
  * @author Amine
  */
-public class IconeSommet extends javax.swing.JPanel{
+public class IconeSommet extends JComponent{
 
 //  la taille d'un iconeSommet
     public static int taille = 20;
@@ -74,7 +74,7 @@ public class IconeSommet extends javax.swing.JPanel{
      * @param monSommet le sommet
      */
     public IconeSommet(Controleur ctrl,double[] pos) {
-        setLayout(new BorderLayout());
+        setLayout(null);
         setPos(pos);
         System.out.println("iconeSommet constructeur");
         setBackground(Color.yellow);
