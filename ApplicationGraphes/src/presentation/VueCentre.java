@@ -18,6 +18,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import javax.swing.BorderFactory;
+import javax.swing.JTextField;
 import javax.swing.Spring;
 import javax.swing.SpringLayout;
 import metier.Graphe;
@@ -183,14 +184,21 @@ public class VueCentre extends javax.swing.JPanel {
      *        y coordonnée y
      */
     void ajouterSommet(String nomSommet,double x, double y,Controleur ctrl) {
+        setLayout(null);
         double[] pos=new double[]{x/getWidth(),y/getHeight()};
-        IconeSommet icoS=new IconeSommet(ctrl,pos);
+        
+        
+        IconeSommet icoS=new IconeSommet(ctrl,pos,(int)x,(int)y);
+        
         lesSommets.put(nomSommet, icoS);
-        icoS.setLocation(new Point((int)x,(int)y));
-        
+        add(icoS);
+        System.out.println(icoS.getLocation());
         icoS.setBounds(new Rectangle((int)x,(int)y,50,50));
-        
-        SpringLayout sp=new SpringLayout();
+        icoS.validate();
+        icoS.getTextField().validate();
+        System.out.println(icoS.getTextField().getSize());
+        System.out.println(icoS.getTextField().getLocation());
+       /* SpringLayout sp=new SpringLayout();
         
         
         
@@ -198,11 +206,9 @@ public class VueCentre extends javax.swing.JPanel {
         sp.getConstraints(icoS);
         labelCons.setX(Spring.constant((int)x));
         labelCons.setY(Spring.constant((int)y));
-        //icoS.setX();
-        add(icoS);
-        this.revalidate();
+       */
+        
         repaint();
-      //  icoS.revalidate();
         
     }
 

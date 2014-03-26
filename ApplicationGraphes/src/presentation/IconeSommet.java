@@ -7,10 +7,14 @@ package presentation;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -34,6 +38,14 @@ public class IconeSommet extends JComponent{
     private double[] disp = {0, 0};
 
     private JTextField textField;
+
+    public static int getTaille() {
+        return taille;
+    }
+
+    public JTextField getTextField() {
+        return textField;
+    }
     
     
     /**
@@ -73,29 +85,24 @@ public class IconeSommet extends JComponent{
      * Constructeur
      * @param monSommet le sommet
      */
-    public IconeSommet(Controleur ctrl,double[] pos) {
-        setLayout(null);
-        setPos(pos);
-        System.out.println("iconeSommet constructeur");
-        setBackground(Color.yellow);
-        setMinimumSize(new Dimension(50, 50));
-        setPreferredSize(new Dimension(50, 50));
-        JPanel conteneurTextFiel=new JPanel();
-        conteneurTextFiel.setPreferredSize(new Dimension(10, 10));
+    public IconeSommet(Controleur ctrl,double[] pos,int x,int y) {
+        setLayout(new BorderLayout());
+        setLocation(new Point(x,y));
         
-        textField=new JTextField("");
-        textField.setSize(new Dimension(1,1));
-        textField.setPreferredSize(new Dimension(1,1));
-        textField.setBackground(Color.ORANGE);
-        conteneurTextFiel.add(textField);
-        add(conteneurTextFiel);
+        JLabel conteneurTextField=new JLabel();
+        add(conteneurTextField);
+     
+        textField=new JTextField(" ");
+        textField.setPreferredSize(new Dimension(30, 30));
+        add(textField,BorderLayout.SOUTH);
+     
         textField.addActionListener(ctrl);
         setVisible(true);
     }
 
     @Override
     public void paintComponent(Graphics g) {
-        System.out.println("testPaint");
+ 
         Graphics2D g2 = (Graphics2D) g;
         int t = IconeSommet.taille;
         // on active l'antialiasing
