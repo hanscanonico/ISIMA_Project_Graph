@@ -8,31 +8,38 @@ package presentation;
 import coucheApplicative.Modele;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JTextField;
 import metier.IConstantes;
 
 /**
  *
  * @author Hans
  */
-public class Controleur implements MouseListener, ActionListener, IConstantes {
+public class Controleur implements MouseListener, ActionListener, IConstantes, FocusListener {
 //  le modele
+
     private Modele mdl;
 //  le mode
-    private String mode=MODE_FLECHE;
+    private String mode = MODE_FLECHE;
+    private String nomCache;
 
     /**
      * Constructeur
+     *
      * @param mdl le modele
      */
-    public Controleur(Modele mdl){
+    public Controleur(Modele mdl) {
 
         this.mdl = mdl;
     }
 
     /**
      * evenements boutons
+     *
      * @param ae l'évènement
      */
     @Override
@@ -41,64 +48,80 @@ public class Controleur implements MouseListener, ActionListener, IConstantes {
         String commande = ae.getActionCommand();
         if (commande.equals(MODE_SOMMET)) {
             mdl.modeSommet();
-            this.mode=MODE_SOMMET;
+            this.mode = MODE_SOMMET;
         } else if (commande.equals(MODE_ARRETE)) {
             mdl.modeArrete();
-            this.mode=MODE_ARRETE;
+            this.mode = MODE_ARRETE;
         } else if (commande.equals(MODE_FLECHE)) {
             mdl.modeFleche();
-            this.mode=MODE_FLECHE;
-        }else if (commande.equals(GENERER)) {
+            this.mode = MODE_FLECHE;
+        } else if (commande.equals(GENERER)) {
             mdl.generer();
         }
     }
 
     /**
      * evenement clique de souris
+     *
      * @param me l'évènement
      */
     @Override
     public void mouseClicked(MouseEvent me) {
-        
     }
 
     /**
-     * évènement appui sur la souri 
+     * évènement appui sur la souri
+     *
      * @param me l'évènement
      */
     @Override
     public void mousePressed(MouseEvent me) {
-     if(mode.equals(MODE_SOMMET))
-        {
-          
-            mdl.addSommet(me.getX(),me.getY());
+        if (mode.equals(MODE_SOMMET)) {
+
+            mdl.addSommet(me.getX(), me.getY());
         }
     }
 
     /**
      * évènement souris relachée
+     *
      * @param me évènement souris relachée
      */
     @Override
     public void mouseReleased(MouseEvent me) {
-    
     }
 
     /**
      * évènement souris arrive sur une zone
+     *
      * @param me l'évènement
      */
     @Override
     public void mouseEntered(MouseEvent me) {
-   
     }
 
     /**
      * évènement souris sort d'une zone
+     *
      * @param me l'évènement
      */
     @Override
     public void mouseExited(MouseEvent me) {
-   
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+        JTextField temp = (JTextField) e.getComponent();
+        nomCache = temp.getText();
+        System.out.println(nomCache);
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        JTextField temp = (JTextField) e.getComponent();
+        String nouv = temp.getText();
+        mdl.changeName(nomCache, nouv);
+        System.out.println(nouv);
+
     }
 }

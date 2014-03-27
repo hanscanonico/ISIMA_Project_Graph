@@ -8,9 +8,11 @@ package coucheApplicative;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
+import javax.swing.JTextField;
 import metier.Arrete;
 import metier.Graphe;
 import metier.IConstantes;
+import static metier.IConstantes.SEPARATEUR;
 import metier.Sommet;
 import presentation.IconeArrete;
 
@@ -44,6 +46,8 @@ public class Modele extends Observable implements IConstantes {
     public void modeSommet() {
         informer(MODE_SOMMET);
     }
+    
+    
 
     /**
      * informe la vue de passer en mode arrête
@@ -139,6 +143,14 @@ public class Modele extends Observable implements IConstantes {
         g.ajouterArrete(de);
        
         informer(GENERER);
+    }
+
+
+    public void changeName(String nomCache, String nouv) {
+        this.lesSommets.get(nomCache).setNom(nouv);
+        lesSommets.put(nouv, lesSommets.get(nomCache));
+        lesSommets.remove(nomCache);
+        informer(CHANGER_NOM+SEPARATEUR+nomCache+SEPARATEUR+nouv);
     }
     
     

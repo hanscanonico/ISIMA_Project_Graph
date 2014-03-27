@@ -23,6 +23,7 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
 import metier.IConstantes;
+import static metier.IConstantes.GENERER;
 
 /**
  *
@@ -41,19 +42,16 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
 //  la vueGauche
     private VueCentre vueCentre;
 // Map de iconesSommets avec pour clé les noms des sommets
-    private Map<String,IconeSommet> lesSommets;
+    private Map<String, IconeSommet> lesSommets;
 // Map de iconeArrete avec pour clé la concatéantion du nom des 2 sommets de chaque extrémité
-    private Map<String,IconeArrete> lesArretes;
-    
-    
-
+    private Map<String, IconeArrete> lesArretes;
 
     /**
      * Constructeur
      */
     public VueGraphe() {
-        lesSommets=new HashMap();
-        lesArretes=new HashMap();
+        lesSommets = new HashMap();
+        lesArretes = new HashMap();
         setLayout(new BorderLayout());
         mdl = new Modele();
         mdl.addObserver(this);
@@ -75,7 +73,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
         this.setVisible(true);
     }
 
-     /**
+    /**
      * Place des sommets à des positions randoms
      */
     private void randomPosition() {
@@ -91,90 +89,90 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
 
     }
 
-     /**
+    /**
      * Génère des icones
      */
     private void generationDesIcones() {
-      /*  Arrete arr;
-        Sommet som;
-        IconeArrete newIcoArr;
-        IconeSommet newIcosom1;
-        IconeSommet newIcosom2;
+        /*  Arrete arr;
+         Sommet som;
+         IconeArrete newIcoArr;
+         IconeSommet newIcosom1;
+         IconeSommet newIcosom2;
 
-        for (Sommet s : g.getLesSommets()) {
-            som = s;
-            newIcosom1 = new IconeSommet(som);
-            this.icoSomm.add(newIcosom1);
-            this.icoSom.put(som, newIcosom1);
-        }
-        for (Arrete a : g.getLesArretes()) {
-            arr = a;
-            newIcosom1 = icoSom.get(arr.getSommet1());
-            newIcosom2 = icoSom.get((arr.getSommet2()));
+         for (Sommet s : g.getLesSommets()) {
+         som = s;
+         newIcosom1 = new IconeSommet(som);
+         this.icoSomm.add(newIcosom1);
+         this.icoSom.put(som, newIcosom1);
+         }
+         for (Arrete a : g.getLesArretes()) {
+         arr = a;
+         newIcosom1 = icoSom.get(arr.getSommet1());
+         newIcosom2 = icoSom.get((arr.getSommet2()));
 
-            newIcoArr = new IconeArrete(newIcosom1, newIcosom2);
-            this.icoArr.add(newIcoArr);
-        }*/
+         newIcoArr = new IconeArrete(newIcosom1, newIcosom2);
+         this.icoArr.add(newIcoArr);
+         }*/
         /*
-                lesSommets.clear();
-                IconeSommet a = new IconeSommet(ctrl,);
-                lesSommets.put("A", a);
-                IconeSommet b = new IconeSommet(ctrl);
-                lesSommets.put("B", b);
-                IconeSommet c = new IconeSommet(ctrl);
-                lesSommets.put("C", c);
-                IconeSommet d = new IconeSommet(ctrl);
-                lesSommets.put("D", d);
-                IconeSommet e = new IconeSommet(ctrl);
-                lesSommets.put("E", e);
+         lesSommets.clear();
+         IconeSommet a = new IconeSommet(ctrl,);
+         lesSommets.put("A", a);
+         IconeSommet b = new IconeSommet(ctrl);
+         lesSommets.put("B", b);
+         IconeSommet c = new IconeSommet(ctrl);
+         lesSommets.put("C", c);
+         IconeSommet d = new IconeSommet(ctrl);
+         lesSommets.put("D", d);
+         IconeSommet e = new IconeSommet(ctrl);
+         lesSommets.put("E", e);
 
                 
-                IconeArrete ab=new IconeArrete(a, b);
-                lesArretes.put("AB", ab);
-                IconeArrete ac=new IconeArrete(a, c);
-                lesArretes.put("AC", ac);
-                IconeArrete bc=new IconeArrete(b, c);
-                lesArretes.put("BC", bc);
-                IconeArrete ad=new IconeArrete(a, d);
-                lesArretes.put("AD", ad);
-                IconeArrete bd=new IconeArrete(b, d);
-                lesArretes.put("BD", bd);
-                IconeArrete cd=new IconeArrete(c, d);
-                lesArretes.put("CD", bd);
-                IconeArrete ae=new IconeArrete(a, e);
-                lesArretes.put("AE", ae);
-                IconeArrete be=new IconeArrete(b, e);
-                lesArretes.put("BE", be);
-                IconeArrete ce=new IconeArrete(c, e);
-                lesArretes.put("CE",ce);
-                IconeArrete de=new IconeArrete(d, e);
-                lesArretes.put("DE", de);
-        */
+         IconeArrete ab=new IconeArrete(a, b);
+         lesArretes.put("AB", ab);
+         IconeArrete ac=new IconeArrete(a, c);
+         lesArretes.put("AC", ac);
+         IconeArrete bc=new IconeArrete(b, c);
+         lesArretes.put("BC", bc);
+         IconeArrete ad=new IconeArrete(a, d);
+         lesArretes.put("AD", ad);
+         IconeArrete bd=new IconeArrete(b, d);
+         lesArretes.put("BD", bd);
+         IconeArrete cd=new IconeArrete(c, d);
+         lesArretes.put("CD", bd);
+         IconeArrete ae=new IconeArrete(a, e);
+         lesArretes.put("AE", ae);
+         IconeArrete be=new IconeArrete(b, e);
+         lesArretes.put("BE", be);
+         IconeArrete ce=new IconeArrete(c, e);
+         lesArretes.put("CE",ce);
+         IconeArrete de=new IconeArrete(d, e);
+         lesArretes.put("DE", de);
+         */
     }
-    
+
     /**
      * Calcul position
      */
     /*
-    private void calculPosition2() {
-        double area = getHeight() * getWidth();
-        double k = Math.sqrt(area / icoSomm.size());
-        double[] delta = new double[2];
-        double[] temp = new double[2];
+     private void calculPosition2() {
+     double area = getHeight() * getWidth();
+     double k = Math.sqrt(area / icoSomm.size());
+     double[] delta = new double[2];
+     double[] temp = new double[2];
 
-        for (IconeSommet icoS1 : icoSomm) {
-            IconeSommet v = icoS1;
-            for (IconeSommet icoS2 : icoSomm) {
-                IconeSommet u = icoS2;
-                if (v != u) {
-                    delta[0] = v.getPos()[0] - u.getPos()[0];
-                    delta[1] = v.getPos()[1] - u.getPos()[1];
-                }
-            }
+     for (IconeSommet icoS1 : icoSomm) {
+     IconeSommet v = icoS1;
+     for (IconeSommet icoS2 : icoSomm) {
+     IconeSommet u = icoS2;
+     if (v != u) {
+     delta[0] = v.getPos()[0] - u.getPos()[0];
+     delta[1] = v.getPos()[1] - u.getPos()[1];
+     }
+     }
 
-        }
-    }
-*/
+     }
+     }
+     */
     /**
      * fonction A
      */
@@ -222,9 +220,9 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
     @Override
-    
     /**
      * Calcul position
+     *
      * @param objetObserve l'objet observé
      * @param uneInformation l'information
      */
@@ -239,49 +237,49 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
             } else if (tabInfos[0].equals(MODE_FLECHE)) {
                 modeFleche();
             } else if (tabInfos[0].equals(AJOUTER_SOMMET)) {
-                int t = IconeSommet.taille * 2;
                 double x = Double.parseDouble(tabInfos[1]);
                 double y = Double.parseDouble(tabInfos[2]);
-                String nomSommet=tabInfos[3];
-                vueCentre.ajouterSommet(nomSommet,x,y,ctrl);
-               
-           
+                String nomSommet = tabInfos[3];
+                vueCentre.ajouterSommet(nomSommet, x, y, ctrl);
+
+
             } else if (tabInfos[0].equals(GENERER)) {
                 genererGraphe();
+
+            } else if (tabInfos[0].equals(CHANGER_NOM)) {
+                lesSommets.get(tabInfos[1]).updateName(tabInfos[2]);
                 
             }
         }
     }
 
     /**
-     * génère un graphe 
+     * génère un graphe
      */
-    public void genererGraphe()
-    {
+    public void genererGraphe() {
         generationDesIcones();
         randomPosition();
-      // vueCentre.repaint();
+        // vueCentre.repaint();
     }
-    
-     /**
-     * Crée le panneau du bas 
+
+    /**
+     * Crée le panneau du bas
      */
     private Component panneauBas() {
-        vueBas = new VueBas (ctrl);
+        vueBas = new VueBas(ctrl);
         return vueBas;
     }
 
     private Component panneauGauche() {
-      vueGauche = new VueGauche(ctrl);
-      return vueGauche;
+        vueGauche = new VueGauche(ctrl);
+        return vueGauche;
     }
-    
-    
+
     /**
-     * Crée le panneau du centre 
+     * Crée le panneau du centre
      */
     private Component panneauCentre() {
-        vueCentre = new VueCentre(ctrl,lesSommets,lesArretes);
+        vueCentre = new VueCentre(ctrl, lesSommets, lesArretes);
         return vueCentre;
     }
 
@@ -317,7 +315,6 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
         this.setCursor(curseur);
     }
 
-    
     /**
      * Permet de passer en mode par défault
      */
@@ -325,6 +322,4 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
         Cursor curseur = new Cursor(Cursor.DEFAULT_CURSOR);
         this.setCursor(curseur);
     }
-
-    
 }

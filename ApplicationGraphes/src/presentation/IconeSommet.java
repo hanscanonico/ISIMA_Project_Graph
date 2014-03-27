@@ -23,7 +23,7 @@ import javax.swing.JTextField;
  *
  * @author Amine
  */
-public class IconeSommet extends JComponent{
+public class IconeSommet extends JComponent {
 
 //  la taille d'un iconeSommet
     public static int taille = 20;
@@ -31,34 +31,50 @@ public class IconeSommet extends JComponent{
     private int origineX;
 //  l'origineY d'un iconeSommet
     private int origineY;
-
 //  la pos
     private double[] pos = new double[2];
 //  la disp
     private double[] disp = {0, 0};
-
     private JTextField textField;
+    private JLabel label;
+    private String nom;
 
     public static int getTaille() {
         return taille;
     }
 
+    public JLabel getLabel() {
+        return label;
+    }
+
+    public void setLabel(JLabel label) {
+        this.label = label;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
     public JTextField getTextField() {
         return textField;
     }
-    
-    
+
     /**
      * getter de pos
+     *
      * @return la pos
      */
     public double[] getPos() {
         return pos;
     }
 
-  
     /**
      * setter de pos
+     *
      * @param pos la pos
      */
     public void setPos(double[] pos) {
@@ -67,6 +83,7 @@ public class IconeSommet extends JComponent{
 
     /**
      * getter de disp
+     *
      * @return la disp
      */
     public double[] getDisp() {
@@ -75,6 +92,7 @@ public class IconeSommet extends JComponent{
 
     /**
      * setter de disp
+     *
      * @param disp la disp
      */
     public void setDisp(double[] disp) {
@@ -83,26 +101,33 @@ public class IconeSommet extends JComponent{
 
     /**
      * Constructeur
+     *
      * @param monSommet le sommet
      */
-    public IconeSommet(Controleur ctrl,double[] pos,int x,int y) {
+    public IconeSommet(Controleur ctrl, double[] pos, int x, int y, String nom) {
         setLayout(new BorderLayout());
-        setLocation(new Point(x,y));
-        
-        JLabel conteneurTextField=new JLabel();
-        add(conteneurTextField);
-     
-        textField=new JTextField(" ");
+        setLocation(new Point(x, y));
+
+        this.nom = nom;
+        label = new JLabel(nom);
+        label.setVisible(false);
+        label.setPreferredSize(new Dimension(30, 30));
+
+
+        textField = new JTextField(nom);
         textField.setPreferredSize(new Dimension(30, 30));
-        add(textField,BorderLayout.SOUTH);
-     
+        add(label, BorderLayout.SOUTH);
+        add(textField, BorderLayout.SOUTH);
+
         textField.addActionListener(ctrl);
+        textField.addFocusListener(ctrl);
+        textField.requestFocus();
         setVisible(true);
     }
 
     @Override
     public void paintComponent(Graphics g) {
- 
+
         Graphics2D g2 = (Graphics2D) g;
         int t = IconeSommet.taille;
         // on active l'antialiasing
@@ -112,10 +137,9 @@ public class IconeSommet extends JComponent{
 
     }
 
-    
-    
     /**
      * getter de OrigineX
+     *
      * @return l'origineX
      */
     public int getOrigineX() {
@@ -124,6 +148,7 @@ public class IconeSommet extends JComponent{
 
     /**
      * Donne le centreY
+     *
      * @return le CentreY
      */
     public int getCentreY() {
@@ -132,6 +157,7 @@ public class IconeSommet extends JComponent{
 
     /**
      * Donne le centreX
+     *
      * @return le centreX
      */
     public int getCentreX() {
@@ -140,6 +166,7 @@ public class IconeSommet extends JComponent{
 
     /**
      * setter de OrigineX
+     *
      * @param origineX l'origineX
      */
     public void setOrigineX(int origineX) {
@@ -148,6 +175,7 @@ public class IconeSommet extends JComponent{
 
     /**
      * getter de origineY
+     *
      * @return l'origineY
      */
     public int getOrigineY() {
@@ -156,6 +184,7 @@ public class IconeSommet extends JComponent{
 
     /**
      * setter de OrigineY
+     *
      * @param origineY l'origineY
      */
     public void setOrigineY(int origineY) {
@@ -164,26 +193,28 @@ public class IconeSommet extends JComponent{
 
     /**
      * Compare 2 iconeSommets
+     *
      * @param obj
      * @return
      */
     @Override
     public boolean equals(Object obj) {
-        boolean equal=true;
+        boolean equal = true;
         if (obj == null) {
-            equal=false;
+            equal = false;
         }
         if (obj == this) {
-            equal=true;
+            equal = true;
         }
         if (!(obj instanceof IconeSommet)) {
-            equal=false;
+            equal = false;
         }
         return equal;
     }
 
     /**
      * retourne un hashCode
+     *
      * @return un hashCode
      */
     @Override
@@ -191,5 +222,17 @@ public class IconeSommet extends JComponent{
         int hash = 7;
         hash = 79 * hash;
         return hash;
+    }
+
+    public void updateName(String nouv) {
+        
+        textField.setText(nouv);
+        label.setText(nouv);
+        label.setVisible(true);
+        remove(textField);
+        repaint();
+        add(label,BorderLayout.SOUTH);
+        repaint();
+
     }
 }

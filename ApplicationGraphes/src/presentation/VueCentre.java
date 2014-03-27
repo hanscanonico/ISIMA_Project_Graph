@@ -183,12 +183,12 @@ public class VueCentre extends javax.swing.JPanel {
      * @param x coordonée x 
      *        y coordonnée y
      */
-    void ajouterSommet(String nomSommet,double x, double y,Controleur ctrl) {
+    void ajouterSommet(String nomSommet,double x, double y,Controleur ctrl ) {
         setLayout(null);
         double[] pos=new double[]{x/getWidth(),y/getHeight()};
         
         
-        IconeSommet icoS=new IconeSommet(ctrl,pos,(int)x,(int)y);
+        IconeSommet icoS=new IconeSommet(ctrl,pos,(int)x,(int)y,nomSommet);
         
         lesSommets.put(nomSommet, icoS);
         add(icoS);
@@ -196,6 +196,8 @@ public class VueCentre extends javax.swing.JPanel {
         icoS.setBounds(new Rectangle((int)x,(int)y,50,50));
         icoS.validate();
         icoS.getTextField().validate();
+        icoS.getTextField().validate();
+        icoS.getTextField().requestFocus();
         System.out.println(icoS.getTextField().getSize());
         System.out.println(icoS.getTextField().getLocation());
        /* SpringLayout sp=new SpringLayout();

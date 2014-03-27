@@ -14,12 +14,12 @@ public interface IConstantes {
     /**
      * Largeur de la fenêtre principale
      */
-    final static int LARGEUR_FENETRE_PRINCIPALE = 1100;
+    final static int LARGEUR_FENETRE_PRINCIPALE = 600;
 
     /**
      * Longueur de la fenêtre principale
      */
-    final static int LONGUEUR_FENETRE_PRINCIPALE = 650;
+    final static int LONGUEUR_FENETRE_PRINCIPALE = 600;
 
     /**
      * Constante mode sommet
@@ -50,4 +50,8 @@ public interface IConstantes {
      * Constante generer
      */
     final static String GENERER = "generer";
+    
+
+    final static String CHANGER_NOM = "changer de nom";
 }
+
