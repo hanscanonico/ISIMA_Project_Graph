@@ -24,6 +24,7 @@ public class IconeArrete {
 
     /**
      * Constructeur
+     *
      * @param som1 le premier iconeSommet
      * @param som2 le deuxièeme iconeSommet
      */
@@ -34,6 +35,7 @@ public class IconeArrete {
 
     /**
      * getter de iconeSOmmet1
+     *
      * @return l'iconeSommet1
      */
     public IconeSommet getSom1() {
@@ -50,6 +52,7 @@ public class IconeArrete {
 
     /**
      * getter de iconeSommet2
+     *
      * @return l'iconeSommet2
      */
     public IconeSommet getSom2() {
@@ -58,6 +61,7 @@ public class IconeArrete {
 
     /**
      * setter de iconeSommet2
+     *
      * @param som2 un iconeSommet
      */
     public void setSom2(IconeSommet som2) {
@@ -66,6 +70,7 @@ public class IconeArrete {
 
     /**
      * getter de pos
+     *
      * @return la pos
      */
     public double[] getPos() {
@@ -74,6 +79,7 @@ public class IconeArrete {
 
     /**
      * setter de pos
+     *
      * @param pos une pos
      */
     public void setPos(double[] pos) {
@@ -82,6 +88,7 @@ public class IconeArrete {
 
     /**
      * getter de disp
+     *
      * @return la disp
      */
     public double[] getDisp() {
@@ -90,6 +97,7 @@ public class IconeArrete {
 
     /**
      * setter de disp
+     *
      * @param disp une disp
      */
     public void setDisp(double[] disp) {

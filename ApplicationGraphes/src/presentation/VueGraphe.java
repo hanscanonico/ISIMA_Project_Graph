@@ -42,16 +42,16 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
 //  la vueGauche
     private VueCentre vueCentre;
 // Map de iconesSommets avec pour clé les noms des sommets
-    private Map<String, IconeSommet> lesSommets;
+    private Map<String, IconeSommet> lesIconesSommets;
 // Map de iconeArrete avec pour clé la concatéantion du nom des 2 sommets de chaque extrémité
-    private Map<String, IconeArrete> lesArretes;
+    private Map<String, IconeArrete> lesIconesArretes;
 
     /**
      * Constructeur
      */
     public VueGraphe() {
-        lesSommets = new HashMap();
-        lesArretes = new HashMap();
+        lesIconesSommets = new HashMap();
+        lesIconesArretes = new HashMap();
         setLayout(new BorderLayout());
         mdl = new Modele();
         mdl.addObserver(this);
@@ -78,7 +78,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
      */
     private void randomPosition() {
         double temp;
-        for (IconeSommet ico : lesSommets.values()) {
+        for (IconeSommet ico : lesIconesSommets.values()) {
             IconeSommet som = ico;
             temp = (Math.random());
             som.getPos()[0] = temp;
@@ -114,39 +114,39 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
          this.icoArr.add(newIcoArr);
          }*/
         /*
-         lesSommets.clear();
+         lesIconesSommets.clear();
          IconeSommet a = new IconeSommet(ctrl,);
-         lesSommets.put("A", a);
+         lesIconesSommets.put("A", a);
          IconeSommet b = new IconeSommet(ctrl);
-         lesSommets.put("B", b);
+         lesIconesSommets.put("B", b);
          IconeSommet c = new IconeSommet(ctrl);
-         lesSommets.put("C", c);
+         lesIconesSommets.put("C", c);
          IconeSommet d = new IconeSommet(ctrl);
-         lesSommets.put("D", d);
+         lesIconesSommets.put("D", d);
          IconeSommet e = new IconeSommet(ctrl);
-         lesSommets.put("E", e);
+         lesIconesSommets.put("E", e);
 
                 
          IconeArrete ab=new IconeArrete(a, b);
-         lesArretes.put("AB", ab);
+         lesIconesArretes.put("AB", ab);
          IconeArrete ac=new IconeArrete(a, c);
-         lesArretes.put("AC", ac);
+         lesIconesArretes.put("AC", ac);
          IconeArrete bc=new IconeArrete(b, c);
-         lesArretes.put("BC", bc);
+         lesIconesArretes.put("BC", bc);
          IconeArrete ad=new IconeArrete(a, d);
-         lesArretes.put("AD", ad);
+         lesIconesArretes.put("AD", ad);
          IconeArrete bd=new IconeArrete(b, d);
-         lesArretes.put("BD", bd);
+         lesIconesArretes.put("BD", bd);
          IconeArrete cd=new IconeArrete(c, d);
-         lesArretes.put("CD", bd);
+         lesIconesArretes.put("CD", bd);
          IconeArrete ae=new IconeArrete(a, e);
-         lesArretes.put("AE", ae);
+         lesIconesArretes.put("AE", ae);
          IconeArrete be=new IconeArrete(b, e);
-         lesArretes.put("BE", be);
+         lesIconesArretes.put("BE", be);
          IconeArrete ce=new IconeArrete(c, e);
-         lesArretes.put("CE",ce);
+         lesIconesArretes.put("CE",ce);
          IconeArrete de=new IconeArrete(d, e);
-         lesArretes.put("DE", de);
+         lesIconesArretes.put("DE", de);
          */
     }
 
@@ -247,8 +247,11 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                 genererGraphe();
 
             } else if (tabInfos[0].equals(CHANGER_NOM)) {
-                lesSommets.get(tabInfos[1]).updateName(tabInfos[2]);
-                
+                IconeSommet aux = lesIconesSommets.get(tabInfos[1]);
+                aux.updateName(tabInfos[2]);
+                lesIconesSommets.put(tabInfos[2], aux);
+                lesIconesSommets.remove(tabInfos[1]);
+
             }
         }
     }
@@ -279,7 +282,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
      * Crée le panneau du centre
      */
     private Component panneauCentre() {
-        vueCentre = new VueCentre(ctrl, lesSommets, lesArretes);
+        vueCentre = new VueCentre(ctrl, lesIconesSommets, lesIconesArretes);
         return vueCentre;
     }
 

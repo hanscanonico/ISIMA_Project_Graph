@@ -15,6 +15,7 @@ public class Arrete {
 
     /**
      * getter de sommet1
+     *
      * @return le sommet1
      */
     public Sommet getSommet1() {
@@ -23,6 +24,7 @@ public class Arrete {
 
     /**
      * setter de sommet1
+     *
      * @param sommet1 un sommet
      */
     public void setSommet1(Sommet sommet1) {
@@ -31,6 +33,7 @@ public class Arrete {
 
     /**
      * getter de sommet2
+     *
      * @return le sommet2
      */
     public Sommet getSommet2() {
@@ -39,6 +42,7 @@ public class Arrete {
 
     /**
      * setter de sommet2
+     *
      * @param sommet2 un sommet
      */
     public void setSommet2(Sommet sommet2) {
@@ -47,6 +51,7 @@ public class Arrete {
 
     /**
      * Constructeur
+     *
      * @param sommet1 le sommet1
      * @param sommet2 le sommet2
      */
@@ -57,6 +62,7 @@ public class Arrete {
 
     /**
      * toString de arrête
+     *
      * @return la description du sommet
      */
     @Override

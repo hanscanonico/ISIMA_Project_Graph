@@ -17,7 +17,7 @@ import metier.IConstantes;
  *
  * @author Hans
  */
-public class VueGauche extends JPanel implements IConstantes{
+public class VueGauche extends JPanel implements IConstantes {
 
     /**
      * Constructeur
@@ -26,14 +26,12 @@ public class VueGauche extends JPanel implements IConstantes{
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(100, 600));
         setBorder(BorderFactory.createLineBorder(Color.black, 1));
-        add(nouveauBoutton(ctrl,"générer",GENERER),BorderLayout.NORTH);
+        add(nouveauBoutton(ctrl, "générer", GENERER), BorderLayout.NORTH);
     }
 
-    
-    
-    
-     /**
+    /**
      * Permet de créer un nouveau boutton
+     *
      * @param ctrl
      */
     private JButton nouveauBoutton(Controleur ctrl, String nom, String actionCommand) {
@@ -43,7 +41,7 @@ public class VueGauche extends JPanel implements IConstantes{
         jb.addActionListener(ctrl);
         return jb;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

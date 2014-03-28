@@ -8,7 +8,6 @@ import java.util.ArrayList;
  */
 public class Graphe {
 
-    
 //    la liste des sommet d'un graphe
     private ArrayList<Sommet> lesSommets;
 //    la liste des arrêtes d'un graphe
@@ -16,6 +15,7 @@ public class Graphe {
 
     /**
      * permet d'ajouter un sommet
+     *
      * @param s le sommet à ajouter
      */
     public void ajouterSommet(Sommet s) {
@@ -24,6 +24,7 @@ public class Graphe {
 
     /**
      * getter de lesSommets
+     *
      * @return la liste des sommets
      */
     public ArrayList<Sommet> getLesSommets() {
@@ -32,6 +33,7 @@ public class Graphe {
 
     /**
      * getter de lesArretes
+     *
      * @return la liste des arrêtes
      */
     public ArrayList<Arrete> getLesArretes() {
@@ -40,6 +42,7 @@ public class Graphe {
 
     /**
      * permet d'ajouter des sommets
+     *
      * @param sommets la liste des sommets
      */
     public void ajouterSommets(ArrayList<Sommet> sommets) {
@@ -48,6 +51,7 @@ public class Graphe {
 
     /**
      * permet de suppriemr un sommet
+     *
      * @param s le sommet à supprimer
      */
     public void supprimerSommet(Sommet s) {
@@ -56,6 +60,7 @@ public class Graphe {
 
     /**
      * permet d'ajouter une arrête
+     *
      * @param a l'arrête à ajouter
      */
     public void ajouterArrete(Arrete a) {
@@ -64,6 +69,7 @@ public class Graphe {
 
     /**
      * permet d'ajouter des arrêtes
+     *
      * @param arretes les arrêtes à ajouter
      */
     public void ajouterArretes(ArrayList<Arrete> arretes) {
@@ -72,6 +78,7 @@ public class Graphe {
 
     /**
      * permet de supprimer une arrête
+     *
      * @param a l'arrête à supprimer
      */
     public void supprimerArrete(Arrete a) {

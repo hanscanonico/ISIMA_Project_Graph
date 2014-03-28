@@ -8,6 +8,7 @@ import presentation.*;
  */
 public class Sommet {
 // le nom du sommet
+
     private String nom;
 // la valeur du sommet
     private int valeur;
@@ -16,11 +17,12 @@ public class Sommet {
      * Constructeur
      */
     public Sommet() {
-        this("Z",0);
+        this("Z", 0);
     }
 
     /**
      * getter de nom
+     *
      * @return le nom du sommet
      */
     public String getNom() {
@@ -29,6 +31,7 @@ public class Sommet {
 
     /**
      * setter de nom
+     *
      * @param nom le nom du sommet
      */
     public void setNom(String nom) {
@@ -52,11 +55,10 @@ public class Sommet {
      * @param val la valeur du sommet
      */
     public Sommet(String nom) {
-        this(nom,0);
+        this(nom, 0);
 
     }
-    
-    
+
     /**
      *
      * @return

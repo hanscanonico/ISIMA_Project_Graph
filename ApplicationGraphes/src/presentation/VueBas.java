@@ -23,6 +23,7 @@ public class VueBas extends JPanel implements IConstantes {
 
     /**
      * Constructeur
+     *
      * @param ctrl
      */
     public VueBas(Controleur ctrl) {
@@ -37,8 +38,9 @@ public class VueBas extends JPanel implements IConstantes {
         setPreferredSize(new Dimension(1100, 50));
     }
 
-     /**
+    /**
      * Permet de créer un nouveau boutton
+     *
      * @param ctrl
      */
     private JButton nouveauBoutton(Controleur ctrl, String nom, String actionCommand) {

@@ -121,6 +121,7 @@ public class IconeSommet extends JComponent {
 
         textField.addActionListener(ctrl);
         textField.addFocusListener(ctrl);
+        textField.addKeyListener(ctrl);
         textField.requestFocus();
         setVisible(true);
     }
@@ -225,13 +226,13 @@ public class IconeSommet extends JComponent {
     }
 
     public void updateName(String nouv) {
-        
+
         textField.setText(nouv);
         label.setText(nouv);
         label.setVisible(true);
         remove(textField);
         repaint();
-        add(label,BorderLayout.SOUTH);
+        add(label, BorderLayout.SOUTH);
         repaint();
 
     }
