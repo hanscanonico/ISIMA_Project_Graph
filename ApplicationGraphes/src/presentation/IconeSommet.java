@@ -131,7 +131,7 @@ public class IconeSommet extends JComponent {
         int t = IconeSommet.taille;
         // on active l'antialiasing
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(Color.ORANGE);
+        g2.setColor(Color.MAGENTA);
         g2.fillOval(origineX, origineY, IconeSommet.taille, IconeSommet.taille);
 
     }
