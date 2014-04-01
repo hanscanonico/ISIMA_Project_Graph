@@ -156,7 +156,7 @@ public class VueCentre extends javax.swing.JPanel {
         lesIconesSommets.put(nomSommet, icoS);
         add(icoS);
         System.out.println(icoS.getLocation());
-        icoS.setBounds(new Rectangle((int) x, (int) y, 50, 50));
+        icoS.setBounds(new Rectangle((int) x, (int) y, 40, 45));
         icoS.validate();
         icoS.getTextField().validate();
         icoS.getTextField().validate();

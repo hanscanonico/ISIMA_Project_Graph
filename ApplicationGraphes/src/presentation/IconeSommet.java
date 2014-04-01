@@ -14,6 +14,7 @@ import java.awt.RenderingHints;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -107,11 +108,12 @@ public class IconeSommet extends JComponent {
         this.nom = nom;
         label = new JLabel(nom);
         label.setVisible(false);
-        label.setPreferredSize(new Dimension(30, 30));
+ 
+        label.setPreferredSize(new Dimension(20, 25));
 
 
         textField = new JTextField(nom);
-        textField.setPreferredSize(new Dimension(30, 30));
+        textField.setPreferredSize(new Dimension(20, 25));
         add(label, BorderLayout.SOUTH);
         add(textField, BorderLayout.SOUTH);
 

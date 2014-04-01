@@ -15,6 +15,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import metier.IConstantes;
 import static metier.IConstantes.MODE_SOMMET;
@@ -71,6 +72,7 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
      */
     @Override
     public void mouseClicked(MouseEvent me) {
+        
         if (mode.equals(MODE_FLECHE)) {
 
             if (me.getComponent() instanceof JLabel) {
@@ -87,7 +89,8 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
      */
     @Override
     public void mousePressed(MouseEvent me) {
-        if (mode.equals(MODE_SOMMET)) {
+        me.getComponent().requestFocus();
+        if (mode.equals(MODE_SOMMET) && me.getComponent() instanceof JPanel) {
 
             mdl.addSommet(me.getX(), me.getY());
         }
