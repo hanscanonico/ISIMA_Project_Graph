@@ -8,13 +8,13 @@ package coucheApplicative;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
-import javax.swing.JTextField;
+import javax.swing.JLabel;
 import metier.Arrete;
 import metier.Graphe;
 import metier.IConstantes;
+import static metier.IConstantes.CHANGER_NOM;
 import static metier.IConstantes.SEPARATEUR;
 import metier.Sommet;
-import presentation.IconeArrete;
 
 /**
  *
@@ -22,32 +22,29 @@ import presentation.IconeArrete;
  */
 public class Modele extends Observable implements IConstantes {
 //  Le graphe
+
     private Graphe g;
 // Map de sommets avec pour clés leur nom
-    private Map<String,Sommet> lesSommets;
+    private Map<String, Sommet> lesSommets;
 // Map de iconeArrete avec pour clé la concatéantion du nom des 2 sommets de chaque extrémité
-    private Map<String,Arrete> lesArretes;
-    
-    public static int i=0;
-    
+    private Map<String, Arrete> lesArretes;
+    public static int i = 0;
+
     /**
      * Constructeur par défault
      */
-    public Modele()
-    {
-        lesSommets=new HashMap();
-        lesArretes=new HashMap();
-        g=new Graphe();
+    public Modele() {
+        lesSommets = new HashMap();
+        lesArretes = new HashMap();
+        g = new Graphe();
     }
-    
-     /**
+
+    /**
      * informe la vue de passer en mode sommet
      */
     public void modeSommet() {
         informer(MODE_SOMMET);
     }
-    
-    
 
     /**
      * informe la vue de passer en mode arrête
@@ -65,6 +62,7 @@ public class Modele extends Observable implements IConstantes {
 
     /**
      * informe la vue d'un changement
+     *
      * @param changement le changement
      */
     public void informer(String changement) {
@@ -77,23 +75,20 @@ public class Modele extends Observable implements IConstantes {
      * @param x la coordonnée x du curseur
      * @param y la coordonnée y du curseur
      */
-    public void addSommet(int x,int y) {
-        Sommet s=new Sommet(Integer.toString(i));
+    public void addSommet(int x, int y) {
+        Sommet s = new Sommet(Integer.toString(i));
         i++;
         lesSommets.put(s.getNom(), s);
-        informer(AJOUTER_SOMMET+SEPARATEUR+x+SEPARATEUR+y+SEPARATEUR+s.getNom());
+        informer(AJOUTER_SOMMET + SEPARATEUR + x + SEPARATEUR + y + SEPARATEUR + s.getNom());
     }
-    
-    
-    
-     /**
+
+    /**
      * génère des sommets
      */
-    public void generer()
-    {
+    public void generer() {
         lesSommets.clear();
-        
-        
+
+
         Sommet a = new Sommet("A", 1);
         lesSommets.put(a.getNom(), a);
         Sommet b = new Sommet("B", 2);
@@ -103,7 +98,7 @@ public class Modele extends Observable implements IConstantes {
         Sommet d = new Sommet("D", 3);
         lesSommets.put(d.getNom(), d);
         Sommet e = new Sommet("E", 3);
-        
+
         Arrete ab = new Arrete(a, b);
         lesArretes.put("AB", ab);
         Arrete ac = new Arrete(a, c);
@@ -124,8 +119,8 @@ public class Modele extends Observable implements IConstantes {
         lesArretes.put("CE", ce);
         Arrete de = new Arrete(d, e);
         lesArretes.put("DE", de);
-        
-        
+
+
         g.ajouterSommet(a);
         g.ajouterSommet(b);
         g.ajouterSommet(c);
@@ -141,17 +136,22 @@ public class Modele extends Observable implements IConstantes {
         g.ajouterArrete(be);
         g.ajouterArrete(ce);
         g.ajouterArrete(de);
-       
+
         informer(GENERER);
     }
 
-
     public void changeName(String nomCache, String nouv) {
-        this.lesSommets.get(nomCache).setNom(nouv);
-        lesSommets.put(nouv, lesSommets.get(nomCache));
+
+        Sommet tmp = this.lesSommets.get(nomCache);
+        tmp.setNom(nouv);
         lesSommets.remove(nomCache);
-        informer(CHANGER_NOM+SEPARATEUR+nomCache+SEPARATEUR+nouv);
+        lesSommets.put(nouv, tmp);
+
+
+        informer(CHANGER_NOM + SEPARATEUR + nomCache + SEPARATEUR + nouv);
     }
-    
-    
+
+    public void afficheTextfield(String nomCache) {
+        informer(AFFICHE_TEXTF + SEPARATEUR + nomCache);
+    }
 }

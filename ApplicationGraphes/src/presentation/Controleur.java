@@ -14,8 +14,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 import metier.IConstantes;
+import static metier.IConstantes.MODE_SOMMET;
 
 /**
  *
@@ -69,6 +71,13 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
      */
     @Override
     public void mouseClicked(MouseEvent me) {
+        if (mode.equals(MODE_FLECHE)) {
+
+            if (me.getComponent() instanceof JLabel) {
+                JLabel tmp = (JLabel) me.getComponent();
+                mdl.afficheTextfield(tmp.getText());
+            }
+        }
     }
 
     /**
@@ -113,17 +122,23 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
 
     @Override
     public void focusGained(FocusEvent e) {
-        JTextField temp = (JTextField) e.getComponent();
-        nomCache = temp.getText();
-        System.out.println(nomCache);
+        if (e.getComponent() instanceof JTextField) {
+            JTextField temp = (JTextField) e.getComponent();
+            nomCache = temp.getText();
+            System.out.println(nomCache);
+        }
+
     }
 
     @Override
     public void focusLost(FocusEvent e) {
-        JTextField temp = (JTextField) e.getComponent();
-        String nouv = temp.getText();
-        mdl.changeName(nomCache, nouv);
-        System.out.println(nouv);
+        if (e.getComponent() instanceof JTextField) {
+            JTextField temp = (JTextField) e.getComponent();
+            String nouv = temp.getText();
+            mdl.changeName(nomCache, nouv);
+            System.out.println(nouv);
+        }
+
 
     }
 
@@ -134,7 +149,7 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getComponent() instanceof JTextField && e.getKeyCode()==KeyEvent.VK_ENTER) {
+        if (e.getComponent() instanceof JTextField && e.getKeyCode() == KeyEvent.VK_ENTER) {
             JTextField temp = (JTextField) e.getComponent();
             temp.setFocusable(false);
             temp.setFocusable(true);

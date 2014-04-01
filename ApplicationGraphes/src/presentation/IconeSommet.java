@@ -7,16 +7,12 @@ package presentation;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -124,6 +120,7 @@ public class IconeSommet extends JComponent {
         textField.addKeyListener(ctrl);
         textField.selectAll();
         textField.requestFocus();
+        label.addMouseListener(ctrl);
         setVisible(true);
     }
 
@@ -236,5 +233,15 @@ public class IconeSommet extends JComponent {
         add(label, BorderLayout.SOUTH);
         repaint();
 
+    }
+
+    void modeTextField() {
+
+        remove(label);
+        repaint();
+        add(textField, BorderLayout.SOUTH);
+        textField.selectAll();
+        textField.requestFocus();
+        repaint();
     }
 }

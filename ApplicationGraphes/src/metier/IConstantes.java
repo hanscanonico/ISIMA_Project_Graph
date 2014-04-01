@@ -43,5 +43,8 @@ public interface IConstantes {
      * Constante generer
      */
     final static String GENERER = "generer";
+    
     final static String CHANGER_NOM = "changer de nom";
+    
+    final static String AFFICHE_TEXTF= "afficher textfield";
 }
