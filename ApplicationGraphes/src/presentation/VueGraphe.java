@@ -145,6 +145,11 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
             else if (tabInfos[0].equals(AFFICHE_TEXTF)) {
                 IconeSommet aux = lesIconesSommets.get(tabInfos[1]);
                 aux.modeTextField();
+                aux.validate();
+            }
+            else if (tabInfos[0].equals(MODE_SELECTION_SOMMET)) {
+                IconeSommet aux = lesIconesSommets.get(tabInfos[1]);
+                aux.modeSelection();
             }
         }
     }

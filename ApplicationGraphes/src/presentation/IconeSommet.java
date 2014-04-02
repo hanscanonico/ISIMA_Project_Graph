@@ -35,7 +35,7 @@ public class IconeSommet extends JComponent {
     private JTextField textField;
     private JLabel label;
     private String nom;
-
+    private Color couleur;
     public static int getTaille() {
         return taille;
     }
@@ -123,6 +123,13 @@ public class IconeSommet extends JComponent {
         textField.selectAll();
         textField.requestFocus();
         label.addMouseListener(ctrl);
+        
+        
+        this.addMouseListener(ctrl);
+        
+        
+        couleur=Color.MAGENTA;
+        setEnabled(true);
         setVisible(true);
     }
 
@@ -133,7 +140,7 @@ public class IconeSommet extends JComponent {
         int t = IconeSommet.taille;
         // on active l'antialiasing
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(Color.MAGENTA);
+        g2.setColor(couleur);
         g2.fillOval(origineX, origineY, IconeSommet.taille, IconeSommet.taille);
 
     }
@@ -253,4 +260,13 @@ public class IconeSommet extends JComponent {
         textField.requestFocus();
         repaint();
     }
+    
+    
+    
+    public void modeSelection()
+    {
+       couleur=Color.BLACK; 
+       repaint();
+    }
+    
 }

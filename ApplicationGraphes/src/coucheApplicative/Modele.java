@@ -154,4 +154,9 @@ public class Modele extends Observable implements IConstantes {
     public void afficheTextfield(String nomCache) {
         informer(AFFICHE_TEXTF + SEPARATEUR + nomCache);
     }
+    
+    public void modeSelectionSommet(String nomCache)
+    {
+        informer(MODE_SELECTION_SOMMET + SEPARATEUR + nomCache);
+    }
 }

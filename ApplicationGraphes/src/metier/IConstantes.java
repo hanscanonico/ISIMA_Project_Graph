@@ -47,4 +47,6 @@ public interface IConstantes {
     final static String CHANGER_NOM = "changer de nom";
     
     final static String AFFICHE_TEXTF= "afficher textfield";
+    
+    final static String MODE_SELECTION_SOMMET="mode selection sommet";
 }

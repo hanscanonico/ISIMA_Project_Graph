@@ -79,6 +79,7 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
                 JLabel tmp = (JLabel) me.getComponent();
                 mdl.afficheTextfield(tmp.getText());
             }
+           
         }
     }
 
@@ -94,6 +95,10 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
 
             mdl.addSommet(me.getX(), me.getY());
         }
+         if (me.getComponent() instanceof IconeSommet) {
+                 IconeSommet tmp=(IconeSommet) me.getComponent();
+                 mdl.modeSelectionSommet(tmp.getLabel().getText());
+            }
     }
 
     /**
