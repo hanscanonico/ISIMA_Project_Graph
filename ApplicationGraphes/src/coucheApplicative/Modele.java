@@ -159,4 +159,10 @@ public class Modele extends Observable implements IConstantes {
     {
         informer(MODE_SELECTION_SOMMET + SEPARATEUR + nomCache);
     }
+    
+    
+     public void modeNonSelectionSommet(String nomCache)
+    {
+        informer(MODE_NON_SELECTION_SOMMET + SEPARATEUR + nomCache);
+    }
 }

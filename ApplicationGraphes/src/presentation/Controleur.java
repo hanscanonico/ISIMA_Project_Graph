@@ -31,7 +31,7 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
 //  le mode
     private String mode = MODE_FLECHE;
     private String nomCache;
-
+    
     /**
      * Constructeur
      *
@@ -95,10 +95,7 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
 
             mdl.addSommet(me.getX(), me.getY());
         }
-         if (me.getComponent() instanceof IconeSommet) {
-                 IconeSommet tmp=(IconeSommet) me.getComponent();
-                 mdl.modeSelectionSommet(tmp.getLabel().getText());
-            }
+
     }
 
     /**
@@ -139,7 +136,11 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
             JTextField temp = (JTextField) e.getComponent();
             nomCache = temp.getText();
             System.out.println(nomCache);
-        }
+        } 
+         if (e.getComponent() instanceof IconeSommet) {
+                 IconeSommet tmp=(IconeSommet) e.getComponent();
+                 mdl.modeSelectionSommet(tmp.getLabel().getText());
+         }
 
     }
 
@@ -156,7 +157,10 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
             mdl.changeName(nomCache, nouv);
             System.out.println(nouv);
         }
-
+        else if (e.getComponent() instanceof IconeSommet) {
+          IconeSommet tmp=(IconeSommet) e.getComponent();
+          mdl.modeNonSelectionSommet(tmp.getLabel().getText());
+        }
 
     }
 

@@ -125,8 +125,9 @@ public class IconeSommet extends JComponent {
         label.addMouseListener(ctrl);
         
         
+      
+        this.addFocusListener(ctrl);
         this.addMouseListener(ctrl);
-        
         
         couleur=Color.MAGENTA;
         setEnabled(true);
@@ -135,7 +136,7 @@ public class IconeSommet extends JComponent {
 
     @Override
     public void paintComponent(Graphics g) {
-
+       
         Graphics2D g2 = (Graphics2D) g;
         int t = IconeSommet.taille;
         // on active l'antialiasing
@@ -269,4 +270,9 @@ public class IconeSommet extends JComponent {
        repaint();
     }
     
+    public void modeNonSelection()
+    {
+       couleur=Color.MAGENTA; 
+       repaint();
+    }
 }

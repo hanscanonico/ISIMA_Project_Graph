@@ -49,4 +49,6 @@ public interface IConstantes {
     final static String AFFICHE_TEXTF= "afficher textfield";
     
     final static String MODE_SELECTION_SOMMET="mode selection sommet";
+    
+    final static String MODE_NON_SELECTION_SOMMET="mode non selection sommet";
 }
