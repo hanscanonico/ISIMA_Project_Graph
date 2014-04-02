@@ -60,7 +60,6 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
         add(panneauCentre(), BorderLayout.CENTER);
         add(panneauGauche(), BorderLayout.WEST);
         add(panneauBas(), BorderLayout.SOUTH);
-
         this.setVisible(true);
     }
 

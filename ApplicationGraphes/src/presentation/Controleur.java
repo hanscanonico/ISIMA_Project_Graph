@@ -124,6 +124,11 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
     }
 
     @Override
+    /**
+     * Quand un text field recoit le focus
+     *
+     * @param e l'évènement
+     */
     public void focusGained(FocusEvent e) {
         if (e.getComponent() instanceof JTextField) {
             JTextField temp = (JTextField) e.getComponent();
@@ -134,6 +139,11 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
     }
 
     @Override
+     /**
+     * Quand un text field perd le focus
+     *
+     * @param e l'évènement
+     */
     public void focusLost(FocusEvent e) {
         if (e.getComponent() instanceof JTextField) {
             JTextField temp = (JTextField) e.getComponent();
@@ -145,12 +155,13 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
 
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
+     /**
+     * Quand une touche du claiver est pressée
+     *
+     * @param e l'évènement
+     */
     public void keyPressed(KeyEvent e) {
         if (e.getComponent() instanceof JTextField && e.getKeyCode() == KeyEvent.VK_ENTER) {
             JTextField temp = (JTextField) e.getComponent();
@@ -160,7 +171,13 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void keyTyped(KeyEvent ke) {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void keyReleased(KeyEvent ke) {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

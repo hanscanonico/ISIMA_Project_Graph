@@ -224,7 +224,11 @@ public class IconeSommet extends JComponent {
         hash = 79 * hash;
         return hash;
     }
-
+     /**
+     * met à jour le nom du sommet
+     *
+     * @param nouv le nouveau nom du sommet
+     */
     public void updateName(String nouv) {
 
         textField.setText(nouv);
@@ -236,7 +240,10 @@ public class IconeSommet extends JComponent {
         repaint();
 
     }
-
+     /**
+     * affiche un textfield
+     *
+     */
     void modeTextField() {
 
         remove(label);
