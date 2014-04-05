@@ -74,6 +74,7 @@ public class VueCentre extends javax.swing.JPanel {
     /**
      * Trace des sommets
      *
+     * @param lesSommets
      * @param lesIconesSommets
      * @param g2
      */
@@ -155,24 +156,12 @@ public class VueCentre extends javax.swing.JPanel {
 
         lesIconesSommets.put(nomSommet, icoS);
         add(icoS);
-        System.out.println(icoS.getLocation());
         icoS.setBounds(new Rectangle((int) x, (int) y, 20, 45));
         icoS.validate();
-        icoS.getTextField().validate();
+        icoS.requestFocus();
         icoS.getTextField().validate();
         icoS.getTextField().requestFocus();
-        System.out.println(icoS.getTextField().getSize());
-        System.out.println(icoS.getTextField().getLocation());
-        /* SpringLayout sp=new SpringLayout();
-        
-        
-        
-         SpringLayout.Constraints labelCons =
-         sp.getConstraints(icoS);
-         labelCons.setX(Spring.constant((int)x));
-         labelCons.setY(Spring.constant((int)y));
-         */
-
+  
         repaint();
 
     }

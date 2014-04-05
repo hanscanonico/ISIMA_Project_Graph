@@ -44,11 +44,23 @@ public interface IConstantes {
      */
     final static String GENERER = "generer";
     
+    /**
+     * constante changer de nom
+     */
     final static String CHANGER_NOM = "changer de nom";
     
+    /**
+     * constante afficher texteField
+     */
     final static String AFFICHE_TEXTF= "afficher textfield";
     
+    /**
+     * constante mode selection sommet
+     */
     final static String MODE_SELECTION_SOMMET="mode selection sommet";
     
+    /**
+     * constante mode non selection sommet
+     */
     final static String MODE_NON_SELECTION_SOMMET="mode non selection sommet";
 }

@@ -94,7 +94,16 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
         if (mode.equals(MODE_SOMMET) && me.getComponent() instanceof JPanel) {
 
             mdl.addSommet(me.getX(), me.getY());
-        }
+        } 
+//        if (me.getComponent() instanceof IconeSommet) {
+//         
+//         
+//            IconeSommet tmp=(IconeSommet) me.getComponent();
+//            nomCache = tmp.getTextField().getText();
+//            mdl.modeSelectionSommet(tmp.getLabel().getText());
+//            System.out.println(nomCache);
+//         }
+
 
     }
 
@@ -125,6 +134,10 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
     public void mouseExited(MouseEvent me) {
     }
 
+    /**
+     *
+     * @param e
+     */
     @Override
     /**
      * Quand un text field recoit le focus
@@ -132,18 +145,26 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
      * @param e l'évènement
      */
     public void focusGained(FocusEvent e) {
+        
         if (e.getComponent() instanceof JTextField) {
+            
             JTextField temp = (JTextField) e.getComponent();
             nomCache = temp.getText();
             System.out.println(nomCache);
         } 
          if (e.getComponent() instanceof IconeSommet) {
                  IconeSommet tmp=(IconeSommet) e.getComponent();
+                 nomCache = tmp.getTextField().getText();
+                 System.err.println("focus gained de "+nomCache);
                  mdl.modeSelectionSommet(tmp.getLabel().getText());
          }
 
     }
 
+    /**
+     *
+     * @param e
+     */
     @Override
      /**
      * Quand un text field perd le focus
@@ -155,16 +176,19 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
             JTextField temp = (JTextField) e.getComponent();
             String nouv = temp.getText();
             mdl.changeName(nomCache, nouv);
-            System.out.println(nouv);
         }
         else if (e.getComponent() instanceof IconeSommet) {
           IconeSommet tmp=(IconeSommet) e.getComponent();
+          System.err.println("focus lost de "+tmp.getLabel().getText());
           mdl.modeNonSelectionSommet(tmp.getLabel().getText());
         }
 
     }
 
-
+    /**
+     *
+     * @param e
+     */
     @Override
      /**
      * Quand une touche du claiver est pressée
@@ -179,11 +203,19 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
         }
     }
 
+    /**
+     *
+     * @param ke
+     */
     @Override
     public void keyTyped(KeyEvent ke) {
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @param ke
+     */
     @Override
     public void keyReleased(KeyEvent ke) {
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

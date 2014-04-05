@@ -28,6 +28,10 @@ public class Modele extends Observable implements IConstantes {
     private Map<String, Sommet> lesSommets;
 // Map de iconeArrete avec pour clé la concatéantion du nom des 2 sommets de chaque extrémité
     private Map<String, Arrete> lesArretes;
+
+    /**
+     *
+     */
     public static int i = 0;
 
     /**
@@ -140,6 +144,11 @@ public class Modele extends Observable implements IConstantes {
         informer(GENERER);
     }
 
+    /**
+     *
+     * @param nomCache
+     * @param nouv
+     */
     public void changeName(String nomCache, String nouv) {
 
         Sommet tmp = this.lesSommets.get(nomCache);
@@ -151,17 +160,28 @@ public class Modele extends Observable implements IConstantes {
         informer(CHANGER_NOM + SEPARATEUR + nomCache + SEPARATEUR + nouv);
     }
 
+    /**
+     *
+     * @param nomCache
+     */
     public void afficheTextfield(String nomCache) {
         informer(AFFICHE_TEXTF + SEPARATEUR + nomCache);
     }
     
+    /**
+     *
+     * @param nomCache
+     */
     public void modeSelectionSommet(String nomCache)
     {
         informer(MODE_SELECTION_SOMMET + SEPARATEUR + nomCache);
     }
-    
-    
-     public void modeNonSelectionSommet(String nomCache)
+
+    /**
+     *
+     * @param nomCache
+     */
+    public void modeNonSelectionSommet(String nomCache)
     {
         informer(MODE_NON_SELECTION_SOMMET + SEPARATEUR + nomCache);
     }

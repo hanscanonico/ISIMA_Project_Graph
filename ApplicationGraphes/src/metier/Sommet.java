@@ -52,7 +52,6 @@ public class Sommet {
     /**
      *
      * @param nom le nom du sommet
-     * @param val la valeur du sommet
      */
     public Sommet(String nom) {
         this(nom, 0);
@@ -72,7 +71,7 @@ public class Sommet {
     }
 
     /**
-     *
+     * getter de valeur
      * @return
      */
     public int getValeur() {
@@ -80,7 +79,7 @@ public class Sommet {
     }
 
     /**
-     *
+     * setter de valeur
      * @param valeur
      */
     public void setValeur(int valeur) {

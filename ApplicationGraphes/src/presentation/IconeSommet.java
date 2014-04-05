@@ -23,7 +23,11 @@ import javax.swing.SwingConstants;
 public class IconeSommet extends JComponent {
 
 //  la taille d'un iconeSommet
-    public static int taille = 20;
+
+    /**
+     *
+     */
+        public static int taille = 20;
 //  l'origineX d'un iconeSommet
     private int origineX;
 //  l'origineY d'un iconeSommet
@@ -36,26 +40,51 @@ public class IconeSommet extends JComponent {
     private JLabel label;
     private String nom;
     private Color couleur;
+
+    /**
+     * retourne la taille d'un icone Sommet
+     * @return
+     */
     public static int getTaille() {
         return taille;
     }
 
+    /**
+     * retoure le label
+     * @return le label
+     */
     public JLabel getLabel() {
         return label;
     }
 
+    /**
+     * setter de label
+     * @param label
+     */
     public void setLabel(JLabel label) {
         this.label = label;
     }
 
+    /**
+     * getter de nom
+     * @return nom
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * setter de nom
+     * @param nom
+     */
     public void setNom(String nom) {
         this.nom = nom;
     }
 
+    /**
+     * getter du textfield
+     * @return
+     */
     public JTextField getTextField() {
         return textField;
     }
@@ -99,7 +128,11 @@ public class IconeSommet extends JComponent {
     /**
      * Constructeur
      *
-     * @param monSommet le sommet
+     * @param ctrl
+     * @param pos
+     * @param x
+     * @param y
+     * @param nom
      */
     public IconeSommet(Controleur ctrl, double[] pos, int x, int y, String nom) {
         setLayout(new BorderLayout());
@@ -120,8 +153,10 @@ public class IconeSommet extends JComponent {
         textField.addActionListener(ctrl);
         textField.addFocusListener(ctrl);
         textField.addKeyListener(ctrl);
-        textField.selectAll();
-        textField.requestFocus();
+//        textField.selectAll();
+//        textField.validate();
+//        textField.requestFocus();
+        
         label.addMouseListener(ctrl);
         
         
@@ -134,9 +169,13 @@ public class IconeSommet extends JComponent {
         setVisible(true);
     }
 
+    /**
+     *
+     * @param g
+     */
     @Override
     public void paintComponent(Graphics g) {
-       
+        System.out.println("repaint de "+getTextField().getText());
         Graphics2D g2 = (Graphics2D) g;
         int t = IconeSommet.taille;
         // on active l'antialiasing
@@ -261,18 +300,31 @@ public class IconeSommet extends JComponent {
         textField.requestFocus();
         repaint();
     }
-    
-    
-    
+
+    /**
+     *
+     */
     public void modeSelection()
     {
+         System.out.println("mode selection de"+getTextField().getText());
        couleur=Color.BLACK; 
-       repaint();
+
+       update(getGraphics());
+       revalidate();
+        repaint();
     }
     
+    /**
+     *
+     */
     public void modeNonSelection()
     {
+        System.out.println("mode non selection de"+getTextField().getText());
+ 
        couleur=Color.MAGENTA; 
-       repaint();
+
+        update(getGraphics());
+        revalidate();
+        repaint();
     }
 }

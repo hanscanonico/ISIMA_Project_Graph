@@ -21,6 +21,7 @@ public class VueGauche extends JPanel implements IConstantes {
 
     /**
      * Constructeur
+     * @param ctrl
      */
     public VueGauche(Controleur ctrl) {
         setLayout(new BorderLayout());

@@ -26,7 +26,6 @@ public class Fenetre extends JFrame implements IConstantes {
     /**
      * Constructeur
      *
-     * @param g le graphe
      */
     public Fenetre() {
 
