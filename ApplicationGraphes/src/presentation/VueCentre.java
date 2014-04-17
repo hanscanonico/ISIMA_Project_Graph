@@ -8,6 +8,7 @@ package presentation;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Line2D;
 import static java.awt.image.ImageObserver.WIDTH;
@@ -134,18 +135,14 @@ public class VueCentre extends javax.swing.JPanel {
 
     void ajouterArrete(IconeArrete nouv) {
         
-        
-       
-        nouv.setBounds(new Rectangle((int) 0, (int) 0, 20, 45));
-        nouv.validate();
+        nouv.setLocation(new Point(10, 10));
+        nouv.setBounds(0, 0, 500, 500);
+
         add(nouv);
-   
- 
         repaint();
     }
     
 
-    
 
 
 }

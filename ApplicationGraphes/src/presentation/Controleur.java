@@ -126,10 +126,13 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
      */
     @Override
     public void mouseReleased(MouseEvent me) {
-        if (mode.equals(MODE_ARRETE) && lastEntered instanceof IconeSommet) {
+        if (mode.equals(MODE_ARRETE) && lastEntered instanceof IconeSommet && depart!=null) {
 
             arrive = (IconeSommet) lastEntered;
             mdl.addArrete(depart,arrive);
+        
+        depart=null;
+        arrive=null;
         }
     }
 

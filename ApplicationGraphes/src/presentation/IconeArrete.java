@@ -78,10 +78,9 @@ public class IconeArrete extends JComponent {
 
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        setVisible(true);
-        setLocation(new Point(10, 10));
-         setBounds(0, 0, 500, 500);
+        
+        //setVisible(true);
+
         Graphics2D g2 = (Graphics2D) g;
         int x1, x2, y1, y2;
         x1 = som1.getCentreX();
@@ -90,9 +89,8 @@ public class IconeArrete extends JComponent {
         y2 = som2.getCentreY();
 
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g.setColor(Color.CYAN);
-        g2.draw(new Line2D.Double(x1, y1, x2, y2));
-        g.drawLine(x1, y1, x2, y2);
+        g2.setColor(Color.lightGray);
+        g2.drawLine(x1, y1, x2, y2);
 
     }
 }
