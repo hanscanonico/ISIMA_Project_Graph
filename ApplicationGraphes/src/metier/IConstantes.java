@@ -63,4 +63,9 @@ public interface IConstantes {
      * constante mode non selection sommet
      */
     final static String MODE_NON_SELECTION_SOMMET="mode non selection sommet";
+    
+    
+    final static String AJOUTER_ARRETE="ajout de arrete";
+    
+
 }

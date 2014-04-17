@@ -5,16 +5,18 @@
  */
 package coucheApplicative;
 
+import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
-import javax.swing.JLabel;
 import metier.Arrete;
 import metier.Graphe;
 import metier.IConstantes;
 import static metier.IConstantes.CHANGER_NOM;
+import static metier.IConstantes.MODE_NON_SELECTION_SOMMET;
 import static metier.IConstantes.SEPARATEUR;
 import metier.Sommet;
+import presentation.IconeSommet;
 
 /**
  *
@@ -28,7 +30,6 @@ public class Modele extends Observable implements IConstantes {
     private Map<String, Sommet> lesSommets;
 // Map de iconeArrete avec pour clé la concatéantion du nom des 2 sommets de chaque extrémité
     private Map<String, Arrete> lesArretes;
-
     /**
      *
      */
@@ -151,13 +152,19 @@ public class Modele extends Observable implements IConstantes {
      */
     public void changeName(String nomCache, String nouv) {
 
+        //evite d'avoir 2 sommet ayant le meme nom
+        if (this.lesSommets.containsKey(nouv)) {
+            nouv = nomCache;
+        }
+
         Sommet tmp = this.lesSommets.get(nomCache);
         tmp.setNom(nouv);
         lesSommets.remove(nomCache);
         lesSommets.put(nouv, tmp);
-
-
         informer(CHANGER_NOM + SEPARATEUR + nomCache + SEPARATEUR + nouv);
+
+
+
     }
 
     /**
@@ -167,13 +174,12 @@ public class Modele extends Observable implements IConstantes {
     public void afficheTextfield(String nomCache) {
         informer(AFFICHE_TEXTF + SEPARATEUR + nomCache);
     }
-    
+
     /**
      *
      * @param nomCache
      */
-    public void modeSelectionSommet(String nomCache)
-    {
+    public void modeSelectionSommet(String nomCache) {
         informer(MODE_SELECTION_SOMMET + SEPARATEUR + nomCache);
     }
 
@@ -181,8 +187,17 @@ public class Modele extends Observable implements IConstantes {
      *
      * @param nomCache
      */
-    public void modeNonSelectionSommet(String nomCache)
-    {
+    public void modeNonSelectionSommet(String nomCache) {
         informer(MODE_NON_SELECTION_SOMMET + SEPARATEUR + nomCache);
+    }
+
+
+    public void addArrete(IconeSommet depart, IconeSommet arrive) {
+        Sommet s1,s2;
+        s1=lesSommets.get(depart.getNom());
+        s2=lesSommets.get(arrive.getNom());
+        Arrete nouv = new Arrete(s1, s2);
+        lesArretes.put(depart.getNom()+arrive.getNom(), nouv);
+        informer(AJOUTER_ARRETE + SEPARATEUR + depart.getNom()+ SEPARATEUR + arrive.getNom());
     }
 }

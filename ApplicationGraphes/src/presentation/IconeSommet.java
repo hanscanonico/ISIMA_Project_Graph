@@ -107,23 +107,7 @@ public class IconeSommet extends JComponent {
         this.pos = pos;
     }
 
-    /**
-     * getter de disp
-     *
-     * @return la disp
-     */
-    public double[] getDisp() {
-        return disp;
-    }
 
-    /**
-     * setter de disp
-     *
-     * @param disp la disp
-     */
-    public void setDisp(double[] disp) {
-        this.disp = disp;
-    }
 
     /**
      * Constructeur
@@ -137,13 +121,14 @@ public class IconeSommet extends JComponent {
     public IconeSommet(Controleur ctrl, double[] pos, int x, int y, String nom) {
         setLayout(new BorderLayout());
         setLocation(new Point(x, y));
+        setOrigineX(x);
+        setOrigineY(y);
 
         this.nom = nom;
         label = new JLabel(nom);
         label.setVisible(false);
  
         label.setPreferredSize(new Dimension(20, 25));
-
 
         textField = new JTextField(nom);
         textField.setPreferredSize(new Dimension(20, 25));
@@ -152,15 +137,9 @@ public class IconeSommet extends JComponent {
 
         textField.addActionListener(ctrl);
         textField.addFocusListener(ctrl);
-        textField.addKeyListener(ctrl);
-//        textField.selectAll();
-//        textField.validate();
-//        textField.requestFocus();
-        
+        textField.addKeyListener(ctrl);        
         label.addMouseListener(ctrl);
-        
-        
-      
+
         this.addFocusListener(ctrl);
         this.addMouseListener(ctrl);
         
@@ -181,7 +160,8 @@ public class IconeSommet extends JComponent {
         // on active l'antialiasing
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(couleur);
-        g2.fillOval(origineX, origineY, IconeSommet.taille, IconeSommet.taille);
+        g2.fillOval(0, 0, IconeSommet.taille, IconeSommet.taille);
+        
 
     }
 
@@ -217,7 +197,7 @@ public class IconeSommet extends JComponent {
      *
      * @param origineX l'origineX
      */
-    public void setOrigineX(int origineX) {
+    private void setOrigineX(int origineX) {
         this.origineX = origineX;
     }
 
@@ -235,7 +215,7 @@ public class IconeSommet extends JComponent {
      *
      * @param origineY l'origineY
      */
-    public void setOrigineY(int origineY) {
+    private void setOrigineY(int origineY) {
         this.origineY = origineY;
     }
 

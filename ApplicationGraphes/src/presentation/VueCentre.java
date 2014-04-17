@@ -5,23 +5,15 @@
  */
 package presentation;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.RenderingHints;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.awt.geom.Line2D;
+import static java.awt.image.ImageObserver.WIDTH;
 import java.util.Map;
-import java.util.Set;
 import javax.swing.BorderFactory;
-import javax.swing.JTextField;
-import javax.swing.Spring;
-import javax.swing.SpringLayout;
-import metier.Graphe;
+
 
 /**
  *
@@ -34,23 +26,6 @@ public class VueCentre extends javax.swing.JPanel {
 // Map de iconeArrete avec pour clé la concatéantion du nom des 2 sommets de chaque extrémité
     private Map<String, IconeArrete> lesArretes;
 
-//    
-//    public void paintComponent(Graphics g) {
-//
-//        Graphics2D g2 = (Graphics2D) g;
-//        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-//                RenderingHints.VALUE_ANTIALIAS_ON);
-//
-//        g2.setColor(Color.WHITE);
-//        g2.fillRect(0, 0, this.getWidth(), this.getHeight());
-//        g2.setColor(Color.red);
-//
-//        // g.drawOval(50, 50, 50, 50);
-//       // adaptationDesPositions(lesIconesSommets);
-//       /* tracerArretes(lesArretes,g2);
-//        tracerSommets(lesIconesSommets,g2);*/
-//
-//    }
     /**
      * Constructeur
      *
@@ -59,6 +34,8 @@ public class VueCentre extends javax.swing.JPanel {
      * @param lesArretes
      */
     public VueCentre(Controleur ctrl, Map<String, IconeSommet> lesSommets, Map<String, IconeArrete> lesArretes) {
+        
+
 
         setBackground(Color.white);
 
@@ -70,7 +47,6 @@ public class VueCentre extends javax.swing.JPanel {
         this.lesArretes = lesArretes;
     }
 
-  
     /**
      * Trace des sommets
      *
@@ -107,19 +83,7 @@ public class VueCentre extends javax.swing.JPanel {
         }
     }
 
-    /**
-     * Permet d'adapter les positions
-     *
-     * @param lesIconesSommets
-     */
-    public void adaptationDesPositions(Map<String, IconeSommet> lesSommets) {
-        int x, y, t = IconeSommet.taille * 2;
-        for (IconeSommet icoS : lesSommets.values()) {
-            IconeSommet som = icoS;
-            som.setOrigineX((int) (som.getPos()[0] * (getWidth())));
-            som.setOrigineY((int) (som.getPos()[1] * (getHeight())));
-        }
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -161,8 +125,27 @@ public class VueCentre extends javax.swing.JPanel {
         icoS.requestFocus();
         icoS.getTextField().validate();
         icoS.getTextField().requestFocus();
-  
+
         repaint();
 
     }
+
+
+
+    void ajouterArrete(IconeArrete nouv) {
+        
+        
+       
+        nouv.setBounds(new Rectangle((int) 0, (int) 0, 20, 45));
+        nouv.validate();
+        add(nouv);
+   
+ 
+        repaint();
+    }
+    
+
+    
+
+
 }

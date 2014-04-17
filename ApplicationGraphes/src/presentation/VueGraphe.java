@@ -25,6 +25,7 @@ import javax.swing.JPanel;
 import metier.IConstantes;
 import static metier.IConstantes.CHANGER_NOM;
 import static metier.IConstantes.GENERER;
+import static metier.IConstantes.MODE_NON_SELECTION_SOMMET;
 
 /**
  *
@@ -79,8 +80,6 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
 
     }
 
-
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -116,44 +115,57 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     public void update(Observable objetObserve, Object uneInformation) {
         if (objetObserve instanceof Modele) {
             String tabInfos[] = uneInformation.toString().split(SEPARATEUR);
-
-            if (tabInfos[0].equals(MODE_SOMMET)) {
-                modeSommet();
-            } else if (tabInfos[0].equals(MODE_ARRETE)) {
-                modeArrete();
-            } else if (tabInfos[0].equals(MODE_FLECHE)) {
-                modeFleche();
-            } else if (tabInfos[0].equals(AJOUTER_SOMMET)) {
-                double x = Double.parseDouble(tabInfos[1]);
-                double y = Double.parseDouble(tabInfos[2]);
-                String nomSommet = tabInfos[3];
-                
-                vueCentre.ajouterSommet(nomSommet, x, y, ctrl);
-
-
-            } else if (tabInfos[0].equals(GENERER)) {
-                genererGraphe();
-
-            } else if (tabInfos[0].equals(CHANGER_NOM)) {
-                IconeSommet aux = lesIconesSommets.get(tabInfos[1]);
-                aux.updateName(tabInfos[2]);
-                lesIconesSommets.remove(tabInfos[1]);
-                lesIconesSommets.put(tabInfos[2], aux);
-                
-
-            }
-            else if (tabInfos[0].equals(AFFICHE_TEXTF)) {
-                IconeSommet aux = lesIconesSommets.get(tabInfos[1]);
-                aux.modeTextField();
-                aux.validate();
-            }
-            else if (tabInfos[0].equals(MODE_SELECTION_SOMMET)) {
-                IconeSommet aux = lesIconesSommets.get(tabInfos[1]);
-                aux.modeSelection();
-            }
-            else if (tabInfos[0].equals(MODE_NON_SELECTION_SOMMET)) {
-                IconeSommet aux = lesIconesSommets.get(tabInfos[1]);
-                aux.modeNonSelection();
+            switch (tabInfos[0]) {
+                case MODE_SOMMET:
+                    modeSommet();
+                    break;
+                case MODE_ARRETE:
+                    modeArrete();
+                    break;
+                case MODE_FLECHE:
+                    modeFleche();
+                    break;
+                case AJOUTER_SOMMET:
+                    double x = Double.parseDouble(tabInfos[1]);
+                    double y = Double.parseDouble(tabInfos[2]);
+                    String nomSommet = tabInfos[3];
+                    vueCentre.ajouterSommet(nomSommet, x, y, ctrl);
+                    break;
+                case GENERER:
+                    genererGraphe();
+                    break;
+                case CHANGER_NOM: {
+                    IconeSommet aux = lesIconesSommets.get(tabInfos[1]);
+                    aux.updateName(tabInfos[2]);
+                    lesIconesSommets.remove(tabInfos[1]);
+                    lesIconesSommets.put(tabInfos[2], aux);
+                    break;
+                }
+                case AFFICHE_TEXTF: {
+                    IconeSommet aux = lesIconesSommets.get(tabInfos[1]);
+                    aux.modeTextField();
+                    aux.validate();
+                    break;
+                }
+                case MODE_SELECTION_SOMMET: {
+                    IconeSommet aux = lesIconesSommets.get(tabInfos[1]);
+                    aux.modeSelection();
+                    break;
+                }
+                case MODE_NON_SELECTION_SOMMET: {
+                    IconeSommet aux = lesIconesSommets.get(tabInfos[1]);
+                    aux.modeNonSelection();
+                    break;
+                }
+                case AJOUTER_ARRETE: {
+                    IconeSommet i1 , i2;
+                    i1 = lesIconesSommets.get(tabInfos[1]);
+                    i2 = lesIconesSommets.get(tabInfos[2]);
+                    IconeArrete nouv = new IconeArrete(i1, i2);
+                    lesIconesArretes.put(i1.getNom()+i2.getNom(),nouv);
+                    vueCentre.ajouterArrete(nouv);
+                    break;
+                }
             }
         }
     }

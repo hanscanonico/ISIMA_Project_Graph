@@ -4,14 +4,20 @@
  */
 package presentation;
 
-import metier.Arrete;
-import metier.Sommet;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.RenderingHints;
+import java.awt.geom.Line2D;
+import javax.swing.JComponent;
 
 /**
  *
  * @author Amine
  */
-public class IconeArrete {
+public class IconeArrete extends JComponent {
 
 //  le premier iconeSommet
     private IconeSommet som1;
@@ -29,6 +35,8 @@ public class IconeArrete {
      * @param som2 le deuxièeme iconeSommet
      */
     public IconeArrete(IconeSommet som1, IconeSommet som2) {
+        setLayout(new BorderLayout());
+        
         this.som1 = som1;
         this.som2 = som2;
     }
@@ -68,39 +76,23 @@ public class IconeArrete {
         this.som2 = som2;
     }
 
-    /**
-     * getter de pos
-     *
-     * @return la pos
-     */
-    public double[] getPos() {
-        return pos;
-    }
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        setVisible(true);
+        setLocation(new Point(10, 10));
+         setBounds(0, 0, 500, 500);
+        Graphics2D g2 = (Graphics2D) g;
+        int x1, x2, y1, y2;
+        x1 = som1.getCentreX();
+        y1 = som1.getCentreY();
+        x2 = som2.getCentreX();
+        y2 = som2.getCentreY();
 
-    /**
-     * setter de pos
-     *
-     * @param pos une pos
-     */
-    public void setPos(double[] pos) {
-        this.pos = pos;
-    }
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g.setColor(Color.CYAN);
+        g2.draw(new Line2D.Double(x1, y1, x2, y2));
+        g.drawLine(x1, y1, x2, y2);
 
-    /**
-     * getter de disp
-     *
-     * @return la disp
-     */
-    public double[] getDisp() {
-        return disp;
-    }
-
-    /**
-     * setter de disp
-     *
-     * @param disp une disp
-     */
-    public void setDisp(double[] disp) {
-        this.disp = disp;
     }
 }
