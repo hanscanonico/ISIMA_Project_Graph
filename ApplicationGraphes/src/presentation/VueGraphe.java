@@ -154,7 +154,10 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                 }
                 case MODE_NON_SELECTION_SOMMET: {
                     IconeSommet aux = lesIconesSommets.get(tabInfos[1]);
-                    aux.modeNonSelection();
+                    if(aux!=null)
+                    {
+                        aux.modeNonSelection();
+                    }
                     break;
                 }
                 case AJOUTER_ARRETE: {
@@ -164,6 +167,18 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                     IconeArrete nouv = new IconeArrete(i1, i2);
                     lesIconesArretes.put(i1.getNom()+i2.getNom(),nouv);
                     vueCentre.ajouterArrete(nouv);
+                    break;
+                }
+                case SUPPRIMER_SOMMET: {
+                    
+                    IconeSommet icoSommet=lesIconesSommets.remove(tabInfos[1]);
+                    
+                    vueCentre.remove(icoSommet);
+                    
+                 
+                    vueCentre.repaint();
+                    vueCentre.validate();
+                 
                     break;
                 }
             }

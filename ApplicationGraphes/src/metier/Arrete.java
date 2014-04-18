@@ -1,5 +1,6 @@
 package metier;
 
+import java.util.ArrayList;
 import presentation.*;
 
 /**
@@ -73,4 +74,6 @@ public class Arrete {
         sb.append(sommet2);
         return sb.toString();
     }
+    
+
 }

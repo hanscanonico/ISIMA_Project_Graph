@@ -76,6 +76,10 @@ public class IconeArrete extends JComponent {
         this.som2 = som2;
     }
 
+    /**
+     *
+     * @param g
+     */
     @Override
     public void paintComponent(Graphics g) {
         

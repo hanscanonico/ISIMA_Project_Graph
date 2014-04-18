@@ -6,6 +6,8 @@
 package coucheApplicative;
 
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
@@ -191,7 +193,11 @@ public class Modele extends Observable implements IConstantes {
         informer(MODE_NON_SELECTION_SOMMET + SEPARATEUR + nomCache);
     }
 
-
+    /**
+     *
+     * @param depart
+     * @param arrive
+     */
     public void addArrete(IconeSommet depart, IconeSommet arrive) {
         Sommet s1,s2;
         s1=lesSommets.get(depart.getNom());
@@ -200,4 +206,26 @@ public class Modele extends Observable implements IConstantes {
         lesArretes.put(depart.getNom()+arrive.getNom(), nouv);
         informer(AJOUTER_ARRETE + SEPARATEUR + depart.getNom()+ SEPARATEUR + arrive.getNom());
     }
+    
+    /**
+     * permet de supprimer un sommet
+     * @param icoSommet le sommet a suppriemr
+     */
+    public void supprimerSommet(IconeSommet icoSommet)
+    {
+        Sommet s=lesSommets.remove(icoSommet.getTextField().getText());
+        for( Arrete a :lesArretes.values())
+        {
+            if(a.getSommet1()==s ||a.getSommet2()==s)
+            {
+                
+            }
+        }
+        informer(SUPPRIMER_SOMMET + SEPARATEUR + icoSommet.getTextField().getText());
+        
+    }
+    
+    
+    
+    
 }

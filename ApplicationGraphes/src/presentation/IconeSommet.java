@@ -27,7 +27,7 @@ public class IconeSommet extends JComponent {
     /**
      *
      */
-        public static int taille = 20;
+    public static int taille = 20;
 //  l'origineX d'un iconeSommet
     private int origineX;
 //  l'origineY d'un iconeSommet
@@ -40,7 +40,8 @@ public class IconeSommet extends JComponent {
     private JLabel label;
     private String nom;
     private Color couleur;
-
+//sommet selectionné
+    private boolean isSelected;
     /**
      * retourne la taille d'un icone Sommet
      * @return
@@ -142,7 +143,7 @@ public class IconeSommet extends JComponent {
 
         this.addFocusListener(ctrl);
         this.addMouseListener(ctrl);
-        
+        this.addKeyListener(ctrl);
         couleur=Color.MAGENTA;
         setEnabled(true);
         setVisible(true);
@@ -154,7 +155,6 @@ public class IconeSommet extends JComponent {
      */
     @Override
     public void paintComponent(Graphics g) {
-        System.out.println("repaint de "+getTextField().getText());
         Graphics2D g2 = (Graphics2D) g;
         int t = IconeSommet.taille;
         // on active l'antialiasing
@@ -286,9 +286,8 @@ public class IconeSommet extends JComponent {
      */
     public void modeSelection()
     {
-         System.out.println("mode selection de"+getTextField().getText());
        couleur=Color.BLACK; 
-
+       isSelected=true;
        update(getGraphics());
        revalidate();
         repaint();
@@ -299,9 +298,8 @@ public class IconeSommet extends JComponent {
      */
     public void modeNonSelection()
     {
-        System.out.println("mode non selection de"+getTextField().getText());
- 
-       couleur=Color.MAGENTA; 
+        isSelected=false;
+        couleur=Color.MAGENTA; 
 
         update(getGraphics());
         revalidate();

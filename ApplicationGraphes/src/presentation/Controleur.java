@@ -38,6 +38,7 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
     private String nomCache;
     private IconeSommet depart;
     private IconeSommet arrive;
+    private IconeSommet icoSelected=null;
     private Component lastEntered;
 
     /**
@@ -104,17 +105,25 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
     @Override
     public void mousePressed(MouseEvent me) {
         me.getComponent().requestFocus();
-        if (mode.equals(MODE_SOMMET) && me.getComponent() instanceof VueCentre) {
+        int buttonDown = me.getButton();
+        if(buttonDown == MouseEvent.BUTTON3) {
+           if(!mode.equals(MODE_FLECHE))
+           {
+                mdl.modeFleche();
+                this.mode = MODE_FLECHE;   
+           }
+        }
+        else if (mode.equals(MODE_SOMMET) && me.getComponent() instanceof VueCentre) {
 
             mdl.addSommet(me.getX(), me.getY());
         }
 
-        if (mode.equals(MODE_ARRETE) && me.getComponent() instanceof IconeSommet) {
+        else if (mode.equals(MODE_ARRETE) && me.getComponent() instanceof IconeSommet) {
 
             depart = (IconeSommet) me.getComponent();
             //mdl.addArreteDepart(dep);
         }
-
+        
 
 
     }
@@ -130,9 +139,8 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
 
             arrive = (IconeSommet) lastEntered;
             mdl.addArrete(depart,arrive);
-        
-        depart=null;
-        arrive=null;
+            depart=null;
+            arrive=null;
         }
     }
 
@@ -174,10 +182,13 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
             System.out.println(nomCache);
         }
         if (e.getComponent() instanceof IconeSommet) {
-            IconeSommet tmp = (IconeSommet) e.getComponent();
-            nomCache = tmp.getTextField().getText();
-            System.err.println("focus gained de " + nomCache);
-            mdl.modeSelectionSommet(tmp.getLabel().getText());
+            if(mode.equals(MODE_FLECHE))
+            {
+                icoSelected = (IconeSommet) e.getComponent();
+                nomCache = icoSelected.getTextField().getText();
+                mdl.modeSelectionSommet(icoSelected.getLabel().getText());
+                
+            }
         }
 
     }
@@ -198,9 +209,14 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
             String nouv = temp.getText();
             mdl.changeName(nomCache, nouv);
         } else if (e.getComponent() instanceof IconeSommet) {
-            IconeSommet tmp = (IconeSommet) e.getComponent();
-            System.err.println("focus lost de " + tmp.getLabel().getText());
-            mdl.modeNonSelectionSommet(tmp.getLabel().getText());
+            if(mode.equals(MODE_FLECHE))
+            {
+                IconeSommet tmp = (IconeSommet) e.getComponent();
+                System.err.println("focus lost de " + tmp.getLabel().getText());
+                mdl.modeNonSelectionSommet(tmp.getLabel().getText());
+                icoSelected=null;
+            }
+           
         }
 
     }
@@ -216,11 +232,28 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
      * @param e l'évènement
      */
     public void keyPressed(KeyEvent e) {
+        
         if (e.getComponent() instanceof JTextField && e.getKeyCode() == KeyEvent.VK_ENTER) {
             JTextField temp = (JTextField) e.getComponent();
             temp.setFocusable(false);
             temp.setFocusable(true);
         }
+         if(e.getKeyCode()==KeyEvent.VK_DELETE)
+         {
+             
+               if(mode.equals(MODE_FLECHE))
+               {
+              
+                    if(icoSelected!=null)
+                    {      
+                           
+                            mdl.supprimerSommet(icoSelected);
+                            icoSelected=null;
+                    }
+               }
+                
+         }
+        
     }
 
     /**
@@ -229,7 +262,7 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
      */
     @Override
     public void keyTyped(KeyEvent ke) {
-        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     /**
@@ -241,12 +274,20 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
         // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @param e
+     */
     @Override
     public void mouseDragged(MouseEvent e) {
         //arrive=e.getPoint();
         //mdl.afficheArreteTemporaire(depart,arrive);
     }
 
+    /**
+     *
+     * @param e
+     */
     @Override
     public void mouseMoved(MouseEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

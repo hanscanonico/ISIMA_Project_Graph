@@ -31,7 +31,7 @@ public class VueCentre extends javax.swing.JPanel {
      * Constructeur
      *
      * @param ctrl le cotnroleur
-     * @param lesIconesSommets
+     * @param lesSommets
      * @param lesArretes
      */
     public VueCentre(Controleur ctrl, Map<String, IconeSommet> lesSommets, Map<String, IconeArrete> lesArretes) {
@@ -52,20 +52,14 @@ public class VueCentre extends javax.swing.JPanel {
      * Trace des sommets
      *
      * @param lesSommets
-     * @param lesIconesSommets
      * @param g2
      */
     public void tracerSommets(Map<String, IconeSommet> lesSommets, Graphics2D g2) {
 
         int t = IconeSommet.taille;
-
-
         for (Map.Entry<String, IconeSommet> entry : lesSommets.entrySet()) {
             String nomSommet = entry.getKey();
             IconeSommet som = entry.getValue();
-
-
-
         }
 
     }
@@ -132,7 +126,11 @@ public class VueCentre extends javax.swing.JPanel {
     }
 
 
-
+    /**
+     * Permet d'ajouter une arrête
+     *
+     * @param nouv la nouvelle arrête
+     */
     void ajouterArrete(IconeArrete nouv) {
         
         nouv.setLocation(new Point(10, 10));
