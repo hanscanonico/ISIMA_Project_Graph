@@ -14,7 +14,6 @@ import java.awt.RenderingHints;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 /**
  *

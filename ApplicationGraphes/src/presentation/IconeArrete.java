@@ -8,9 +8,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.RenderingHints;
-import java.awt.geom.Line2D;
 import javax.swing.JComponent;
 
 /**
@@ -93,7 +91,7 @@ public class IconeArrete extends JComponent {
         y2 = som2.getCentreY();
 
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(Color.lightGray);
+        g2.setColor(Color.gray);
         g2.drawLine(x1, y1, x2, y2);
 
     }
