@@ -7,7 +7,6 @@ package presentation;
 
 import coucheApplicative.Modele;
 import java.awt.Component;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -18,12 +17,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import metier.IConstantes;
 import static metier.IConstantes.MODE_ARRETE;
 import static metier.IConstantes.MODE_SOMMET;
-import metier.Sommet;
 
 /**
  *
@@ -135,13 +132,15 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
      */
     @Override
     public void mouseReleased(MouseEvent me) {
-        if (mode.equals(MODE_ARRETE) && lastEntered instanceof IconeSommet && depart!=null) {
-
-            arrive = (IconeSommet) lastEntered;
-            mdl.addArrete(depart,arrive);
+        if (mode.equals(MODE_ARRETE)  ) {
+            if(lastEntered instanceof IconeSommet && depart!=null){
+                arrive = (IconeSommet) lastEntered;
+                mdl.addArrete(depart,arrive);
+                arrive=null;
+            }
             depart=null;
-            arrive=null;
         }
+        
     }
 
     /**

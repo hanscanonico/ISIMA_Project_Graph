@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
+import java.util.Set;
 import metier.Arrete;
 import metier.Graphe;
 import metier.IConstantes;
@@ -199,33 +200,38 @@ public class Modele extends Observable implements IConstantes {
      * @param arrive
      */
     public void addArrete(IconeSommet depart, IconeSommet arrive) {
-        Sommet s1,s2;
-        s1=lesSommets.get(depart.getNom());
-        s2=lesSommets.get(arrive.getNom());
+        Sommet s1, s2;
+        s1 = lesSommets.get(depart.getNom());
+        s2 = lesSommets.get(arrive.getNom());
         Arrete nouv = new Arrete(s1, s2);
-        lesArretes.put(depart.getNom()+arrive.getNom(), nouv);
-        informer(AJOUTER_ARRETE + SEPARATEUR + depart.getNom()+ SEPARATEUR + arrive.getNom());
+
+        String doubleCle, doubleCleMiroir, cle1, cle2;
+        cle1 = Integer.toString(s1.hashCode());
+        cle2 = Integer.toString(s2.hashCode());
+        doubleCle = cle1 + "/" + cle2;
+        doubleCleMiroir = cle2 + "/" + cle1;
+
+        if (!lesArretes.containsKey(doubleCle) && !lesArretes.containsKey(doubleCleMiroir)) {
+            System.out.println(doubleCle);
+            lesArretes.put(doubleCle, nouv);
+            System.out.println(lesArretes.toString());
+            informer(AJOUTER_ARRETE + SEPARATEUR + depart.getNom() + SEPARATEUR + arrive.getNom());
+        }
+
     }
-    
+
     /**
      * permet de supprimer un sommet
+     *
      * @param icoSommet le sommet a suppriemr
      */
-    public void supprimerSommet(IconeSommet icoSommet)
-    {
-        Sommet s=lesSommets.remove(icoSommet.getTextField().getText());
-        for( Arrete a :lesArretes.values())
-        {
-            if(a.getSommet1()==s ||a.getSommet2()==s)
-            {
-                
+    public void supprimerSommet(IconeSommet icoSommet) {
+        Sommet s = lesSommets.remove(icoSommet.getTextField().getText());
+        for (Arrete a : lesArretes.values()) {
+            if (a.getSommet1() == s || a.getSommet2() == s) {
             }
         }
         informer(SUPPRIMER_SOMMET + SEPARATEUR + icoSommet.getTextField().getText());
-        
+
     }
-    
-    
-    
-    
 }
