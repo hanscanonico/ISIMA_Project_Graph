@@ -25,9 +25,9 @@ public class VueGauche extends JPanel implements IConstantes {
      */
     public VueGauche(Controleur ctrl) {
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(100, 600));
+        setPreferredSize(new Dimension(115, 600));
         setBorder(BorderFactory.createLineBorder(Color.black, 1));
-        add(nouveauBoutton(ctrl, "générer", GENERER), BorderLayout.NORTH);
+        add(nouveauBoutton(ctrl, "Tout Supprimer", TOUT_SUPPRIMER), BorderLayout.NORTH);
     }
 
     /**

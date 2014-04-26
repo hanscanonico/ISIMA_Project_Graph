@@ -93,59 +93,12 @@ public class Modele extends Observable implements IConstantes {
     /**
      * génère des sommets
      */
-    public void generer() {
+    public void supprimerTout() {
         lesSommets.clear();
+        lesArretes.clear();
+        i=0;
 
-
-        Sommet a = new Sommet("A", 1);
-        lesSommets.put(a.getNom(), a);
-        Sommet b = new Sommet("B", 2);
-        lesSommets.put(b.getNom(), b);
-        Sommet c = new Sommet("C", 3);
-        lesSommets.put(c.getNom(), c);
-        Sommet d = new Sommet("D", 3);
-        lesSommets.put(d.getNom(), d);
-        Sommet e = new Sommet("E", 3);
-
-        Arrete ab = new Arrete(a, b);
-        lesArretes.put("AB", ab);
-        Arrete ac = new Arrete(a, c);
-        lesArretes.put("AC", ac);
-        Arrete bc = new Arrete(b, c);
-        lesArretes.put("BC", bc);
-        Arrete ad = new Arrete(a, d);
-        lesArretes.put("AD", ad);
-        Arrete bd = new Arrete(b, d);
-        lesArretes.put("BD", bd);
-        Arrete cd = new Arrete(c, d);
-        lesArretes.put("CD", cd);
-        Arrete ae = new Arrete(a, e);
-        lesArretes.put("AE", ae);
-        Arrete be = new Arrete(b, e);
-        lesArretes.put("BE", be);
-        Arrete ce = new Arrete(c, e);
-        lesArretes.put("CE", ce);
-        Arrete de = new Arrete(d, e);
-        lesArretes.put("DE", de);
-
-
-        g.ajouterSommet(a);
-        g.ajouterSommet(b);
-        g.ajouterSommet(c);
-        g.ajouterSommet(d);
-        g.ajouterSommet(e);
-        g.ajouterArrete(ab);
-        g.ajouterArrete(ac);
-        g.ajouterArrete(bc);
-        g.ajouterArrete(ad);
-        g.ajouterArrete(bd);
-        g.ajouterArrete(cd);
-        g.ajouterArrete(ae);
-        g.ajouterArrete(be);
-        g.ajouterArrete(ce);
-        g.ajouterArrete(de);
-
-        informer(GENERER);
+        informer(TOUT_SUPPRIMER);
     }
 
     /**

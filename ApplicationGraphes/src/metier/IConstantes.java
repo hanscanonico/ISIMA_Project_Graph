@@ -42,7 +42,7 @@ public interface IConstantes {
     /**
      * Constante generer
      */
-    final static String GENERER = "generer";
+    final static String TOUT_SUPPRIMER = "generer";
     
     /**
      * constante changer de nom

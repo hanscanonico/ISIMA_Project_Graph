@@ -24,7 +24,7 @@ import java.util.Observer;
 import javax.swing.JPanel;
 import metier.IConstantes;
 import static metier.IConstantes.CHANGER_NOM;
-import static metier.IConstantes.GENERER;
+import static metier.IConstantes.TOUT_SUPPRIMER;
 import static metier.IConstantes.MODE_NON_SELECTION_SOMMET;
 
 /**
@@ -131,8 +131,8 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                     String nomSommet = tabInfos[3];
                     vueCentre.ajouterSommet(nomSommet, x, y, ctrl);
                     break;
-                case GENERER:
-                    genererGraphe();
+                case TOUT_SUPPRIMER:
+                    viderGraphe();
                     break;
                 case CHANGER_NOM: {
                     IconeSommet aux = lesIconesSommets.get(tabInfos[1]);
@@ -188,9 +188,12 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     /**
      * génère un graphe
      */
-    public void genererGraphe() {
+    public void viderGraphe() {
         //generationDesIcones();
-        randomPosition();
+        lesIconesArretes.clear();
+        lesIconesSommets.clear();
+        vueCentre.removeAll();
+        vueCentre.repaint();
         // vueCentre.repaint();
     }
 

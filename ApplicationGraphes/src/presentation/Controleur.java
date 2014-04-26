@@ -70,8 +70,8 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
                 mdl.modeFleche();
                 this.mode = MODE_FLECHE;
                 break;
-            case GENERER:
-                mdl.generer();
+            case TOUT_SUPPRIMER:
+                mdl.supprimerTout();
                 break;
         }
     }
