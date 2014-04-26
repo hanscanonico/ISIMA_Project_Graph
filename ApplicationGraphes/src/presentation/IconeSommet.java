@@ -257,7 +257,7 @@ public class IconeSommet extends JComponent {
      * @param nouv le nouveau nom du sommet
      */
     public void updateName(String nouv) {
-
+        this.setNom(nouv);
         textField.setText(nouv);
         label.setText(nouv);
         label.setVisible(true);
