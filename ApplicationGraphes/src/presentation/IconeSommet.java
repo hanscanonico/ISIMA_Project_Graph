@@ -148,7 +148,7 @@ public class IconeSommet extends JComponent {
         this.addFocusListener(ctrl);
         this.addMouseListener(ctrl);
         this.addKeyListener(ctrl);
-        couleur = Color.MAGENTA;
+        couleur = Color.GREEN;
         setEnabled(true);
         setVisible(true);
     }

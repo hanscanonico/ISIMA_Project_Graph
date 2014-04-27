@@ -72,6 +72,7 @@ public class Sommet {
 
     /**
      * getter de valeur
+     *
      * @return
      */
     public int getValeur() {
@@ -80,6 +81,7 @@ public class Sommet {
 
     /**
      * setter de valeur
+     *
      * @param valeur
      */
     public void setValeur(int valeur) {

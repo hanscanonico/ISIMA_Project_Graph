@@ -34,7 +34,7 @@ public class IconeArrete extends JComponent {
      */
     public IconeArrete(IconeSommet som1, IconeSommet som2) {
         setLayout(new BorderLayout());
-        
+
         this.som1 = som1;
         this.som2 = som2;
     }
@@ -80,7 +80,7 @@ public class IconeArrete extends JComponent {
      */
     @Override
     public void paintComponent(Graphics g) {
-        
+
         //setVisible(true);
 
         Graphics2D g2 = (Graphics2D) g;
@@ -92,7 +92,9 @@ public class IconeArrete extends JComponent {
 
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(Color.gray);
-        g2.drawLine(x1, y1, x2, y2);
+
+            g2.drawLine(x1, y1, x2, y2);
+ 
 
     }
 }
