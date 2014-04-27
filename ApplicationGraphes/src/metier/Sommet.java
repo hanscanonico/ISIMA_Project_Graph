@@ -1,5 +1,6 @@
 package metier;
 
+import com.sun.jmx.snmp.BerDecoder;
 import java.util.Objects;
 import presentation.*;
 
@@ -89,21 +90,15 @@ public class Sommet {
         this.valeur = valeur;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + Integer.parseInt(nom);
-        hash = 97 * hash + this.valeur;
-        return hash;
-    }
-    @Override
+
+      @Override
     @SuppressWarnings("empty-statement")
     public boolean equals(Object obj){
         boolean equal=false;
         if(obj instanceof Sommet)
         {
             Sommet s=(Sommet)obj;
-            if(s.nom.equals(nom));
+            if(s.getNom().equals(this.nom))
             {
                 equal=true;
             }
@@ -111,6 +106,11 @@ public class Sommet {
         return equal;
     }
 
- 
+ @Override
+    public int hashCode() {
+        int hash = 1;
+        hash = hash * 17 + nom.hashCode();
+        return hash;
+    }
     
 }

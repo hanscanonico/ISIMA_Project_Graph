@@ -63,7 +63,7 @@ public class Arrete {
 
     public boolean containsSommet(Sommet s)
     {
-        return sommet1.equals(s)||sommet2.equals(s);
+         return sommet1.equals(s)||sommet2.equals(s);
     }
     
     
