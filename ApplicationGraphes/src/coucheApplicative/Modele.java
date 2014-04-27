@@ -188,10 +188,7 @@ public class Modele extends Observable implements IConstantes {
         }
          
         informer(SUPPRIMER_SOMMET + SEPARATEUR + s.getNom());
-        for(Arrete a : lesArretes.values())
-        {
-            System.err.println(a+" ");
-        }
+
     }
 
     public void afficheArreteTemporaire(int x1, int y1, int x2, int y2) {
