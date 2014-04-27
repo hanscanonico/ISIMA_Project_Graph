@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 import metier.IConstantes;
 import static metier.IConstantes.MODE_ARRETE;
 import static metier.IConstantes.MODE_SOMMET;
+import sun.awt.CausedFocusEvent;
 
 /**
  *
@@ -112,7 +113,7 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
 
             mdl.addSommet(me.getX(), me.getY());
         } else if (mode.equals(MODE_ARRETE) && me.getComponent() instanceof IconeSommet) {
-
+        
             depart = (IconeSommet) me.getComponent();
             //mdl.addArreteDepart(dep);
         }
@@ -182,6 +183,7 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
         if (e.getComponent() instanceof IconeSommet) {
             if (mode.equals(MODE_FLECHE)) {
                 icoSelected = (IconeSommet) e.getComponent();
+                System.err.println("focus gained de " + icoSelected.getLabel().getText());
                 nomCache = icoSelected.getTextField().getText();
                 mdl.modeSelectionSommet(icoSelected.getLabel().getText());
 
@@ -239,7 +241,6 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
             if (mode.equals(MODE_FLECHE)) {
 
                 if (icoSelected != null) {
-
                     mdl.supprimerSommet(icoSelected);
                     icoSelected = null;
                 }
@@ -291,4 +292,6 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
     @Override
     public void mouseMoved(MouseEvent e) {
     }
+
+ 
 }

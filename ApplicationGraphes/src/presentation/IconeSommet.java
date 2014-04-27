@@ -231,15 +231,16 @@ public class IconeSommet extends JComponent {
      */
     @Override
     public boolean equals(Object obj) {
-        boolean equal = true;
-        if (obj == null) {
-            equal = false;
-        }
-        if (obj == this) {
-            equal = true;
-        }
-        if (!(obj instanceof IconeSommet)) {
-            equal = false;
+        boolean equal = false;
+        if (obj instanceof IconeSommet) {
+            IconeSommet ico=(IconeSommet)obj;
+            if(ico.isSelected==isSelected)
+            {
+                if(ico.getLabel().getText().equals(getLabel().getText()))
+                {
+                    equal=true;
+                }
+            }
         }
         return equal;
     }
@@ -303,7 +304,7 @@ public class IconeSommet extends JComponent {
      */
     public void modeNonSelection() {
         isSelected = false;
-        couleur = Color.MAGENTA;        
+        couleur = Color.GREEN;        
         
         update(getGraphics());
         revalidate();

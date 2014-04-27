@@ -6,6 +6,7 @@
 package coucheApplicative;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Observable;
 import metier.Arrete;
@@ -117,8 +118,6 @@ public class Modele extends Observable implements IConstantes {
         lesSommets.put(nouv, tmp);
         informer(CHANGER_NOM + SEPARATEUR + nomCache + SEPARATEUR + nouv);
 
-
-
     }
 
     /**
@@ -176,12 +175,20 @@ public class Modele extends Observable implements IConstantes {
      */
     public void supprimerSommet(IconeSommet icoSommet) {
         Sommet s = lesSommets.remove(icoSommet.getTextField().getText());
-        for (Arrete a : lesArretes.values()) {
-            if (a.getSommet1() == s || a.getSommet2() == s) {
+        
+        
+        for (Iterator<String> iter = lesArretes.keySet().iterator() ; iter.hasNext() ; ){
+            String clef=iter.next();
+            Arrete a=lesArretes.get(clef);
+            if(a.containsSommet(new Sommet(icoSommet.getLabel().getText())))
+            {
+                informer(SUPPRIMER_ARRETE + SEPARATEUR + a.getSommet1().getNom() + SEPARATEUR + a.getSommet2().getNom());
+                iter.remove();
             }
         }
-        informer(SUPPRIMER_SOMMET + SEPARATEUR + icoSommet.getTextField().getText());
-
+         
+        informer(SUPPRIMER_SOMMET + SEPARATEUR + s.getNom());
+    
     }
 
     public void afficheArreteTemporaire(int x1, int y1, int x2, int y2) {

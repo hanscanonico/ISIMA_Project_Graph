@@ -31,9 +31,6 @@ public class VueCentre extends javax.swing.JPanel {
      * @param lesIconesArretes
      */
     public VueCentre(Controleur ctrl, Map<String, IconeSommet> lesSommets, Map<String, IconeArrete> lesArretes) {
-
-
-
         setBackground(Color.white);
 
         addMouseListener(ctrl);

@@ -1,5 +1,6 @@
 package metier;
 
+import java.util.Objects;
 import presentation.*;
 
 /**
@@ -87,4 +88,29 @@ public class Sommet {
     public void setValeur(int valeur) {
         this.valeur = valeur;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Integer.parseInt(nom);
+        hash = 97 * hash + this.valeur;
+        return hash;
+    }
+    @Override
+    @SuppressWarnings("empty-statement")
+    public boolean equals(Object obj){
+        boolean equal=false;
+        if(obj instanceof Sommet)
+        {
+            Sommet s=(Sommet)obj;
+            if(s.nom.equals(nom));
+            {
+                equal=true;
+            }
+        }
+        return equal;
+    }
+
+ 
+    
 }

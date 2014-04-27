@@ -67,6 +67,8 @@ public interface IConstantes {
      * constante suppression sommet
      */
     final static String SUPPRIMER_SOMMET = "suppression d'un sommet";
+    
     final static String ARRETE_TEMP = "afficher l'arrete temporaire";
     final static String MASQUER_TEMP = "masque l'arrete temporaire";
+    final static String SUPPRIMER_ARRETE = "suppression d'une arrete";
 }

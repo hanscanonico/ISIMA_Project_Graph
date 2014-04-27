@@ -61,6 +61,12 @@ public class Arrete {
         setSommet2(sommet2);
     }
 
+    public boolean containsSommet(Sommet s)
+    {
+        return sommet1.equals(s)||sommet2.equals(s);
+    }
+    
+    
     /**
      * toString de arrête
      *

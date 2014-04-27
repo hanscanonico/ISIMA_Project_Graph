@@ -154,9 +154,8 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                     break;
                 }
                 case SUPPRIMER_SOMMET: {
-
                     IconeSommet icoSommet = lesIconesSommets.remove(tabInfos[1]);
-
+                 
                     vueCentre.remove(icoSommet);
 
 
@@ -165,6 +164,17 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
 
                     break;
 
+                }
+                case SUPPRIMER_ARRETE: {
+                    IconeArrete icoArrete = lesIconesArretes.remove(tabInfos[1]+tabInfos[2]);
+                    if(icoArrete==null)
+                    {
+                        icoArrete= lesIconesArretes.remove(tabInfos[2]+tabInfos[1]);
+                    }
+                    vueCentre.remove(icoArrete);
+                    vueCentre.repaint();
+                    vueCentre.validate();
+                    break;
                 }
                 case ARRETE_TEMP: {
                     int x1 = Integer.parseInt(tabInfos[1]);
