@@ -22,7 +22,6 @@ import javax.swing.JTextField;
 public class IconeSommet extends JComponent {
 
 //  la taille d'un iconeSommet
-
     /**
      *
      */
@@ -41,8 +40,10 @@ public class IconeSommet extends JComponent {
     private Color couleur;
 //sommet selectionné
     private boolean isSelected;
+
     /**
      * retourne la taille d'un icone Sommet
+     *
      * @return
      */
     public static int getTaille() {
@@ -51,6 +52,7 @@ public class IconeSommet extends JComponent {
 
     /**
      * retoure le label
+     *
      * @return le label
      */
     public JLabel getLabel() {
@@ -59,6 +61,7 @@ public class IconeSommet extends JComponent {
 
     /**
      * setter de label
+     *
      * @param label
      */
     public void setLabel(JLabel label) {
@@ -67,6 +70,7 @@ public class IconeSommet extends JComponent {
 
     /**
      * getter de nom
+     *
      * @return nom
      */
     public String getNom() {
@@ -75,6 +79,7 @@ public class IconeSommet extends JComponent {
 
     /**
      * setter de nom
+     *
      * @param nom
      */
     public void setNom(String nom) {
@@ -83,6 +88,7 @@ public class IconeSommet extends JComponent {
 
     /**
      * getter du textfield
+     *
      * @return
      */
     public JTextField getTextField() {
@@ -107,8 +113,6 @@ public class IconeSommet extends JComponent {
         this.pos = pos;
     }
 
-
-
     /**
      * Constructeur
      *
@@ -123,27 +127,28 @@ public class IconeSommet extends JComponent {
         setLocation(new Point(x, y));
         setOrigineX(x);
         setOrigineY(y);
-
+        
         this.nom = nom;
+        this.addMouseMotionListener(ctrl);
         label = new JLabel(nom);
         label.setVisible(false);
- 
+        
         label.setPreferredSize(new Dimension(20, 25));
-
+        
         textField = new JTextField(nom);
         textField.setPreferredSize(new Dimension(20, 25));
         add(label, BorderLayout.SOUTH);
         add(textField, BorderLayout.SOUTH);
-
+        
         textField.addActionListener(ctrl);
         textField.addFocusListener(ctrl);
         textField.addKeyListener(ctrl);        
         label.addMouseListener(ctrl);
-
+        
         this.addFocusListener(ctrl);
         this.addMouseListener(ctrl);
         this.addKeyListener(ctrl);
-        couleur=Color.MAGENTA;
+        couleur = Color.MAGENTA;
         setEnabled(true);
         setVisible(true);
     }
@@ -161,7 +166,7 @@ public class IconeSommet extends JComponent {
         g2.setColor(couleur);
         g2.fillOval(0, 0, IconeSommet.taille, IconeSommet.taille);
         
-
+        
     }
 
     /**
@@ -250,7 +255,8 @@ public class IconeSommet extends JComponent {
         hash = 79 * hash;
         return hash;
     }
-     /**
+
+    /**
      * met à jour le nom du sommet
      *
      * @param nouv le nouveau nom du sommet
@@ -264,14 +270,15 @@ public class IconeSommet extends JComponent {
         repaint();
         add(label, BorderLayout.SOUTH);
         repaint();
-
+        
     }
-     /**
+
+    /**
      * affiche un textfield
      *
      */
     void modeTextField() {
-
+        
         remove(label);
         repaint();
         add(textField, BorderLayout.SOUTH);
@@ -283,23 +290,21 @@ public class IconeSommet extends JComponent {
     /**
      *
      */
-    public void modeSelection()
-    {
-       couleur=Color.BLACK; 
-       isSelected=true;
-       update(getGraphics());
-       revalidate();
+    public void modeSelection() {
+        couleur = Color.BLACK;        
+        isSelected = true;
+        update(getGraphics());
+        revalidate();
         repaint();
     }
-    
+
     /**
      *
      */
-    public void modeNonSelection()
-    {
-        isSelected=false;
-        couleur=Color.MAGENTA; 
-
+    public void modeNonSelection() {
+        isSelected = false;
+        couleur = Color.MAGENTA;        
+        
         update(getGraphics());
         revalidate();
         repaint();

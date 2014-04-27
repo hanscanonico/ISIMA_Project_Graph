@@ -5,19 +5,17 @@
  */
 package coucheApplicative;
 
-import java.awt.Point;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
-import java.util.Set;
 import metier.Arrete;
 import metier.Graphe;
 import metier.IConstantes;
+import static metier.IConstantes.ARRETE_TEMP;
 import static metier.IConstantes.CHANGER_NOM;
 import static metier.IConstantes.MODE_NON_SELECTION_SOMMET;
 import static metier.IConstantes.SEPARATEUR;
+import static metier.IConstantes.SUPPRIMER_SOMMET;
 import metier.Sommet;
 import presentation.IconeSommet;
 
@@ -96,7 +94,7 @@ public class Modele extends Observable implements IConstantes {
     public void supprimerTout() {
         lesSommets.clear();
         lesArretes.clear();
-        i=0;
+        i = 0;
 
         informer(TOUT_SUPPRIMER);
     }
@@ -165,9 +163,7 @@ public class Modele extends Observable implements IConstantes {
         doubleCleMiroir = cle2 + "/" + cle1;
 
         if (!lesArretes.containsKey(doubleCle) && !lesArretes.containsKey(doubleCleMiroir)) {
-            System.out.println(doubleCle);
             lesArretes.put(doubleCle, nouv);
-            System.out.println(lesArretes.toString());
             informer(AJOUTER_ARRETE + SEPARATEUR + depart.getNom() + SEPARATEUR + arrive.getNom());
         }
 
@@ -186,5 +182,14 @@ public class Modele extends Observable implements IConstantes {
         }
         informer(SUPPRIMER_SOMMET + SEPARATEUR + icoSommet.getTextField().getText());
 
+    }
+
+    public void afficheArreteTemporaire(int x1, int y1, int x2, int y2) {
+        informer(ARRETE_TEMP + SEPARATEUR + x1 + SEPARATEUR + y1 + SEPARATEUR + x2 + SEPARATEUR + y2);
+
+    }
+
+    public void masquerArreteTemp() {
+        informer(MASQUER_TEMP);
     }
 }

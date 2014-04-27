@@ -43,35 +43,30 @@ public interface IConstantes {
      * Constante generer
      */
     final static String TOUT_SUPPRIMER = "generer";
-    
     /**
      * constante changer de nom
      */
     final static String CHANGER_NOM = "changer de nom";
-    
     /**
      * constante afficher texteField
      */
-    final static String AFFICHE_TEXTF= "afficher textfield";
-    
+    final static String AFFICHE_TEXTF = "afficher textfield";
     /**
      * constante mode selection sommet
      */
-    final static String MODE_SELECTION_SOMMET="mode selection sommet";
-    
+    final static String MODE_SELECTION_SOMMET = "mode selection sommet";
     /**
      * constante mode non selection sommet
      */
-    final static String MODE_NON_SELECTION_SOMMET="mode non selection sommet";
-    
+    final static String MODE_NON_SELECTION_SOMMET = "mode non selection sommet";
     /**
      * constante ajout arrete
      */
-    final static String AJOUTER_ARRETE="ajout de arrete";
-    
+    final static String AJOUTER_ARRETE = "ajout de arrete";
     /**
      * constante suppression sommet
      */
-    final static String SUPPRIMER_SOMMET="suppression d'un sommet";
-
+    final static String SUPPRIMER_SOMMET = "suppression d'un sommet";
+    final static String ARRETE_TEMP = "afficher l'arrete temporaire";
+    final static String MASQUER_TEMP = "masque l'arrete temporaire";
 }

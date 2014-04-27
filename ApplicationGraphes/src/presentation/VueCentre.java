@@ -6,12 +6,10 @@
 package presentation;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.Map;
 import javax.swing.BorderFactory;
-
 
 /**
  *
@@ -22,60 +20,35 @@ public class VueCentre extends javax.swing.JPanel {
 
     private Map<String, IconeSommet> lesIconesSommets;
 // Map de iconeArrete avec pour clé la concatéantion du nom des 2 sommets de chaque extrémité
-    private Map<String, IconeArrete> lesArretes;
+    private Map<String, IconeArrete> lesIconesArretes;
+    private ArreteTemporaire arrTemp;
 
     /**
      * Constructeur
      *
      * @param ctrl le cotnroleur
      * @param lesSommets
-     * @param lesArretes
+     * @param lesIconesArretes
      */
     public VueCentre(Controleur ctrl, Map<String, IconeSommet> lesSommets, Map<String, IconeArrete> lesArretes) {
-        
+
 
 
         setBackground(Color.white);
 
         addMouseListener(ctrl);
+        addMouseMotionListener(ctrl);
+
+        arrTemp = new ArreteTemporaire();
+        add(arrTemp);
+
+
         setBorder(BorderFactory.createLineBorder(Color.black, 1));
         setLayout(null);
 
         this.lesIconesSommets = lesSommets;
-        this.lesArretes = lesArretes;
+        this.lesIconesArretes = lesArretes;
     }
-
-    /**
-     * Trace des sommets
-     *
-     * @param lesSommets
-     * @param g2
-     */
-    public void tracerSommets(Map<String, IconeSommet> lesSommets, Graphics2D g2) {
-
-        int t = IconeSommet.taille;
-        for (Map.Entry<String, IconeSommet> entry : lesSommets.entrySet()) {
-            String nomSommet = entry.getKey();
-            IconeSommet som = entry.getValue();
-        }
-
-    }
-
-    /**
-     * Trace des arrêtes
-     *
-     * @param lesArretes
-     * @param g2
-     */
-    public void tracerArretes(Map<String, IconeArrete> lesArretes, Graphics2D g2) {
-
-        for (IconeArrete arr : lesArretes.values()) {
-            g2.setColor(Color.BLUE);
-            g2.drawLine(arr.getSom1().getCentreX(), arr.getSom1().getCentreY(), arr.getSom2().getCentreX(), arr.getSom2().getCentreY());
-        }
-    }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -112,6 +85,7 @@ public class VueCentre extends javax.swing.JPanel {
 
         lesIconesSommets.put(nomSommet, icoS);
         add(icoS);
+
         icoS.setBounds(new Rectangle((int) x, (int) y, 20, 45));
         icoS.validate();
         icoS.requestFocus();
@@ -122,22 +96,33 @@ public class VueCentre extends javax.swing.JPanel {
 
     }
 
-
     /**
      * Permet d'ajouter une arrête
      *
      * @param nouv la nouvelle arrête
      */
     void ajouterArrete(IconeArrete nouv) {
-        
+
         nouv.setLocation(new Point(10, 10));
         nouv.setBounds(0, 0, getWidth(), getHeight());
 
         add(nouv);
         repaint();
     }
-    
 
+    void afficherArreteTemp(int x1, int y1, int x2, int y2) {
+        add(arrTemp);
+        arrTemp.setBounds(0, 0, getWidth(), getHeight());
+        arrTemp.setX1(x1);
+        arrTemp.setX2(x2);
+        arrTemp.setY2(y2);
+        arrTemp.setY1(y1);
+        arrTemp.validate();
+        repaint();
+    }
 
-
+    void masquerArreteTemp() {
+        remove(arrTemp);
+        repaint();
+    }
 }

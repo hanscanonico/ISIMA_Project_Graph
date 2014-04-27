@@ -23,6 +23,7 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
 import metier.IConstantes;
+import static metier.IConstantes.ARRETE_TEMP;
 import static metier.IConstantes.CHANGER_NOM;
 import static metier.IConstantes.TOUT_SUPPRIMER;
 import static metier.IConstantes.MODE_NON_SELECTION_SOMMET;
@@ -62,22 +63,6 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
         add(panneauGauche(), BorderLayout.WEST);
         add(panneauBas(), BorderLayout.SOUTH);
         this.setVisible(true);
-    }
-
-    /**
-     * Place des sommets à des positions randoms
-     */
-    private void randomPosition() {
-        double temp;
-        for (IconeSommet ico : lesIconesSommets.values()) {
-            IconeSommet som = ico;
-            temp = (Math.random());
-            som.getPos()[0] = temp;
-            temp = (Math.random());
-            som.getPos()[1] = temp;
-
-        }
-
     }
 
     /**
@@ -154,31 +139,45 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                 }
                 case MODE_NON_SELECTION_SOMMET: {
                     IconeSommet aux = lesIconesSommets.get(tabInfos[1]);
-                    if(aux!=null)
-                    {
+                    if (aux != null) {
                         aux.modeNonSelection();
                     }
                     break;
                 }
                 case AJOUTER_ARRETE: {
-                    IconeSommet i1 , i2;
+                    IconeSommet i1, i2;
                     i1 = lesIconesSommets.get(tabInfos[1]);
                     i2 = lesIconesSommets.get(tabInfos[2]);
                     IconeArrete nouv = new IconeArrete(i1, i2);
-                    lesIconesArretes.put(i1.getNom()+i2.getNom(),nouv);
+                    lesIconesArretes.put(i1.getNom() + i2.getNom(), nouv);
                     vueCentre.ajouterArrete(nouv);
                     break;
                 }
                 case SUPPRIMER_SOMMET: {
-                    
-                    IconeSommet icoSommet=lesIconesSommets.remove(tabInfos[1]);
-                    
+
+                    IconeSommet icoSommet = lesIconesSommets.remove(tabInfos[1]);
+
                     vueCentre.remove(icoSommet);
-                    
-                 
+
+
                     vueCentre.repaint();
                     vueCentre.validate();
-                 
+
+                    break;
+
+                }
+                case ARRETE_TEMP: {
+                    int x1 = Integer.parseInt(tabInfos[1]);
+                    int x2 = Integer.parseInt(tabInfos[2]);
+                    int y1 = Integer.parseInt(tabInfos[3]);
+                    int y2 = Integer.parseInt(tabInfos[4]);
+
+
+                    vueCentre.afficherArreteTemp(x1, x2, y1, y2);
+                    break;
+                }
+                case MASQUER_TEMP: {
+                    vueCentre.masquerArreteTemp();
                     break;
                 }
             }

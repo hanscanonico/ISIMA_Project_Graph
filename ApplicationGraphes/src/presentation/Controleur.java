@@ -35,7 +35,7 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
     private String nomCache;
     private IconeSommet depart;
     private IconeSommet arrive;
-    private IconeSommet icoSelected=null;
+    private IconeSommet icoSelected = null;
     private Component lastEntered;
 
     /**
@@ -103,24 +103,20 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
     public void mousePressed(MouseEvent me) {
         me.getComponent().requestFocus();
         int buttonDown = me.getButton();
-        if(buttonDown == MouseEvent.BUTTON3) {
-           if(!mode.equals(MODE_FLECHE))
-           {
+        if (buttonDown == MouseEvent.BUTTON3) {
+            if (!mode.equals(MODE_FLECHE)) {
                 mdl.modeFleche();
-                this.mode = MODE_FLECHE;   
-           }
-        }
-        else if (mode.equals(MODE_SOMMET) && me.getComponent() instanceof VueCentre) {
+                this.mode = MODE_FLECHE;
+            }
+        } else if (mode.equals(MODE_SOMMET) && me.getComponent() instanceof VueCentre) {
 
             mdl.addSommet(me.getX(), me.getY());
-        }
-
-        else if (mode.equals(MODE_ARRETE) && me.getComponent() instanceof IconeSommet) {
+        } else if (mode.equals(MODE_ARRETE) && me.getComponent() instanceof IconeSommet) {
 
             depart = (IconeSommet) me.getComponent();
             //mdl.addArreteDepart(dep);
         }
-        
+
 
 
     }
@@ -132,15 +128,18 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
      */
     @Override
     public void mouseReleased(MouseEvent me) {
-        if (mode.equals(MODE_ARRETE)  ) {
-            if(lastEntered instanceof IconeSommet && depart!=null){
+        if (mode.equals(MODE_ARRETE)) {
+            if (lastEntered instanceof IconeSommet && depart != null) {
                 arrive = (IconeSommet) lastEntered;
-                mdl.addArrete(depart,arrive);
-                arrive=null;
+                if (arrive != depart) {
+                    mdl.addArrete(depart, arrive);
+                }
+                arrive = null;
             }
-            depart=null;
+            depart = null;
+            mdl.masquerArreteTemp();
         }
-        
+
     }
 
     /**
@@ -181,12 +180,11 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
             System.out.println(nomCache);
         }
         if (e.getComponent() instanceof IconeSommet) {
-            if(mode.equals(MODE_FLECHE))
-            {
+            if (mode.equals(MODE_FLECHE)) {
                 icoSelected = (IconeSommet) e.getComponent();
                 nomCache = icoSelected.getTextField().getText();
                 mdl.modeSelectionSommet(icoSelected.getLabel().getText());
-                
+
             }
         }
 
@@ -208,14 +206,13 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
             String nouv = temp.getText();
             mdl.changeName(nomCache, nouv);
         } else if (e.getComponent() instanceof IconeSommet) {
-            if(mode.equals(MODE_FLECHE))
-            {
+            if (mode.equals(MODE_FLECHE)) {
                 IconeSommet tmp = (IconeSommet) e.getComponent();
                 System.err.println("focus lost de " + tmp.getLabel().getText());
                 mdl.modeNonSelectionSommet(tmp.getLabel().getText());
-                icoSelected=null;
+                icoSelected = null;
             }
-           
+
         }
 
     }
@@ -231,28 +228,25 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
      * @param e l'évènement
      */
     public void keyPressed(KeyEvent e) {
-        
+
         if (e.getComponent() instanceof JTextField && e.getKeyCode() == KeyEvent.VK_ENTER) {
             JTextField temp = (JTextField) e.getComponent();
             temp.setFocusable(false);
             temp.setFocusable(true);
         }
-         if(e.getKeyCode()==KeyEvent.VK_DELETE)
-         {
-             
-               if(mode.equals(MODE_FLECHE))
-               {
-              
-                    if(icoSelected!=null)
-                    {      
-                           
-                            mdl.supprimerSommet(icoSelected);
-                            icoSelected=null;
-                    }
-               }
-                
-         }
-        
+        if (e.getKeyCode() == KeyEvent.VK_DELETE) {
+
+            if (mode.equals(MODE_FLECHE)) {
+
+                if (icoSelected != null) {
+
+                    mdl.supprimerSommet(icoSelected);
+                    icoSelected = null;
+                }
+            }
+
+        }
+
     }
 
     /**
@@ -261,7 +255,6 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
      */
     @Override
     public void keyTyped(KeyEvent ke) {
-        
     }
 
     /**
@@ -279,8 +272,16 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
      */
     @Override
     public void mouseDragged(MouseEvent e) {
-        //arrive=e.getPoint();
-        //mdl.afficheArreteTemporaire(depart,arrive);
+        if (depart != null && mode == MODE_ARRETE) {
+            int x1, x2, y1, y2;
+            x1 = depart.getCentreX();
+            y1 = depart.getCentreY();
+            x2 = e.getX() + depart.getOrigineX();
+            y2 = e.getY() + depart.getOrigineY();
+
+            mdl.afficheArreteTemporaire(x1, y1, x2, y2);
+
+        }
     }
 
     /**
@@ -289,6 +290,5 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
      */
     @Override
     public void mouseMoved(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
