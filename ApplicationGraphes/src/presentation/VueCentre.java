@@ -122,4 +122,13 @@ public class VueCentre extends javax.swing.JPanel {
         remove(arrTemp);
         repaint();
     }
+
+    void deplacerSommet(double x, double y, String nom) {
+        IconeSommet tmp = lesIconesSommets.get(nom);
+        double[] pos = new double[]{x / getWidth(), y / getHeight()};
+        tmp.setLocation(new Point((int)x, (int)y));
+        tmp.setOrigineX((int)x);
+        tmp.setOrigineY((int)y);
+        repaint();
+    }
 }

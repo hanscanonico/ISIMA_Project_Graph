@@ -14,11 +14,11 @@ public interface IConstantes {
     /**
      * Largeur de la fenêtre principale
      */
-    final static int LARGEUR_FENETRE_PRINCIPALE = 600;
+    final static int LARGEUR_FENETRE_PRINCIPALE = 800;
     /**
      * Longueur de la fenêtre principale
      */
-    final static int LONGUEUR_FENETRE_PRINCIPALE = 600;
+    final static int LONGUEUR_FENETRE_PRINCIPALE = 500;
     /**
      * Constante mode sommet
      */
@@ -70,5 +70,6 @@ public interface IConstantes {
     
     final static String ARRETE_TEMP = "afficher l'arrete temporaire";
     final static String MASQUER_TEMP = "masque l'arrete temporaire";
+    final static String DEPLACER_SOMMET = "deplacer un sommet";
     final static String SUPPRIMER_ARRETE = "suppression d'une arrete";
 }

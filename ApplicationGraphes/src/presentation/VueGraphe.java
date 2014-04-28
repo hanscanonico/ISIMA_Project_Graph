@@ -25,6 +25,7 @@ import javax.swing.JPanel;
 import metier.IConstantes;
 import static metier.IConstantes.ARRETE_TEMP;
 import static metier.IConstantes.CHANGER_NOM;
+import static metier.IConstantes.MASQUER_TEMP;
 import static metier.IConstantes.TOUT_SUPPRIMER;
 import static metier.IConstantes.MODE_NON_SELECTION_SOMMET;
 
@@ -155,7 +156,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                 }
                 case SUPPRIMER_SOMMET: {
                     IconeSommet icoSommet = lesIconesSommets.remove(tabInfos[1]);
-                 
+
                     vueCentre.remove(icoSommet);
 
 
@@ -166,10 +167,9 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
 
                 }
                 case SUPPRIMER_ARRETE: {
-                    IconeArrete icoArrete = lesIconesArretes.remove(tabInfos[1]+tabInfos[2]);
-                    if(icoArrete==null)
-                    {
-                        icoArrete= lesIconesArretes.remove(tabInfos[2]+tabInfos[1]);
+                    IconeArrete icoArrete = lesIconesArretes.remove(tabInfos[1] + tabInfos[2]);
+                    if (icoArrete == null) {
+                        icoArrete = lesIconesArretes.remove(tabInfos[2] + tabInfos[1]);
                     }
                     vueCentre.remove(icoArrete);
                     vueCentre.repaint();
@@ -188,6 +188,14 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                 }
                 case MASQUER_TEMP: {
                     vueCentre.masquerArreteTemp();
+                    break;
+                }
+                case DEPLACER_SOMMET: {
+                    String nom = tabInfos[3];
+                    x = Double.parseDouble(tabInfos[1]);
+                    y = Double.parseDouble(tabInfos[2]);
+
+                    vueCentre.deplacerSommet(x, y,nom);
                     break;
                 }
             }

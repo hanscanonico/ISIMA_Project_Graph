@@ -7,6 +7,9 @@ package presentation;
 
 import coucheApplicative.Modele;
 import java.awt.Component;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -21,7 +24,6 @@ import javax.swing.JTextField;
 import metier.IConstantes;
 import static metier.IConstantes.MODE_ARRETE;
 import static metier.IConstantes.MODE_SOMMET;
-import sun.awt.CausedFocusEvent;
 
 /**
  *
@@ -113,7 +115,7 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
 
             mdl.addSommet(me.getX(), me.getY());
         } else if (mode.equals(MODE_ARRETE) && me.getComponent() instanceof IconeSommet) {
-        
+
             depart = (IconeSommet) me.getComponent();
             //mdl.addArreteDepart(dep);
         }
@@ -273,7 +275,7 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
      */
     @Override
     public void mouseDragged(MouseEvent e) {
-        if (depart != null && mode == MODE_ARRETE) {
+        if (depart != null && mode.equals(MODE_ARRETE)) {
             int x1, x2, y1, y2;
             x1 = depart.getCentreX();
             y1 = depart.getCentreY();
@@ -281,8 +283,29 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
             y2 = e.getY() + depart.getOrigineY();
 
             mdl.afficheArreteTemporaire(x1, y1, x2, y2);
-
         }
+        if (mode.equals(MODE_FLECHE)) {
+            if (icoSelected != null) {
+                int x1, y1,taille;
+                taille=IconeSommet.taille;
+                String nom = icoSelected.getNom();
+                Component parent = e.getComponent().getParent();
+                Point loc = parent.getLocationOnScreen();
+                Point inf = MouseInfo.getPointerInfo().getLocation();
+
+                x1 = inf.x - loc.x-taille/2;
+                y1 = inf.y - loc.y-taille/2;
+                
+                x1=Math.max(x1, 0);
+                y1=Math.max(y1, 0);
+                x1=Math.min(x1, parent.getWidth()-taille);
+                y1=Math.min(y1, parent.getHeight()-taille);
+
+                
+                mdl.deplacerSommet(x1, y1, nom);
+            }
+        }
+
     }
 
     /**
@@ -292,6 +315,4 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
     @Override
     public void mouseMoved(MouseEvent e) {
     }
-
- 
 }

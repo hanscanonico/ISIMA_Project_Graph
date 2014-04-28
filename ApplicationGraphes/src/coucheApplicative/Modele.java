@@ -14,6 +14,7 @@ import metier.Graphe;
 import metier.IConstantes;
 import static metier.IConstantes.ARRETE_TEMP;
 import static metier.IConstantes.CHANGER_NOM;
+import static metier.IConstantes.MASQUER_TEMP;
 import static metier.IConstantes.MODE_NON_SELECTION_SOMMET;
 import static metier.IConstantes.SEPARATEUR;
 import static metier.IConstantes.SUPPRIMER_SOMMET;
@@ -175,18 +176,17 @@ public class Modele extends Observable implements IConstantes {
      */
     public void supprimerSommet(IconeSommet icoSommet) {
         Sommet s = lesSommets.remove(icoSommet.getTextField().getText());
-        
-        
-        for (Iterator<String> iter = lesArretes.keySet().iterator() ; iter.hasNext() ; ){
-            String clef=iter.next();
-            Arrete a=lesArretes.get(clef);
-            if(a.containsSommet(new Sommet(icoSommet.getLabel().getText())))
-            {
+
+
+        for (Iterator<String> iter = lesArretes.keySet().iterator(); iter.hasNext();) {
+            String clef = iter.next();
+            Arrete a = lesArretes.get(clef);
+            if (a.containsSommet(new Sommet(icoSommet.getLabel().getText()))) {
                 informer(SUPPRIMER_ARRETE + SEPARATEUR + a.getSommet1().getNom() + SEPARATEUR + a.getSommet2().getNom());
                 iter.remove();
             }
         }
-         
+
         informer(SUPPRIMER_SOMMET + SEPARATEUR + s.getNom());
 
     }
@@ -198,5 +198,9 @@ public class Modele extends Observable implements IConstantes {
 
     public void masquerArreteTemp() {
         informer(MASQUER_TEMP);
+    }
+
+    public void deplacerSommet(int x1, int y1,String nom) {
+        informer(DEPLACER_SOMMET + SEPARATEUR + x1 + SEPARATEUR + y1+SEPARATEUR+nom);
     }
 }

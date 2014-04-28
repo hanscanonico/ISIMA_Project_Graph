@@ -14,6 +14,7 @@ import java.awt.RenderingHints;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -130,12 +131,13 @@ public class IconeSommet extends JComponent {
         
         this.nom = nom;
         this.addMouseMotionListener(ctrl);
-        label = new JLabel(nom);
+        label = new JLabel(nom, SwingConstants.CENTER);
         label.setVisible(false);
         
         label.setPreferredSize(new Dimension(20, 25));
         
         textField = new JTextField(nom);
+        textField.setHorizontalAlignment(JTextField.CENTER);
         textField.setPreferredSize(new Dimension(20, 25));
         add(label, BorderLayout.SOUTH);
         add(textField, BorderLayout.SOUTH);
@@ -148,6 +150,7 @@ public class IconeSommet extends JComponent {
         this.addFocusListener(ctrl);
         this.addMouseListener(ctrl);
         this.addKeyListener(ctrl);
+        this.addMouseMotionListener(ctrl);
         couleur = Color.GREEN;
         setEnabled(true);
         setVisible(true);
@@ -201,7 +204,7 @@ public class IconeSommet extends JComponent {
      *
      * @param origineX l'origineX
      */
-    private void setOrigineX(int origineX) {
+    public void setOrigineX(int origineX) {
         this.origineX = origineX;
     }
 
@@ -219,7 +222,7 @@ public class IconeSommet extends JComponent {
      *
      * @param origineY l'origineY
      */
-    private void setOrigineY(int origineY) {
+    public void setOrigineY(int origineY) {
         this.origineY = origineY;
     }
 
