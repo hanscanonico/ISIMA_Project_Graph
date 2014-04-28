@@ -151,7 +151,7 @@ public class IconeSommet extends JComponent {
         this.addMouseListener(ctrl);
         this.addKeyListener(ctrl);
         this.addMouseMotionListener(ctrl);
-        couleur = Color.GREEN;
+        couleur = new Color(176, 226, 221);
         setEnabled(true);
         setVisible(true);
     }
@@ -168,6 +168,8 @@ public class IconeSommet extends JComponent {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(couleur);
         g2.fillOval(0, 0, IconeSommet.taille, IconeSommet.taille);
+        g2.setColor(Color.darkGray);
+        g2.drawOval(0, 0, IconeSommet.taille, IconeSommet.taille);
         
         
     }
@@ -307,7 +309,7 @@ public class IconeSommet extends JComponent {
      */
     public void modeNonSelection() {
         isSelected = false;
-        couleur = Color.GREEN;        
+        couleur = new Color(176, 226, 221);        
         
         update(getGraphics());
         revalidate();

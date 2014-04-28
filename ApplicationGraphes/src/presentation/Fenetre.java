@@ -29,6 +29,10 @@ public class Fenetre extends JFrame implements IConstantes {
         JMenu menuFichier = new JMenu("Fichier");
         JMenu menuGenGrp = new JMenu("Générer graphe");
         JMenu menuAlgo = new JMenu("Algorithme");
+        
+        menuAlgo.setEnabled(false);
+        menuGenGrp.setEnabled(false);
+        menuFichier.setEnabled(false);
 
 
         menuBar.add(menuFichier);

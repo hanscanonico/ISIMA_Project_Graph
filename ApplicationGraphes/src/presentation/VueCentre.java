@@ -83,7 +83,7 @@ public class VueCentre extends javax.swing.JPanel {
         lesIconesSommets.put(nomSommet, icoS);
         add(icoS);
 
-        icoS.setBounds(new Rectangle((int) x, (int) y, 20, 45));
+        icoS.setBounds(new Rectangle((int) x, (int) y, 21, 45));
         icoS.validate();
         icoS.requestFocus();
         icoS.getTextField().validate();
@@ -100,7 +100,7 @@ public class VueCentre extends javax.swing.JPanel {
      */
     void ajouterArrete(IconeArrete nouv) {
 
-        nouv.setLocation(new Point(10, 10));
+        nouv.setLocation(new Point(0, 0));
         nouv.setBounds(0, 0, getWidth(), getHeight());
 
         add(nouv);
