@@ -315,4 +315,13 @@ public class IconeSommet extends JComponent {
         revalidate();
         repaint();
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb=new StringBuilder();
+        sb.append(label.getText());
+        return sb.toString();
+    }
+    
+    
 }

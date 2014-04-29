@@ -203,4 +203,17 @@ public class Modele extends Observable implements IConstantes {
     public void deplacerSommet(int x1, int y1,String nom) {
         informer(DEPLACER_SOMMET + SEPARATEUR + x1 + SEPARATEUR + y1+SEPARATEUR+nom);
     }
+    
+   public void modeSelectionArrete(String clefArrete)
+   {
+       String clefArrete2=new StringBuilder(clefArrete).reverse().toString();
+       informer(MODE_SELECTION_ARRETE+SEPARATEUR+clefArrete+SEPARATEUR+clefArrete2);
+   }
+   
+   public void modeNonSelectionArrete(String clefArrete)
+   {
+       String clefArrete2=new StringBuilder(clefArrete).reverse().toString();
+       informer(MODE_NON_SELECTION_ARRETE+SEPARATEUR+clefArrete+SEPARATEUR+clefArrete2);
+   }
+   
 }

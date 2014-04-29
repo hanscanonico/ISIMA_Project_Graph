@@ -19,6 +19,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import metier.IConstantes;
@@ -40,7 +41,8 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
     private IconeSommet arrive;
     private IconeSommet icoSelected = null;
     private Component lastEntered;
-
+    private IconeArrete icoArreteSelected=null;
+    
     /**
      * Constructeur
      *
@@ -105,6 +107,7 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
     @Override
     public void mousePressed(MouseEvent me) {
         me.getComponent().requestFocus();
+        
         int buttonDown = me.getButton();
         if (buttonDown == MouseEvent.BUTTON3) {
             if (!mode.equals(MODE_FLECHE)) {
@@ -112,10 +115,9 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
                 this.mode = MODE_FLECHE;
             }
         } else if (mode.equals(MODE_SOMMET) && me.getComponent() instanceof VueCentre) {
-
+  
             mdl.addSommet(me.getX(), me.getY());
         } else if (mode.equals(MODE_ARRETE) && me.getComponent() instanceof IconeSommet) {
-
             depart = (IconeSommet) me.getComponent();
             //mdl.addArreteDepart(dep);
         }
@@ -152,7 +154,9 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
      */
     @Override
     public void mouseEntered(MouseEvent me) {
-        lastEntered = me.getComponent();
+
+            lastEntered = me.getComponent();
+        
     }
 
     /**
@@ -162,6 +166,7 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
      */
     @Override
     public void mouseExited(MouseEvent me) {
+    
     }
 
     /**
@@ -180,18 +185,26 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
 
             JTextField temp = (JTextField) e.getComponent();
             nomCache = temp.getText();
-            System.out.println(nomCache);
         }
         if (e.getComponent() instanceof IconeSommet) {
             if (mode.equals(MODE_FLECHE)) {
                 icoSelected = (IconeSommet) e.getComponent();
-                System.err.println("focus gained de " + icoSelected.getLabel().getText());
+                System.err.println("focus gained de " + icoSelected);
                 nomCache = icoSelected.getTextField().getText();
                 mdl.modeSelectionSommet(icoSelected.getLabel().getText());
-
             }
         }
-
+        if (e.getComponent() instanceof IconeArrete) {
+             if (mode.equals(MODE_FLECHE)) {
+                icoArreteSelected = (IconeArrete) e.getComponent();
+                System.err.println("focus gained de " + icoArreteSelected);
+                 mdl.modeSelectionArrete(icoArreteSelected.toString());
+             
+//                nomCache = icoSelected.getTextField().getText();
+//                mdl.modeSelectionSommet(icoSelected.getLabel().getText());
+             }
+             
+        }
     }
 
     /**
@@ -216,7 +229,15 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
                 mdl.modeNonSelectionSommet(tmp.getLabel().getText());
                 icoSelected = null;
             }
-
+        }
+         else if (e.getComponent() instanceof IconeArrete) {
+             if (mode.equals(MODE_FLECHE)) {
+                IconeArrete tmp = (IconeArrete) e.getComponent();
+                System.err.println("focus lost de " + tmp);
+                mdl.modeNonSelectionArrete(tmp.toString());
+                icoArreteSelected=null;
+             }
+             
         }
 
     }

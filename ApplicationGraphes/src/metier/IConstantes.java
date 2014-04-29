@@ -72,4 +72,6 @@ public interface IConstantes {
     final static String MASQUER_TEMP = "masque l'arrete temporaire";
     final static String DEPLACER_SOMMET = "deplacer un sommet";
     final static String SUPPRIMER_ARRETE = "suppression d'une arrete";
+    final static String MODE_SELECTION_ARRETE = "modeSelectionArrete";
+    final static String MODE_NON_SELECTION_ARRETE = "modeNonSelectionArrete";
 }
