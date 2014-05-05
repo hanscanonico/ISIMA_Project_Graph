@@ -13,6 +13,8 @@ import java.awt.LayoutManager;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.plaf.basic.BasicArrowButton;
 import metier.IConstantes;
 
 /**
@@ -31,8 +33,8 @@ public class VueBas extends JPanel implements IConstantes {
         setBorder(BorderFactory.createLineBorder(Color.black, 1));
         JPanel center = new JPanel();
         center.setPreferredSize(new Dimension(500, getHeight()));
-        center.add(nouveauBoutton(ctrl, "sommet", MODE_SOMMET), BorderLayout.WEST);
-        center.add(nouveauBoutton(ctrl, "arrete", MODE_ARRETE), BorderLayout.CENTER);
+        center.add(new BoutonSommet(ctrl, "sommet", MODE_SOMMET), BorderLayout.WEST);
+        center.add(new BoutonArrete(ctrl, "arrete", MODE_ARRETE), BorderLayout.CENTER);
         center.add(nouveauBoutton(ctrl, "fleche", MODE_FLECHE), BorderLayout.EAST);
         add(center, BorderLayout.CENTER);
         setPreferredSize(new Dimension(1100, 50));
@@ -44,7 +46,7 @@ public class VueBas extends JPanel implements IConstantes {
      * @param ctrl
      */
     private JButton nouveauBoutton(Controleur ctrl, String nom, String actionCommand) {
-        JButton jb = new JButton(nom);
+        JButton jb = new BasicArrowButton(SwingConstants.EAST);
 
         jb.setPreferredSize(new Dimension(150, 50));
         jb.setActionCommand(actionCommand);

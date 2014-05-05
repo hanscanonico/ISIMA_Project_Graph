@@ -39,9 +39,9 @@ public class IconeArrete extends JComponent {
 
         this.som1 = som1;
         this.som2 = som2;
-//        this.addFocusListener(ctrl);
-//        this.addMouseListener(ctrl); 
-//        this.addKeyListener(ctrl);
+        this.addFocusListener(ctrl);
+        this.addMouseListener(ctrl); 
+        this.addKeyListener(ctrl);
       
         couleur=Color.GRAY;
     }
@@ -96,7 +96,7 @@ public class IconeArrete extends JComponent {
         y1 = som1.getCentreY();
         x2 = som2.getCentreX();
         y2 = som2.getCentreY();
-        setBounds(0, 0, getParent().getWidth(), getParent().getHeight());
+    //    setBounds(0, 0, getParent().getWidth(), getParent().getHeight());
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(couleur);
         g2.drawLine(x1, y1, x2, y2);
