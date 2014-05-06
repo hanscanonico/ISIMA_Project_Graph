@@ -39,9 +39,9 @@ public class IconeArrete extends JComponent {
 
         this.som1 = som1;
         this.som2 = som2;
-        this.addFocusListener(ctrl);
+     /*   this.addFocusListener(ctrl);
         this.addMouseListener(ctrl); 
-        this.addKeyListener(ctrl);
+        this.addKeyListener(ctrl);*/
       
         couleur=Color.GRAY;
     }
