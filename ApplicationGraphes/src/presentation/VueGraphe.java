@@ -13,6 +13,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.Toolkit;
 import java.awt.geom.Ellipse2D;
@@ -149,7 +150,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                     IconeSommet i1, i2;
                     i1 = lesIconesSommets.get(tabInfos[1]);
                     i2 = lesIconesSommets.get(tabInfos[2]);
-                    IconeArrete nouv = new IconeArrete(i1, i2,ctrl);
+                    IconeArrete nouv = new IconeArrete(i1, i2, ctrl);
                     lesIconesArretes.put(i1.getNom() + i2.getNom(), nouv);
                     vueCentre.ajouterArrete(nouv);
                     break;
@@ -195,10 +196,10 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                     x = Double.parseDouble(tabInfos[1]);
                     y = Double.parseDouble(tabInfos[2]);
 
-                    vueCentre.deplacerSommet(x, y,nom);
+                    vueCentre.deplacerSommet(x, y, nom);
                     break;
                 }
-                 case MODE_SELECTION_ARRETE: {
+                case MODE_SELECTION_ARRETE: {
                     IconeArrete icoArrete = lesIconesArretes.get(tabInfos[1]);
                     if (icoArrete == null) {
                         icoArrete = lesIconesArretes.get(tabInfos[2]);
@@ -206,7 +207,7 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                     icoArrete.modeSelection();
                     break;
                 }
-                 case MODE_NON_SELECTION_ARRETE: {
+                case MODE_NON_SELECTION_ARRETE: {
                     IconeArrete icoArrete = lesIconesArretes.get(tabInfos[1]);
                     if (icoArrete == null) {
                         icoArrete = lesIconesArretes.get(tabInfos[2]);
@@ -257,18 +258,20 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     private void modeSommet() {
 
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Dimension dim = toolkit.getBestCursorSize(48, 48);
-        BufferedImage newImage = new BufferedImage(48, 48, BufferedImage.TYPE_INT_ARGB);
+        Dimension dim = toolkit.getBestCursorSize(50 ,50);
+        BufferedImage newImage = new BufferedImage(50, 50, BufferedImage.TYPE_INT_ARGB);
 
-        Shape circle = new Ellipse2D.Double(0, 0, dim.width - 1, dim.height - 1);
+        Shape circle = new Ellipse2D.Double(3, 3, dim.width-3 , dim.height-3 );
 
         int centerX = (dim.width - 30) / 2;
         int centerY = (dim.height - 30) / 2;
 
         Graphics2D g = newImage.createGraphics();
-
-        g.setColor(Color.ORANGE);
+         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g.setColor(new Color(111, 182, 214));
         g.fill(circle);
+        g.setColor(Color.BLUE);
+        g.draw(circle);g.draw(circle);
 
         Cursor customCursor = toolkit.createCustomCursor(newImage, new Point(centerX, centerY), "Cursor");
         this.setCursor(customCursor);
