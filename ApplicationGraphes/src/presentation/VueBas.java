@@ -5,17 +5,18 @@
  */
 package presentation;
 
+import presentation.bouton.BoutonSommet;
+import presentation.bouton.BoutonArrete;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.LayoutManager;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicArrowButton;
 import metier.IConstantes;
+import presentation.bouton.BoutonFleche;
 
 /**
  *
@@ -35,7 +36,7 @@ public class VueBas extends JPanel implements IConstantes {
         center.setPreferredSize(new Dimension(500, getHeight()));
         center.add(new BoutonSommet(ctrl, "sommet", MODE_SOMMET), BorderLayout.WEST);
         center.add(new BoutonArrete(ctrl, "arrete", MODE_ARRETE), BorderLayout.CENTER);
-        center.add(nouveauBoutton(ctrl, "fleche", MODE_FLECHE), BorderLayout.EAST);
+        center.add(new BoutonFleche(ctrl, "fleche", MODE_FLECHE), BorderLayout.EAST);
         add(center, BorderLayout.CENTER);
         setPreferredSize(new Dimension(1100, 65));
     }

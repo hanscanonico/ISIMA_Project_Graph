@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package presentation;
+package presentation.bouton;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,6 +13,8 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import presentation.Controleur;
+import presentation.IconeSommet;
 
 /**
  *

@@ -1,34 +1,38 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package presentation;
+package presentation.bouton;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import presentation.Controleur;
 
 /**
  *
- * @author Hans
+ * @author Amine
  */
-public class BoutonArrete extends JButton{
-    
-    public BoutonArrete(Controleur ctrl, String nom, String actionCommand)
-    {
+public class BoutonFleche extends JButton {
+
+    private Image image;
+
+    public BoutonFleche(Controleur ctrl, String nom, String actionCommand) {
         setName(nom);
         setPreferredSize(new Dimension(50, 50));
         setActionCommand(actionCommand);
         addActionListener(ctrl);
-        
+        image = getToolkit().getImage("image/curseur.png");
     }
-    
-      /**
+
+    /**
      *
      * @param g
      */
@@ -36,11 +40,10 @@ public class BoutonArrete extends JButton{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-      
-    //    setBounds(0, 0, getParent().getWidth(), getParent().getHeight());
+
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(Color.BLACK);
-        g2.drawLine(10,10,40,40);
-        
+        g2.drawImage(image, 15, 10, getParent());
+
+
     }
 }
