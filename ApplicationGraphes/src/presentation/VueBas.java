@@ -37,7 +37,7 @@ public class VueBas extends JPanel implements IConstantes {
         center.add(new BoutonArrete(ctrl, "arrete", MODE_ARRETE), BorderLayout.CENTER);
         center.add(nouveauBoutton(ctrl, "fleche", MODE_FLECHE), BorderLayout.EAST);
         add(center, BorderLayout.CENTER);
-        setPreferredSize(new Dimension(1100, 50));
+        setPreferredSize(new Dimension(1100, 65));
     }
 
     /**

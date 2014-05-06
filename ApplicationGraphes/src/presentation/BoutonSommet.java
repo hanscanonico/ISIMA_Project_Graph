@@ -36,14 +36,16 @@ public class BoutonSommet extends JButton {
      */
     @Override
     public void paintComponent(Graphics g) {
+        super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         int t = IconeSommet.taille;
+        int pos=(50-t)/2;
         // on active l'antialiasing
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(new Color(176, 226, 221));
-        g2.fillOval(20, 10, IconeSommet.taille, IconeSommet.taille);
+        g2.fillOval(pos, pos, IconeSommet.taille, IconeSommet.taille);
         g2.setColor(Color.darkGray);
-        g2.drawOval(20, 10, IconeSommet.taille, IconeSommet.taille);
+        g2.drawOval(pos, pos, IconeSommet.taille, IconeSommet.taille);
         
         
     }

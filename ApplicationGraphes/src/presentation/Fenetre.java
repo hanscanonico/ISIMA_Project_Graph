@@ -18,7 +18,7 @@ public class Fenetre extends JFrame implements IConstantes {
      */
     public Fenetre() {
 
-        setTitle("Logiciel de graphe");
+        setTitle("IsiGraphe");
         setSize(LARGEUR_FENETRE_PRINCIPALE, LONGUEUR_FENETRE_PRINCIPALE);
         setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
