@@ -84,8 +84,11 @@ public class Modele extends Observable implements IConstantes {
      * @param y la coordonnée y du curseur
      */
     public void addSommet(int x, int y) {
+        
+        while(lesSommets.containsKey(Integer.toString(i))){
+            i++;
+        }
         Sommet s = new Sommet(Integer.toString(i));
-        i++;
         lesSommets.put(s.getNom(), s);
         informer(AJOUTER_SOMMET + SEPARATEUR + x + SEPARATEUR + y + SEPARATEUR + s.getNom());
     }
