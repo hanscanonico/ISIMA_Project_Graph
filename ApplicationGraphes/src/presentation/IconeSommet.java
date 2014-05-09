@@ -7,6 +7,7 @@ package presentation;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -26,7 +27,7 @@ public class IconeSommet extends JComponent {
     /**
      *
      */
-    public static int taille = 20;
+    public static int taille = 35;
 //  l'origineX d'un iconeSommet
     private int origineX;
 //  l'origineY d'un iconeSommet
@@ -38,7 +39,10 @@ public class IconeSommet extends JComponent {
     private JTextField textField;
     private JLabel label;
     private String nom;
-    private Color couleur;
+    private Color couleur1;
+    private Color couleur2;
+    private Color couleur3;
+    private Color couleur4;
 //sommet selectionné
     private boolean isSelected;
 
@@ -124,34 +128,38 @@ public class IconeSommet extends JComponent {
      * @param nom
      */
     public IconeSommet(Controleur ctrl, double[] pos, int x, int y, String nom) {
-        setLayout(new BorderLayout());
+        setLayout(new FlowLayout());
         setLocation(new Point(x, y));
         setOrigineX(x);
         setOrigineY(y);
-        
+
         this.nom = nom;
         this.addMouseMotionListener(ctrl);
         label = new JLabel(nom, SwingConstants.CENTER);
         label.setVisible(false);
-        
-        label.setPreferredSize(new Dimension(20, 25));
-        
+
+        label.setPreferredSize(new Dimension(30, 25));
+
         textField = new JTextField(nom);
         textField.setHorizontalAlignment(JTextField.CENTER);
-        textField.setPreferredSize(new Dimension(20, 25));
-        add(label, BorderLayout.SOUTH);
-        add(textField, BorderLayout.SOUTH);
-        
+        textField.setPreferredSize(new Dimension(30, 25));
+        add(label);
+        add(textField);
+
         textField.addActionListener(ctrl);
         textField.addFocusListener(ctrl);
-        textField.addKeyListener(ctrl);        
-        label.addMouseListener(ctrl);
-        
+        textField.addKeyListener(ctrl);
+        //label.addMouseListener(ctrl);
+
         this.addFocusListener(ctrl);
         this.addMouseListener(ctrl);
         this.addKeyListener(ctrl);
         this.addMouseMotionListener(ctrl);
-        couleur = new Color(176, 226, 221);
+        couleur1 = new Color(191, 238, 237);
+        couleur2 = Color.blue;
+        couleur3 = new Color(255, 0, 0);
+        couleur4 = new Color(255, 182, 193);
+
         setEnabled(true);
         setVisible(true);
     }
@@ -166,12 +174,21 @@ public class IconeSommet extends JComponent {
         int t = IconeSommet.taille;
         // on active l'antialiasing
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(couleur);
+        if (isSelected) {
+            g2.setColor(couleur4);
+        } else {
+            g2.setColor(couleur1);
+        }
+
         g2.fillOval(0, 0, IconeSommet.taille, IconeSommet.taille);
-        g2.setColor(Color.darkGray);
+        if (isSelected) {
+            g2.setColor(couleur3);
+        } else {
+            g2.setColor(couleur2);
+        }
         g2.drawOval(0, 0, IconeSommet.taille, IconeSommet.taille);
-        
-        
+
+
     }
 
     /**
@@ -238,12 +255,10 @@ public class IconeSommet extends JComponent {
     public boolean equals(Object obj) {
         boolean equal = false;
         if (obj instanceof IconeSommet) {
-            IconeSommet ico=(IconeSommet)obj;
-            if(ico.isSelected==isSelected)
-            {
-                if(ico.getLabel().getText().equals(getLabel().getText()))
-                {
-                    equal=true;
+            IconeSommet ico = (IconeSommet) obj;
+            if (ico.isSelected == isSelected) {
+                if (ico.getLabel().getText().equals(getLabel().getText())) {
+                    equal = true;
                 }
             }
         }
@@ -276,7 +291,7 @@ public class IconeSommet extends JComponent {
         repaint();
         add(label, BorderLayout.SOUTH);
         repaint();
-        
+
     }
 
     /**
@@ -284,7 +299,7 @@ public class IconeSommet extends JComponent {
      *
      */
     void modeTextField() {
-        
+
         remove(label);
         repaint();
         add(textField, BorderLayout.SOUTH);
@@ -297,7 +312,7 @@ public class IconeSommet extends JComponent {
      *
      */
     public void modeSelection() {
-        couleur = Color.BLACK;        
+
         isSelected = true;
         update(getGraphics());
         revalidate();
@@ -309,8 +324,8 @@ public class IconeSommet extends JComponent {
      */
     public void modeNonSelection() {
         isSelected = false;
-        couleur = new Color(176, 226, 221);        
-        
+
+
         update(getGraphics());
         revalidate();
         repaint();
@@ -318,10 +333,8 @@ public class IconeSommet extends JComponent {
 
     @Override
     public String toString() {
-        StringBuilder sb=new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         sb.append(label.getText());
         return sb.toString();
     }
-    
-    
 }

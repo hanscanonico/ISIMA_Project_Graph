@@ -77,13 +77,14 @@ public class VueCentre extends javax.swing.JPanel {
      */
     void ajouterSommet(String nomSommet, double x, double y, Controleur ctrl) {
         setLayout(null);
+        int bnds = IconeSommet.taille;
         double[] pos = new double[]{x / getWidth(), y / getHeight()};
         IconeSommet icoS = new IconeSommet(ctrl, pos, (int) x, (int) y, nomSommet);
 
         lesIconesSommets.put(nomSommet, icoS);
         add(icoS);
 
-        icoS.setBounds(new Rectangle((int) x, (int) y, 21, 45));
+        icoS.setBounds(new Rectangle((int) x, (int) y, bnds+1, bnds+1));
         icoS.validate();
         icoS.requestFocus();
         icoS.getTextField().validate();

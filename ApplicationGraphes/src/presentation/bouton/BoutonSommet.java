@@ -11,7 +11,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import presentation.Controleur;
 import presentation.IconeSommet;
@@ -44,9 +43,9 @@ public class BoutonSommet extends JButton {
         int pos=(50-t)/2;
         // on active l'antialiasing
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(new Color(176, 226, 221));
+        g2.setColor(new Color(199, 245, 254));
         g2.fillOval(pos, pos, IconeSommet.taille, IconeSommet.taille);
-        g2.setColor(Color.darkGray);
+        g2.setColor(Color.blue);
         g2.drawOval(pos, pos, IconeSommet.taille, IconeSommet.taille);
         
         

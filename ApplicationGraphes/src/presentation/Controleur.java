@@ -9,7 +9,6 @@ import coucheApplicative.Modele;
 import java.awt.Component;
 import java.awt.MouseInfo;
 import java.awt.Point;
-import java.awt.PointerInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -19,7 +18,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import metier.IConstantes;
@@ -41,8 +39,8 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
     private IconeSommet arrive;
     private IconeSommet icoSelected = null;
     private Component lastEntered;
-    private IconeArrete icoArreteSelected=null;
-    
+    private IconeArrete icoArreteSelected = null;
+
     /**
      * Constructeur
      *
@@ -91,9 +89,14 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
 
         if (mode.equals(MODE_FLECHE)) {
 
-            if (me.getComponent() instanceof JLabel) {
-                JLabel tmp = (JLabel) me.getComponent();
-                mdl.afficheTextfield(tmp.getText());
+            if (me.getComponent() instanceof IconeSommet) {
+                IconeSommet tmp2 = (IconeSommet) me.getComponent();
+                if (me.getClickCount() == 2) {
+                    JLabel tmp;
+                    tmp = (JLabel) tmp2.getLabel();
+                    mdl.afficheTextfield(tmp.getText());
+                }
+
             }
 
         }
@@ -107,7 +110,7 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
     @Override
     public void mousePressed(MouseEvent me) {
         me.getComponent().requestFocus();
-        
+
         int buttonDown = me.getButton();
         if (buttonDown == MouseEvent.BUTTON3) {
             if (!mode.equals(MODE_FLECHE)) {
@@ -115,7 +118,7 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
                 this.mode = MODE_FLECHE;
             }
         } else if (mode.equals(MODE_SOMMET) && me.getComponent() instanceof VueCentre) {
-  
+
             mdl.addSommet(me.getX(), me.getY());
         } else if (mode.equals(MODE_ARRETE) && me.getComponent() instanceof IconeSommet) {
             depart = (IconeSommet) me.getComponent();
@@ -155,8 +158,8 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
     @Override
     public void mouseEntered(MouseEvent me) {
 
-            lastEntered = me.getComponent();
-        
+        lastEntered = me.getComponent();
+
     }
 
     /**
@@ -166,7 +169,6 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
      */
     @Override
     public void mouseExited(MouseEvent me) {
-    
     }
 
     /**
@@ -195,15 +197,15 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
             }
         }
         if (e.getComponent() instanceof IconeArrete) {
-             if (mode.equals(MODE_FLECHE)) {
+            if (mode.equals(MODE_FLECHE)) {
                 icoArreteSelected = (IconeArrete) e.getComponent();
                 System.err.println("focus gained de " + icoArreteSelected);
-                 mdl.modeSelectionArrete(icoArreteSelected.toString());
-             
+                mdl.modeSelectionArrete(icoArreteSelected.toString());
+
 //                nomCache = icoSelected.getTextField().getText();
 //                mdl.modeSelectionSommet(icoSelected.getLabel().getText());
-             }
-             
+            }
+
         }
     }
 
@@ -221,7 +223,9 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
         if (e.getComponent() instanceof JTextField) {
             JTextField temp = (JTextField) e.getComponent();
             String nouv = temp.getText();
-            mdl.changeName(nomCache, nouv);
+            if("".equals(nouv))
+                nouv=nomCache;
+                mdl.changeName(nomCache, nouv);
         } else if (e.getComponent() instanceof IconeSommet) {
             if (mode.equals(MODE_FLECHE)) {
                 IconeSommet tmp = (IconeSommet) e.getComponent();
@@ -229,15 +233,14 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
                 mdl.modeNonSelectionSommet(tmp.getLabel().getText());
                 icoSelected = null;
             }
-        }
-         else if (e.getComponent() instanceof IconeArrete) {
-             if (mode.equals(MODE_FLECHE)) {
+        } else if (e.getComponent() instanceof IconeArrete) {
+            if (mode.equals(MODE_FLECHE)) {
                 IconeArrete tmp = (IconeArrete) e.getComponent();
                 System.err.println("focus lost de " + tmp);
                 mdl.modeNonSelectionArrete(tmp.toString());
-                icoArreteSelected=null;
-             }
-             
+                icoArreteSelected = null;
+            }
+
         }
 
     }
@@ -307,22 +310,22 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
         }
         if (mode.equals(MODE_FLECHE)) {
             if (icoSelected != null) {
-                int x1, y1,taille;
-                taille=IconeSommet.taille;
+                int x1, y1, taille;
+                taille = IconeSommet.taille;
                 String nom = icoSelected.getNom();
                 Component parent = e.getComponent().getParent();
                 Point loc = parent.getLocationOnScreen();
                 Point inf = MouseInfo.getPointerInfo().getLocation();
 
-                x1 = inf.x - loc.x-taille/2;
-                y1 = inf.y - loc.y-taille/2;
-                
-                x1=Math.max(x1, 0);
-                y1=Math.max(y1, 0);
-                x1=Math.min(x1, parent.getWidth()-taille);
-                y1=Math.min(y1, parent.getHeight()-taille);
+                x1 = inf.x - loc.x - taille / 2;
+                y1 = inf.y - loc.y - taille / 2;
 
-                
+                x1 = Math.max(x1, 0);
+                y1 = Math.max(y1, 0);
+                x1 = Math.min(x1, parent.getWidth() - taille);
+                y1 = Math.min(y1, parent.getHeight() - taille);
+
+
                 mdl.deplacerSommet(x1, y1, nom);
             }
         }

@@ -270,8 +270,8 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
          g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g.setColor(new Color(111, 182, 214));
         g.fill(circle);
-        g.setColor(Color.BLUE);
-        g.draw(circle);g.draw(circle);
+        g.setColor(Color.blue);
+        g.draw(circle);
 
         Cursor customCursor = toolkit.createCustomCursor(newImage, new Point(centerX, centerY), "Cursor");
         this.setCursor(customCursor);
