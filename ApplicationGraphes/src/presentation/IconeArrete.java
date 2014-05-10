@@ -26,6 +26,15 @@ public class IconeArrete extends JComponent {
 //  la disposition
     private double[] disp = new double[2];
     private Color couleur;
+    private int poid=0;
+
+    public int getPoid() {
+        return poid;
+    }
+
+    public void setPoid(int poid) {
+        this.poid = poid;
+    }
     /**
      * Constructeur
      *

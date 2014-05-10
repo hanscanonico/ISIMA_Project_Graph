@@ -13,6 +13,19 @@ public class Arrete {
     private Sommet sommet1;
 //  le deuxieme sommet de l'arrête
     private Sommet sommet2;
+    private int poid;
+
+    public int getPoid() {
+        return poid;
+    }
+
+    public final void setPoid(int poid) {
+        if (poid < 0) {
+            throw new IllegalArgumentException();
+        } else {
+            this.poid = poid;
+        }
+    }
 
     /**
      * getter de sommet1
@@ -28,7 +41,7 @@ public class Arrete {
      *
      * @param sommet1 un sommet
      */
-    public void setSommet1(Sommet sommet1) {
+    public final void setSommet1(Sommet sommet1) {
         this.sommet1 = sommet1;
     }
 
@@ -46,7 +59,7 @@ public class Arrete {
      *
      * @param sommet2 un sommet
      */
-    public void setSommet2(Sommet sommet2) {
+    public final void setSommet2(Sommet sommet2) {
         this.sommet2 = sommet2;
     }
 
@@ -61,12 +74,21 @@ public class Arrete {
         setSommet2(sommet2);
     }
 
-    public boolean containsSommet(Sommet s)
-    {
-         return sommet1.equals(s)||sommet2.equals(s);
+    /**
+     * Constructeur
+     *
+     * @param sommet1 le sommet1
+     * @param sommet2 le sommet2
+     */
+    public Arrete(Sommet sommet1, Sommet sommet2, int poid) {
+        this(sommet1, sommet2);
+        setPoid(poid);
     }
-    
-    
+
+    public boolean containsSommet(Sommet s) {
+        return sommet1.equals(s) || sommet2.equals(s);
+    }
+
     /**
      * toString de arrête
      *
