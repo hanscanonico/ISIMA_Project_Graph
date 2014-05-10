@@ -6,10 +6,15 @@ package presentation;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Label;
+import java.awt.Point;
 import java.awt.RenderingHints;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 
 /**
  *
@@ -25,9 +30,16 @@ public class IconeArrete extends JComponent {
     private double[] pos = new double[2];
 //  la disposition
     private double[] disp = new double[2];
+// couleu de l'arrete
     private Color couleur;
-    private int poid=0;
-
+    private int poid = 0;
+// position du label
+    private int labX;
+// position du label
+    private int labY;
+// label du poid
+    private JLabel label;
+    
     public int getPoid() {
         return poid;
     }
@@ -35,24 +47,30 @@ public class IconeArrete extends JComponent {
     public void setPoid(int poid) {
         this.poid = poid;
     }
+
     /**
      * Constructeur
      *
      * @param som1 le premier iconeSommet
      * @param som2 le deuxièeme iconeSommet
      */
-    public IconeArrete(IconeSommet som1, IconeSommet som2,Controleur ctrl) {
-        setLayout(new BorderLayout());
+    public IconeArrete(IconeSommet som1, IconeSommet som2, Controleur ctrl) {
+        setLayout(null);
 
         this.som1 = som1;
         this.som2 = som2;
-     /*   this.addFocusListener(ctrl);
-        this.addMouseListener(ctrl); 
-        this.addKeyListener(ctrl);*/
-      
-        couleur=Color.GRAY;
+        /*   this.addFocusListener(ctrl);
+         this.addMouseListener(ctrl); 
+         this.addKeyListener(ctrl);*/
+
+        couleur = Color.GRAY;
+        label=new JLabel(Integer.toString(poid));
+        label.setPreferredSize(new Dimension(30, 25));
+        label.setBounds(0, 0, 30, 25);
+
+        add(label);
     }
-    
+
     /**
      * getter de iconeSOmmet1
      *
@@ -104,34 +122,36 @@ public class IconeArrete extends JComponent {
         x2 = som2.getCentreX();
         y2 = som2.getCentreY();
         setBounds(0, 0, getParent().getWidth(), getParent().getHeight());
+        label.setLocation((x1+x2)/2, (y1+y2)/2);
+        
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(couleur);
         g2.drawLine(x1, y1, x2, y2);
+
+
+
     }
 
-    public void modeSelection()
-    {
-        couleur=Color.BLACK;
+    public void modeSelection() {
+        couleur = Color.BLACK;
         update(getGraphics());
         revalidate();
         repaint();
-        
+
     }
-    public void modeNonSelection()
-    {
-        couleur=Color.GRAY;
+
+    public void modeNonSelection() {
+        couleur = Color.GRAY;
         update(getGraphics());
         revalidate();
         repaint();
-        
+
     }
-    
+
     @Override
     public String toString() {
-        StringBuilder sb=new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         sb.append(som1).append(som2);
         return sb.toString();
     }
-    
-    
 }
