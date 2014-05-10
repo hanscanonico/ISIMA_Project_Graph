@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -137,7 +138,7 @@ public class IconeSommet extends JComponent {
         this.addMouseMotionListener(ctrl);
         label = new JLabel(nom, SwingConstants.CENTER);
         label.setVisible(false);
-
+        label.setForeground(new Color(255, 250, 250));
         label.setPreferredSize(new Dimension(30, 25));
 
         textField = new JTextField(nom);
@@ -155,10 +156,14 @@ public class IconeSommet extends JComponent {
         this.addMouseListener(ctrl);
         this.addKeyListener(ctrl);
         this.addMouseMotionListener(ctrl);
-        couleur1 = new Color(191, 238, 237);
-        couleur2 = Color.blue;
-        couleur3 = new Color(255, 0, 0);
-        couleur4 = new Color(255, 182, 193);
+        Font font = label.getFont();
+
+        Font boldFont = new Font(font.getFontName(), Font.BOLD, font.getSize());
+        label.setFont(boldFont);
+        couleur1 = new Color(61, 89, 171);
+        couleur2 = Color.gray;
+        couleur3 = Color.gray;
+        couleur4 = new Color(171, 61, 89);
 
         setEnabled(true);
         setVisible(true);
