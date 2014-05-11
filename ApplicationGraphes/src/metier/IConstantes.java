@@ -46,11 +46,11 @@ public interface IConstantes {
     /**
      * constante changer de nom
      */
-    final static String CHANGER_NOM = "changer de nom";
+    final static String CHANGER_NOM_SOMMET = "changer de nom sommet";
     /**
      * constante afficher texteField
      */
-    final static String AFFICHE_TEXTF = "afficher textfield";
+    final static String AFFICHE_TEXTF_SOM = "afficher textfield";
     /**
      * constante mode selection sommet
      */
@@ -67,11 +67,12 @@ public interface IConstantes {
      * constante suppression sommet
      */
     final static String SUPPRIMER_SOMMET = "suppression d'un sommet";
-    
     final static String ARRETE_TEMP = "afficher l'arrete temporaire";
     final static String MASQUER_TEMP = "masque l'arrete temporaire";
     final static String DEPLACER_SOMMET = "deplacer un sommet";
     final static String SUPPRIMER_ARRETE = "suppression d'une arrete";
     final static String MODE_SELECTION_ARRETE = "modeSelectionArrete";
     final static String MODE_NON_SELECTION_ARRETE = "modeNonSelectionArrete";
+    final static String CHANGER_POID_ARRETE = "changer de poid arrete";
+    final static String AFFICHE_TEXTF_ARR = "afficher textfield d'un poid";
 }

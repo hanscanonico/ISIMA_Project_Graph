@@ -94,8 +94,19 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
                 if (me.getClickCount() == 2) {
                     JLabel tmp;
                     tmp = (JLabel) tmp2.getLabel();
-                    mdl.afficheTextfield(tmp.getText());
+                    mdl.afficheTextfieldSommet(tmp.getText());
                 }
+
+            }
+
+            if (me.getComponent() instanceof JLabel) {
+                JLabel tmp = (JLabel) me.getComponent();
+                IconeArrete tmp2 = (IconeArrete) tmp.getParent();
+                String som1 = tmp2.getSom1().getNom();
+                String som2 = tmp2.getSom2().getNom();
+
+                mdl.afficheTextfieldArrete(som1, som2);
+
 
             }
 
@@ -118,11 +129,9 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
                 this.mode = MODE_FLECHE;
             }
         } else if (mode.equals(MODE_SOMMET) && me.getComponent() instanceof VueCentre) {
-
             mdl.addSommet(me.getX(), me.getY());
         } else if (mode.equals(MODE_ARRETE) && me.getComponent() instanceof IconeSommet) {
             depart = (IconeSommet) me.getComponent();
-            //mdl.addArreteDepart(dep);
         }
 
 
@@ -221,11 +230,28 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
      */
     public void focusLost(FocusEvent e) {
         if (e.getComponent() instanceof JTextField) {
+
             JTextField temp = (JTextField) e.getComponent();
-            String nouv = temp.getText();
-            if("".equals(nouv))
-                nouv=nomCache;
+            if (temp.getParent() instanceof IconeSommet) {
+                String nouv = temp.getText();
+                if ("".equals(nouv)) {
+                    nouv = nomCache;
+                }
                 mdl.changeName(nomCache, nouv);
+            } else if (temp.getParent() instanceof IconeArrete) {
+                IconeArrete arr = (IconeArrete) temp.getParent();
+                String nouv = temp.getText();
+                int pod;
+                if (isInteger(nouv)) {
+                    pod = Integer.parseInt(nouv);
+                } else {
+                    pod = arr.getPoid();
+                }
+                String som1 = arr.getSom1().getNom();
+                String som2 = arr.getSom2().getNom();
+                mdl.changePoid(pod, som1, som2);
+            }
+
         } else if (e.getComponent() instanceof IconeSommet) {
             if (mode.equals(MODE_FLECHE)) {
                 IconeSommet tmp = (IconeSommet) e.getComponent();
@@ -338,5 +364,15 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
      */
     @Override
     public void mouseMoved(MouseEvent e) {
+    }
+
+    public static boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+        return true;
     }
 }

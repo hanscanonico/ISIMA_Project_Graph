@@ -24,8 +24,9 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
 import metier.IConstantes;
+import static metier.IConstantes.AFFICHE_TEXTF_SOM;
 import static metier.IConstantes.ARRETE_TEMP;
-import static metier.IConstantes.CHANGER_NOM;
+import static metier.IConstantes.CHANGER_NOM_SOMMET;
 import static metier.IConstantes.MASQUER_TEMP;
 import static metier.IConstantes.TOUT_SUPPRIMER;
 import static metier.IConstantes.MODE_NON_SELECTION_SOMMET;
@@ -121,15 +122,30 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                 case TOUT_SUPPRIMER:
                     viderGraphe();
                     break;
-                case CHANGER_NOM: {
+                case CHANGER_NOM_SOMMET: {
                     IconeSommet aux = lesIconesSommets.get(tabInfos[1]);
                     aux.updateName(tabInfos[2]);
                     lesIconesSommets.remove(tabInfos[1]);
                     lesIconesSommets.put(tabInfos[2], aux);
                     break;
                 }
-                case AFFICHE_TEXTF: {
+                case AFFICHE_TEXTF_SOM: {
                     IconeSommet aux = lesIconesSommets.get(tabInfos[1]);
+                    aux.modeTextField();
+                    aux.validate();
+                    break;
+                }
+                case AFFICHE_TEXTF_ARR: {
+                    IconeSommet i1, i2;
+                    i1 = lesIconesSommets.get(tabInfos[1]);
+                    i2 = lesIconesSommets.get(tabInfos[2]);
+                    IconeArrete aux;
+                    if (lesIconesArretes.containsKey(i1.getNom() + i2.getNom())) {
+                        aux = lesIconesArretes.get(i1.getNom() + i2.getNom());
+                    } else {
+                        aux = lesIconesArretes.get(i2.getNom() + i1.getNom());
+                    }
+
                     aux.modeTextField();
                     aux.validate();
                     break;
@@ -215,6 +231,18 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                     icoArrete.modeNonSelection();
                     break;
                 }
+                case CHANGER_POID_ARRETE: {
+                    IconeArrete aux;
+                    if (lesIconesArretes.containsKey(tabInfos[2] + tabInfos[3])) {
+                        aux = lesIconesArretes.get(tabInfos[2] + tabInfos[3]);
+                    } else {
+                        aux = lesIconesArretes.get(tabInfos[3] + tabInfos[2]);
+                    }
+
+                    aux.updatePoid(tabInfos[1]);
+
+                    break;
+                }
             }
         }
     }
@@ -258,16 +286,16 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
     private void modeSommet() {
 
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Dimension dim = toolkit.getBestCursorSize(50 ,50);
+        Dimension dim = toolkit.getBestCursorSize(50, 50);
         BufferedImage newImage = new BufferedImage(50, 50, BufferedImage.TYPE_INT_ARGB);
 
-        Shape circle = new Ellipse2D.Double(3, 3, dim.width-3 , dim.height-3 );
+        Shape circle = new Ellipse2D.Double(3, 3, dim.width - 3, dim.height - 3);
 
         int centerX = (dim.width - 30) / 2;
         int centerY = (dim.height - 30) / 2;
 
         Graphics2D g = newImage.createGraphics();
-         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g.setColor(new Color(111, 182, 214));
         g.fill(circle);
         g.setColor(Color.blue);

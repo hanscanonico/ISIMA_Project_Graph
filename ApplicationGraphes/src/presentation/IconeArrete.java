@@ -4,17 +4,14 @@
  */
 package presentation;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Label;
-import java.awt.Point;
 import java.awt.RenderingHints;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -39,12 +36,16 @@ public class IconeArrete extends JComponent {
     private int labY;
 // label du poid
     private JLabel label;
-    
+    private final JTextField txtfield;
+
     public int getPoid() {
         return poid;
     }
 
     public void setPoid(int poid) {
+        String tmp=Integer.toString(poid);
+        label.setText(tmp);
+        txtfield.setText(tmp);
         this.poid = poid;
     }
 
@@ -64,11 +65,22 @@ public class IconeArrete extends JComponent {
          this.addKeyListener(ctrl);*/
 
         couleur = Color.GRAY;
-        label=new JLabel(Integer.toString(poid));
+        label = new JLabel(Integer.toString(poid));
         label.setPreferredSize(new Dimension(30, 25));
         label.setBounds(0, 0, 30, 25);
+        label.addMouseListener(ctrl);
 
         add(label);
+
+        txtfield = new JTextField(Integer.toString(poid));
+        txtfield.setPreferredSize(new Dimension(30, 25));
+        txtfield.setBounds(0, 0, 30, 25);
+        txtfield.setVisible(false);
+        txtfield.addActionListener(ctrl);
+        txtfield.addFocusListener(ctrl);
+        txtfield.addKeyListener(ctrl);
+
+        add(txtfield);
     }
 
     /**
@@ -122,8 +134,9 @@ public class IconeArrete extends JComponent {
         x2 = som2.getCentreX();
         y2 = som2.getCentreY();
         setBounds(0, 0, getParent().getWidth(), getParent().getHeight());
-        label.setLocation((x1+x2)/2, (y1+y2)/2);
-        
+        label.setLocation((x1 + x2) / 2, (y1 + y2) / 2);
+        txtfield.setLocation((x1 + x2) / 2, (y1 + y2) / 2);
+
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(couleur);
         g2.drawLine(x1, y1, x2, y2);
@@ -153,5 +166,18 @@ public class IconeArrete extends JComponent {
         StringBuilder sb = new StringBuilder();
         sb.append(som1).append(som2);
         return sb.toString();
+    }
+
+    void modeTextField() {
+        label.setVisible(false);
+        txtfield.setVisible(true);
+        txtfield.requestFocus();
+    }
+
+    void updatePoid(String pod) {
+        setPoid(Integer.parseInt(pod));
+        txtfield.setVisible(false);
+        label.setVisible(true);
+
     }
 }

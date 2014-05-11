@@ -12,9 +12,12 @@ import java.util.Observable;
 import metier.Arrete;
 import metier.Graphe;
 import metier.IConstantes;
+import static metier.IConstantes.AFFICHE_TEXTF_SOM;
+import static metier.IConstantes.AJOUTER_ARRETE;
 import static metier.IConstantes.ARRETE_TEMP;
-import static metier.IConstantes.CHANGER_NOM;
+import static metier.IConstantes.CHANGER_NOM_SOMMET;
 import static metier.IConstantes.MASQUER_TEMP;
+import static metier.IConstantes.MODE_NON_SELECTION_ARRETE;
 import static metier.IConstantes.MODE_NON_SELECTION_SOMMET;
 import static metier.IConstantes.SEPARATEUR;
 import static metier.IConstantes.SUPPRIMER_SOMMET;
@@ -84,8 +87,8 @@ public class Modele extends Observable implements IConstantes {
      * @param y la coordonnée y du curseur
      */
     public void addSommet(int x, int y) {
-        
-        while(lesSommets.containsKey(Integer.toString(i))){
+
+        while (lesSommets.containsKey(Integer.toString(i))) {
             i++;
         }
         Sommet s = new Sommet(Integer.toString(i));
@@ -120,16 +123,25 @@ public class Modele extends Observable implements IConstantes {
         tmp.setNom(nouv);
         lesSommets.remove(nomCache);
         lesSommets.put(nouv, tmp);
-        informer(CHANGER_NOM + SEPARATEUR + nomCache + SEPARATEUR + nouv);
+        informer(CHANGER_NOM_SOMMET + SEPARATEUR + nomCache + SEPARATEUR + nouv);
 
+    }
+
+   
+    /**
+     *
+     * @param nomCache
+     */
+    public void afficheTextfieldSommet(String nomCache) {
+        informer(AFFICHE_TEXTF_SOM + SEPARATEUR + nomCache);
     }
 
     /**
      *
      * @param nomCache
      */
-    public void afficheTextfield(String nomCache) {
-        informer(AFFICHE_TEXTF + SEPARATEUR + nomCache);
+    public void afficheTextfieldArrete(String som1, String som2) {
+        informer(AFFICHE_TEXTF_ARR + SEPARATEUR + som1 + SEPARATEUR + som2);
     }
 
     /**
@@ -167,7 +179,7 @@ public class Modele extends Observable implements IConstantes {
 
         if (!lesArretes.containsKey(doubleCle) && !lesArretes.containsKey(doubleCleMiroir)) {
             lesArretes.put(doubleCle, nouv);
-            informer(AJOUTER_ARRETE + SEPARATEUR + depart.getNom() + SEPARATEUR + arrive.getNom());
+            informer(AJOUTER_ARRETE + SEPARATEUR + depart.getNom() + SEPARATEUR + arrive.getNom() + SEPARATEUR + doubleCle);
         }
 
     }
@@ -203,20 +215,39 @@ public class Modele extends Observable implements IConstantes {
         informer(MASQUER_TEMP);
     }
 
-    public void deplacerSommet(int x1, int y1,String nom) {
-        informer(DEPLACER_SOMMET + SEPARATEUR + x1 + SEPARATEUR + y1+SEPARATEUR+nom);
+    public void deplacerSommet(int x1, int y1, String nom) {
+        informer(DEPLACER_SOMMET + SEPARATEUR + x1 + SEPARATEUR + y1 + SEPARATEUR + nom);
     }
-    
-   public void modeSelectionArrete(String clefArrete)
-   {
-       String clefArrete2=new StringBuilder(clefArrete).reverse().toString();
-       informer(MODE_SELECTION_ARRETE+SEPARATEUR+clefArrete+SEPARATEUR+clefArrete2);
-   }
-   
-   public void modeNonSelectionArrete(String clefArrete)
-   {
-       String clefArrete2=new StringBuilder(clefArrete).reverse().toString();
-       informer(MODE_NON_SELECTION_ARRETE+SEPARATEUR+clefArrete+SEPARATEUR+clefArrete2);
-   }
-   
+
+    public void modeSelectionArrete(String clefArrete) {
+        String clefArrete2 = new StringBuilder(clefArrete).reverse().toString();
+        informer(MODE_SELECTION_ARRETE + SEPARATEUR + clefArrete + SEPARATEUR + clefArrete2);
+    }
+
+    public void modeNonSelectionArrete(String clefArrete) {
+        String clefArrete2 = new StringBuilder(clefArrete).reverse().toString();
+        informer(MODE_NON_SELECTION_ARRETE + SEPARATEUR + clefArrete + SEPARATEUR + clefArrete2);
+    }
+
+    public void changePoid(int pod, String som1, String som2) {
+        Sommet s1, s2;
+        s1 = lesSommets.get(som1);
+        s2 = lesSommets.get(som2);
+        Arrete aux;
+
+        String doubleCle, doubleCleMiroir, cle1, cle2;
+        cle1 = Integer.toString(s1.hashCode());
+        cle2 = Integer.toString(s2.hashCode());
+        doubleCle = cle1 + "/" + cle2;
+        doubleCleMiroir = cle2 + "/" + cle1;
+
+        if (lesArretes.containsKey(doubleCle))
+            aux=lesArretes.get(doubleCle);
+        else
+            aux=lesArretes.get(doubleCleMiroir);
+        
+        aux.setPoid(pod);
+        informer(CHANGER_POID_ARRETE + SEPARATEUR + pod + SEPARATEUR + som1 +SEPARATEUR + som2 );
+        
+    }
 }
