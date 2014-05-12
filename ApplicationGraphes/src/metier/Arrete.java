@@ -14,6 +14,15 @@ public class Arrete {
 //  le deuxieme sommet de l'arrête
     private Sommet sommet2;
     private int poid;
+    private String key;
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public int getPoid() {
         return poid;

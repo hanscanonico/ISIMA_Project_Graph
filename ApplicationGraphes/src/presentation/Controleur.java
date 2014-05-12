@@ -102,10 +102,8 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
             if (me.getComponent() instanceof JLabel) {
                 JLabel tmp = (JLabel) me.getComponent();
                 IconeArrete tmp2 = (IconeArrete) tmp.getParent();
-                String som1 = tmp2.getSom1().getNom();
-                String som2 = tmp2.getSom2().getNom();
-
-                mdl.afficheTextfieldArrete(som1, som2);
+                String key = tmp2.getKey();
+                mdl.afficheTextfieldArrete(key);
 
 
             }
@@ -247,9 +245,8 @@ public class Controleur implements MouseListener, ActionListener, IConstantes, F
                 } else {
                     pod = arr.getPoid();
                 }
-                String som1 = arr.getSom1().getNom();
-                String som2 = arr.getSom2().getNom();
-                mdl.changePoid(pod, som1, som2);
+
+                mdl.changePoid(pod, arr.getKey());
             }
 
         } else if (e.getComponent() instanceof IconeSommet) {

@@ -136,15 +136,8 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                     break;
                 }
                 case AFFICHE_TEXTF_ARR: {
-                    IconeSommet i1, i2;
-                    i1 = lesIconesSommets.get(tabInfos[1]);
-                    i2 = lesIconesSommets.get(tabInfos[2]);
-                    IconeArrete aux;
-                    if (lesIconesArretes.containsKey(i1.getNom() + i2.getNom())) {
-                        aux = lesIconesArretes.get(i1.getNom() + i2.getNom());
-                    } else {
-                        aux = lesIconesArretes.get(i2.getNom() + i1.getNom());
-                    }
+                    IconeArrete aux = lesIconesArretes.get(tabInfos[1]);
+
 
                     aux.modeTextField();
                     aux.validate();
@@ -167,7 +160,8 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                     i1 = lesIconesSommets.get(tabInfos[1]);
                     i2 = lesIconesSommets.get(tabInfos[2]);
                     IconeArrete nouv = new IconeArrete(i1, i2, ctrl);
-                    lesIconesArretes.put(i1.getNom() + i2.getNom(), nouv);
+                    lesIconesArretes.put(tabInfos[3], nouv);
+                    nouv.setKey(tabInfos[3]);
                     vueCentre.ajouterArrete(nouv);
                     break;
                 }
@@ -184,10 +178,8 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
 
                 }
                 case SUPPRIMER_ARRETE: {
-                    IconeArrete icoArrete = lesIconesArretes.remove(tabInfos[1] + tabInfos[2]);
-                    if (icoArrete == null) {
-                        icoArrete = lesIconesArretes.remove(tabInfos[2] + tabInfos[1]);
-                    }
+                    IconeArrete icoArrete = lesIconesArretes.remove(tabInfos[1]);
+
                     vueCentre.remove(icoArrete);
                     vueCentre.repaint();
                     vueCentre.validate();
@@ -233,11 +225,9 @@ public class VueGraphe extends JPanel implements IConstantes, Observer {
                 }
                 case CHANGER_POID_ARRETE: {
                     IconeArrete aux;
-                    if (lesIconesArretes.containsKey(tabInfos[2] + tabInfos[3])) {
-                        aux = lesIconesArretes.get(tabInfos[2] + tabInfos[3]);
-                    } else {
-                        aux = lesIconesArretes.get(tabInfos[3] + tabInfos[2]);
-                    }
+   
+                        aux = lesIconesArretes.get(tabInfos[2]);
+                    
 
                     aux.updatePoid(tabInfos[1]);
 

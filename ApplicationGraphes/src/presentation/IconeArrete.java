@@ -37,13 +37,22 @@ public class IconeArrete extends JComponent {
 // label du poid
     private JLabel label;
     private final JTextField txtfield;
+    private String key;
 
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+    
     public int getPoid() {
         return poid;
     }
 
     public void setPoid(int poid) {
-        String tmp=Integer.toString(poid);
+        String tmp = Integer.toString(poid);
         label.setText(tmp);
         txtfield.setText(tmp);
         this.poid = poid;

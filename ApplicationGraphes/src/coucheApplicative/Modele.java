@@ -140,8 +140,8 @@ public class Modele extends Observable implements IConstantes {
      *
      * @param nomCache
      */
-    public void afficheTextfieldArrete(String som1, String som2) {
-        informer(AFFICHE_TEXTF_ARR + SEPARATEUR + som1 + SEPARATEUR + som2);
+    public void afficheTextfieldArrete(String som1) {
+        informer(AFFICHE_TEXTF_ARR + SEPARATEUR + som1 );
     }
 
     /**
@@ -179,6 +179,7 @@ public class Modele extends Observable implements IConstantes {
 
         if (!lesArretes.containsKey(doubleCle) && !lesArretes.containsKey(doubleCleMiroir)) {
             lesArretes.put(doubleCle, nouv);
+            nouv.setKey(doubleCle);
             informer(AJOUTER_ARRETE + SEPARATEUR + depart.getNom() + SEPARATEUR + arrive.getNom() + SEPARATEUR + doubleCle);
         }
 
@@ -197,7 +198,7 @@ public class Modele extends Observable implements IConstantes {
             String clef = iter.next();
             Arrete a = lesArretes.get(clef);
             if (a.containsSommet(new Sommet(icoSommet.getLabel().getText()))) {
-                informer(SUPPRIMER_ARRETE + SEPARATEUR + a.getSommet1().getNom() + SEPARATEUR + a.getSommet2().getNom());
+                informer(SUPPRIMER_ARRETE + SEPARATEUR + a.getKey());
                 iter.remove();
             }
         }
@@ -229,25 +230,14 @@ public class Modele extends Observable implements IConstantes {
         informer(MODE_NON_SELECTION_ARRETE + SEPARATEUR + clefArrete + SEPARATEUR + clefArrete2);
     }
 
-    public void changePoid(int pod, String som1, String som2) {
-        Sommet s1, s2;
-        s1 = lesSommets.get(som1);
-        s2 = lesSommets.get(som2);
+    public void changePoid(int pod, String key) {
+
         Arrete aux;
 
-        String doubleCle, doubleCleMiroir, cle1, cle2;
-        cle1 = Integer.toString(s1.hashCode());
-        cle2 = Integer.toString(s2.hashCode());
-        doubleCle = cle1 + "/" + cle2;
-        doubleCleMiroir = cle2 + "/" + cle1;
-
-        if (lesArretes.containsKey(doubleCle))
-            aux=lesArretes.get(doubleCle);
-        else
-            aux=lesArretes.get(doubleCleMiroir);
+            aux=lesArretes.get(key);
         
         aux.setPoid(pod);
-        informer(CHANGER_POID_ARRETE + SEPARATEUR + pod + SEPARATEUR + som1 +SEPARATEUR + som2 );
+        informer(CHANGER_POID_ARRETE + SEPARATEUR + pod + SEPARATEUR + key );
         
     }
 }
