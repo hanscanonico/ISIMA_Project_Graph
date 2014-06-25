@@ -29,7 +29,7 @@ public class IconeArrete extends JComponent {
     private double[] disp = new double[2];
 // couleu de l'arrete
     private Color couleur;
-    private int poid = 0;
+    private int poid = 1;
 // position du label
     private int labX;
 // position du label
